@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
 
@@ -13,11 +15,11 @@
     <meta name="viewport" content="width=device-width" />
 
     <!-- Bootstrap core CSS     -->
-	<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
 
-	<!--  CSS for Demo Purpose, don't include it in your project     -->
-	<link href="assets/css/demo.css" rel="stylesheet" />
+  <!--  CSS for Demo Purpose, don't include it in your project     -->
+  <link href="assets/css/demo.css" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,300,700' rel='stylesheet' type='text/css'>
@@ -67,8 +69,8 @@
                         <a href="documentation/tutorial-components.html" target="_blank" class="nav-link"><i class="nc-icon nc-book-bookmark"></i> Documentation</a>
                     </li>
                     <li class="nav-item">
-						<a href="https://www.creative-tim.com/product/paper-kit-2-pro?ref=pk2-free-local" target="_blank" class="btn btn-danger btn-round">Upgrade to Pro</a>
-					</li>
+            <a href="https://www.creative-tim.com/product/paper-kit-2-pro?ref=pk2-free-local" target="_blank" class="btn btn-danger btn-round">Upgrade to Pro</a>
+          </li>
                 </ul>
             </div>
         </div>
@@ -76,30 +78,30 @@
     <div class="wrapper">
         <div class="page-header section-dark" style="background-image: url('assets/img/antoine-barres.jpg')">
             <div class="filter"></div>
-    		<div class="content-center">
-    			<div class="container">
-    				<div class="title-brand">
-    					<h1 class="presentation-title">Paper Kit 2</h1>
-    					<div class="fog-low">
-    						<img src="assets/img/fog-low.png" alt="">
-    					</div>
-    					<div class="fog-low right">
-    						<img src="assets/img/fog-low.png" alt="">
-    					</div>
-    				</div>
+        <div class="content-center">
+          <div class="container">
+            <div class="title-brand">
+              <h1 class="presentation-title">Paper Kit 2</h1>
+              <div class="fog-low">
+                <img src="assets/img/fog-low.png" alt="">
+              </div>
+              <div class="fog-low right">
+                <img src="assets/img/fog-low.png" alt="">
+              </div>
+            </div>
 
-    				<h2 class="presentation-subtitle text-center">Make your mark with a Free Bootstrap 4 UI Kit! </h2>
-    			</div>
-    		</div>
+            <h2 class="presentation-subtitle text-center">Make your mark with a Free Bootstrap 4 UI Kit! </h2>
+          </div>
+        </div>
             <div class="moving-clouds" style="background-image: url('assets/img/clouds.png'); ">
 
             </div>
-    		<h6 class="category category-absolute">Designed and coded by
-    			<a href="https://www.creative-tim.com" target="_blank">
-    				<img src="assets/img/creative-tim-white-slim2.png" class="creative-tim-logo">
-    			</a>
-    		</h6>
-    	</div>
+        <h6 class="category category-absolute">Designed and coded by
+          <a href="https://www.creative-tim.com" target="_blank">
+            <img src="assets/img/creative-tim-white-slim2.png" class="creative-tim-logo">
+          </a>
+        </h6>
+      </div>
         <div class="main">
             <div class="section section-buttons">
                 <div class="container">
@@ -136,26 +138,26 @@
                             <h3><small>Pick your color</small></h3>
                         </div>
                         <div class="row">
-							<div class="col-md-8">
-								<button type="button" class="btn btn-outline-default btn-round">Default</button>
-								<button type="button" class="btn btn-outline-primary btn-round">Primary</button>
+              <div class="col-md-8">
+                <button type="button" class="btn btn-outline-default btn-round">Default</button>
+                <button type="button" class="btn btn-outline-primary btn-round">Primary</button>
                                 <button type="button" class="btn btn-outline-info btn-round">Info</button>
                                 <button type="button" class="btn btn-outline-success btn-round">Success</button>
                                 <button type="button" class="btn btn-outline-warning btn-round">Warning</button>
                                 <button type="button" class="btn btn-outline-danger btn-round">Danger</button>
-							</div>
+              </div>
                         </div>
                         <br/>
                         <div class="row">
                             <div class="col-md-8">
-								<button type="button" class="btn btn-default btn-round">Default</button>
+                <button type="button" class="btn btn-default btn-round">Default</button>
                                 <button type="button" class="btn btn-primary btn-round">Primary</button>
                                 <button type="button" class="btn btn-info btn-round">Info</button>
                                 <button type="button" class="btn btn-success btn-round">Success</button>
                                 <button type="button" class="btn btn-warning btn-round">Warning</button>
                                 <button type="button" class="btn btn-danger btn-round">Danger</button>
                             </div>
-		                </div>
+                    </div>
                     </div>
                         <br/>
                     <div class="tim-title">
@@ -178,9 +180,9 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-3">
-							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Default">
-							</div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Default">
+              </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group has-success">
@@ -274,23 +276,23 @@
                             <div class="tim-title">
                                 <h3>Toggle Buttons</h3>
                             </div>
-							<div class="togglebutton">
-				            	<label>
-				                	<input type="checkbox" data-toggle="switch" checked=""><span class="toggle"></span> Toggle is on
-				            	</label>
-				            </div>
-							<div class="togglebutton">
-				            	<label>
-				                	<input type="checkbox" data-toggle="switch"><span class="toggle"></span> Toggle is off
-				            	</label>
-				            </div>
+              <div class="togglebutton">
+                      <label>
+                          <input type="checkbox" data-toggle="switch" checked=""><span class="toggle"></span> Toggle is on
+                      </label>
+                    </div>
+              <div class="togglebutton">
+                      <label>
+                          <input type="checkbox" data-toggle="switch"><span class="toggle"></span> Toggle is off
+                      </label>
+                    </div>
 
                         </div>
                         <div class="col-sm-6 col-lg-3">
                             <div class="tim-title">
                                 <h3>Sliders</h3>
                             </div>
-							<div id="sliderRegular" class="slider noUi-target noUi-ltr noUi-horizontal noUi-connect"></div>
+              <div id="sliderRegular" class="slider noUi-target noUi-ltr noUi-horizontal noUi-connect"></div>
                             <br/>
                             <div id="sliderDouble" class="slider slider-info noUi-target noUi-ltr noUi-horizontal noUi-background"></div>
                         </div>
@@ -310,7 +312,7 @@
                                     <span class="navbar-toggler-icon"></span>
                                     <span class="navbar-toggler-icon"></span>
                                     <span class="navbar-toggler-icon"></span>
-								</button>
+                </button>
                                 <a class="navbar-brand" href="#">Menu</a>
                                 <div class="collapse navbar-collapse" id="navbar-menu">
                                     <ul class="navbar-nav mr-auto">
@@ -343,7 +345,7 @@
                                     <span class="navbar-toggler-icon"></span>
                                     <span class="navbar-toggler-icon"></span>
                                     <span class="navbar-toggler-icon"></span>
-								</button>
+                </button>
                                 <a class="navbar-brand" href="#">Icons</a>
                                 <div class="collapse navbar-collapse" id="navbar-menu-icon">
                                     <ul class="navbar-nav ml-auto">
@@ -384,7 +386,7 @@
                                     <span class="navbar-toggler-bar"></span>
                                     <span class="navbar-toggler-bar"></span>
                                     <span class="navbar-toggler-bar"></span>
-							  	</button>
+                  </button>
                                 <a class="navbar-brand" href="#">Primary Color</a>
                                 <div class="collapse navbar-collapse" id="navbar-primary">
                                     <ul class="navbar-nav ml-auto">
@@ -407,7 +409,7 @@
                                     <span class="navbar-toggler-bar"></span>
                                     <span class="navbar-toggler-bar"></span>
                                     <span class="navbar-toggler-bar"></span>
-							    </button>
+                  </button>
                                 <a class="navbar-brand" href="#">Info Color</a>
                                 <div class="collapse navbar-collapse" id="navbar-info">
                                     <ul class="navbar-nav ml-auto">
@@ -430,7 +432,7 @@
                                     <span class="navbar-toggler-bar"></span>
                                     <span class="navbar-toggler-bar"></span>
                                     <span class="navbar-toggler-bar"></span>
-    							</button>
+                  </button>
                                 <a class="navbar-brand" href="#">Success Color</a>
                                 <div class="collapse navbar-collapse" id="navbar-success">
                                     <ul class="navbar-nav ml-auto">
@@ -453,7 +455,7 @@
                                     <span class="navbar-toggler-bar"></span>
                                     <span class="navbar-toggler-bar"></span>
                                     <span class="navbar-toggler-bar"></span>
-							    </button>
+                  </button>
                                 <a class="navbar-brand" href="#">Warning Color</a>
                                 <div class="collapse navbar-collapse" id="navbar-warning">
                                     <ul class="navbar-nav ml-auto">
@@ -479,7 +481,7 @@
                                     <span class="navbar-toggler-bar"></span>
                                     <span class="navbar-toggler-bar"></span>
                                     <span class="navbar-toggler-bar"></span>
-							    </button>
+                  </button>
                                 <a class="navbar-brand" href="#">Danger Color</a>
                                 <div class="collapse navbar-collapse" id="navbar-danger">
                                     <ul class="navbar-nav ml-auto">
@@ -502,7 +504,7 @@
                                     <span class="navbar-toggler-bar"></span>
                                     <span class="navbar-toggler-bar"></span>
                                     <span class="navbar-toggler-bar"></span>
-							    </button>
+                  </button>
                                 <a class="navbar-brand" href="#">Transparent</a>
                                 <div class="collapse navbar-collapse" id="navbar-transparent">
                                     <ul class="navbar-nav ml-auto">
@@ -760,7 +762,7 @@
                     </div>
                     <br/>
                     <div id="images">
-                    	<div class="container">
+                      <div class="container">
                             <div class="tim-title">
                                 <h3>Images</h3>
                             </div>
@@ -791,21 +793,21 @@
                 </div>
             </div>
             <div class="section javascript-components">
-				<div class="container">
-					<div class="tim-title">
-						<h2>Javascript Components</h2>
-					</div>
-					<div class="row" id="modals">
-						<div class="col-md-6">
-							<div class="tim-title">
-								<h3>Modal</h3>
-							</div>
-							<!-- Button trigger modal -->
-							<button type="button" class="btn btn-outline-danger btn-round" data-toggle="modal" data-target="#myModal">
-							    Launch demo modal
-							</button>
-							<!-- Modal -->
-							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="container">
+          <div class="tim-title">
+            <h2>Javascript Components</h2>
+          </div>
+          <div class="row" id="modals">
+            <div class="col-md-6">
+              <div class="tim-title">
+                <h3>Modal</h3>
+              </div>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-outline-danger btn-round" data-toggle="modal" data-target="#myModal">
+                  Launch demo modal
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -827,79 +829,79 @@
                                         </div>
                                     </div>
                                 </div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="tim-title">
-								<h3>Popovers</h3>
-							</div>
-							<button type="button" class="btn btn-outline-danger btn-round" data-container="body" data-toggle="popover" data-placement="left" data-title="Popover on left" data-trigger="click"  data-content="Here will be some very useful information about this popover.">on left</button>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="tim-title">
+                <h3>Popovers</h3>
+              </div>
+              <button type="button" class="btn btn-outline-danger btn-round" data-container="body" data-toggle="popover" data-placement="left" data-title="Popover on left" data-trigger="click"  data-content="Here will be some very useful information about this popover.">on left</button>
                             <button type="button" class="btn btn-outline-danger btn-round" data-container="body" data-toggle="popover" data-placement="right" data-title="Popover on right" data-content="Here will be some very useful information about this popover.">on right</button>
-							<button type="button" class="btn btn-outline-danger btn-round" data-container="body" data-toggle="popover" data-placement="top" data-title="Popover on top" data-content="Here will be some very useful information about this popover.">on top</button>
-							<button type="button" class="btn btn-outline-danger btn-round" data-container="body" data-toggle="popover" data-placement="bottom" data-title="Popover on bottom" data-content="Here will be some very useful information about this popover.">on bottom</button>
-						</div>
-						<br/>
-						<div class="col-md-6">
-							<div class="tim-title">
-								<h3>Datepicker</h3>
-							</div>
-						    <div class="row">
-						        <div class='col-sm-6'>
-						            <div class="form-group">
-						                <div class='input-group date' id='datetimepicker'>
-						                    <input type='text' class="form-control datetimepicker" placeholder="05/08/2017" />
-						                    <span class="input-group-addon">
-						                        <span class="glyphicon glyphicon-calendar"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-						                    </span>
-						                </div>
-						            </div>
-						        </div>
-						    </div>
-						</div>
-						<div class="col-md-6">
-							<div class="tim-title">
-								<h3>Tooltips</h3>
-							</div>
-							<button type="button" class="btn btn-outline-danger btn-round" data-toggle="tooltip" data-placement="left" title="Tooltip on left">On left</button>
+              <button type="button" class="btn btn-outline-danger btn-round" data-container="body" data-toggle="popover" data-placement="top" data-title="Popover on top" data-content="Here will be some very useful information about this popover.">on top</button>
+              <button type="button" class="btn btn-outline-danger btn-round" data-container="body" data-toggle="popover" data-placement="bottom" data-title="Popover on bottom" data-content="Here will be some very useful information about this popover.">on bottom</button>
+            </div>
+            <br/>
+            <div class="col-md-6">
+              <div class="tim-title">
+                <h3>Datepicker</h3>
+              </div>
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker'>
+                                <input type='text' class="form-control datetimepicker" placeholder="05/08/2017" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <div class="tim-title">
+                <h3>Tooltips</h3>
+              </div>
+              <button type="button" class="btn btn-outline-danger btn-round" data-toggle="tooltip" data-placement="left" title="Tooltip on left">On left</button>
                             <button type="button" class="btn btn-outline-danger btn-round" data-toggle="tooltip" data-placement="right" title="Tooltip on right">On right</button>
-							<button type="button" class="btn btn-outline-danger btn-round" data-toggle="tooltip" data-placement="top" title="Tooltip on top">On top</button>
-							<button type="button" class="btn btn-outline-danger btn-round" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">On bottom</button>
-						</div>
-					</div>
-					<div class="tim-title">
-						<h3>Carousel</h3>
-					</div>
-				</div>
-			</div>
-			<div class="section" id="carousel">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-8 ml-auto mr-auto">
-							<div class="card page-carousel">
-								<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-								    <ol class="carousel-indicators">
-    								    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    								    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    								    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-								    </ol>
+              <button type="button" class="btn btn-outline-danger btn-round" data-toggle="tooltip" data-placement="top" title="Tooltip on top">On top</button>
+              <button type="button" class="btn btn-outline-danger btn-round" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">On bottom</button>
+            </div>
+          </div>
+          <div class="tim-title">
+            <h3>Carousel</h3>
+          </div>
+        </div>
+      </div>
+      <div class="section" id="carousel">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 ml-auto mr-auto">
+              <div class="card page-carousel">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
                                     <div class="carousel-inner" role="listbox">
                                     <div class="carousel-item active">
                                         <img class="d-block img-fluid" src="assets\img\soroush-karimi.jpg" alt="First slide">
-                                    	<div class="carousel-caption d-none d-md-block">
+                                      <div class="carousel-caption d-none d-md-block">
                                             <p>Somewhere</p>
                                         </div>
                                     </div>
                                     <div class="carousel-item">
                                         <img class="d-block img-fluid" src="assets\img\federico-beccari.jpg" alt="Second slide">
-                                    	<div class="carousel-caption d-none d-md-block">
-                                    	    <p>Somewhere else</p>
-                                    	</div>
+                                      <div class="carousel-caption d-none d-md-block">
+                                          <p>Somewhere else</p>
+                                      </div>
                                     </div>
                                     <div class="carousel-item">
                                         <img class="d-block img-fluid" src="assets\img\joshua-stannard.jpg" alt="Third slide">
-                                    	<div class="carousel-caption d-none d-md-block">
-                                    	    <p>Here it is</p>
-                                    	</div>
+                                      <div class="carousel-caption d-none d-md-block">
+                                          <p>Here it is</p>
+                                      </div>
                                     </div>
                                     </div>
 
@@ -911,56 +913,56 @@
                                         <span class="fa fa-angle-right"></span>
                                         <span class="sr-only">Next</span>
                                     </a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
             <div class="section section-dark section-nucleo-icons">
                 <div class="container">
-    				<div class="row">
-    					<div class="col-lg-6 col-md-12">
-    						<h2 class="title">Nucleo Icons</h2><br/>
-    						<p class="description">
-    							Now UI Kit comes with 100 custom icons made by our friends from NucleoApp. The official package contains over 2.100 thin icons which are looking great in combination with Now UI Kit Make sure you check all of them and use those that you like the most.
-    						</p><br/>
+            <div class="row">
+              <div class="col-lg-6 col-md-12">
+                <h2 class="title">Nucleo Icons</h2><br/>
+                <p class="description">
+                  Now UI Kit comes with 100 custom icons made by our friends from NucleoApp. The official package contains over 2.100 thin icons which are looking great in combination with Now UI Kit Make sure you check all of them and use those that you like the most.
+                </p><br/>
                             <a href="nucleo-icons-demo.html" class="btn btn-danger btn-round" target="_blank">View Demo Icons</a>
                             <a href="https://nucleoapp.com/?ref=1712" class="btn btn-outline-danger btn-round" target="_blank">View All Icons</a>
-    					</div>
+              </div>
 
-    					<div class="col-lg-6 col-md-12">
-    						<div class="icons-container">
-    							<i class="nc-icon nc-time-alarm"></i>
-    							<i class="nc-icon nc-atom"></i>
-    							<i class="nc-icon nc-camera-compact"></i>
-    							<i class="nc-icon nc-watch-time"></i>
-    							<i class="nc-icon nc-key-25"></i>
-    							<i class="nc-icon nc-diamond"></i>
-    							<i class="nc-icon nc-user-run"></i>
-    							<i class="nc-icon nc-layout-11"></i>
-    							<i class="nc-icon nc-badge"></i>
-    							<i class="nc-icon nc-bulb-63"></i>
-    							<i class="nc-icon nc-favourite-28"></i>
-    							<i class="nc-icon nc-planet"></i>
-    							<i class="nc-icon nc-tie-bow"></i>
-    							<i class="nc-icon nc-zoom-split"></i>
-    							<i class="nc-icon nc-cloud-download-93"></i>
-    						</div>
-    					</div>
-    				</div>
-    			</div>
+              <div class="col-lg-6 col-md-12">
+                <div class="icons-container">
+                  <i class="nc-icon nc-time-alarm"></i>
+                  <i class="nc-icon nc-atom"></i>
+                  <i class="nc-icon nc-camera-compact"></i>
+                  <i class="nc-icon nc-watch-time"></i>
+                  <i class="nc-icon nc-key-25"></i>
+                  <i class="nc-icon nc-diamond"></i>
+                  <i class="nc-icon nc-user-run"></i>
+                  <i class="nc-icon nc-layout-11"></i>
+                  <i class="nc-icon nc-badge"></i>
+                  <i class="nc-icon nc-bulb-63"></i>
+                  <i class="nc-icon nc-favourite-28"></i>
+                  <i class="nc-icon nc-planet"></i>
+                  <i class="nc-icon nc-tie-bow"></i>
+                  <i class="nc-icon nc-zoom-split"></i>
+                  <i class="nc-icon nc-cloud-download-93"></i>
+                </div>
+              </div>
             </div>
-			<div class="section section-dark">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-8 ml-auto mr-auto text-center">
-							<h2 class="title">Completed with examples</h2>
-							<p class="description">The kit comes with three pre-built pages to help you get started faster. You can change the text and images and you're good to go. More importantly, looking at them will give you a picture of what you can built with this powerful kit.</p>
-						</div>
-					</div>
-				</div>
-			</div>
+          </div>
+            </div>
+      <div class="section section-dark">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 ml-auto mr-auto text-center">
+              <h2 class="title">Completed with examples</h2>
+              <p class="description">The kit comes with three pre-built pages to help you get started faster. You can change the text and images and you're good to go. More importantly, looking at them will give you a picture of what you can built with this powerful kit.</p>
+            </div>
+          </div>
+        </div>
+      </div>
             <div class="section section-image section-login" style="background-image: url('assets/img/login-image.jpg');">
                 <div class="container">
                     <div class="row">
@@ -1025,28 +1027,28 @@
                     </div>
                 </div>
             </div>
-			<div class="section">
-				<div class="container text-center">
-					<div class="row">
-						<div class="col-md-8 ml-auto mr-auto text-center">
-							<h2 class="title">Do you like what you see?</h2>
-							<p class="description">Cause if you do, it can be yours for Free. Hit the button below and download it. Start a new project or give an old Bootstrap 4 project a new look.</p>
-						</div>
-						<div class="col-md-5 ml-auto mr-auto download-area">
-							<a href="http://www.creative-tim.com/product/paper-kit-2" class="btn btn-danger btn-round">Download free HTML</a>
-						</div>
-					</div>
+      <div class="section">
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-md-8 ml-auto mr-auto text-center">
+              <h2 class="title">Do you like what you see?</h2>
+              <p class="description">Cause if you do, it can be yours for Free. Hit the button below and download it. Start a new project or give an old Bootstrap 4 project a new look.</p>
+            </div>
+            <div class="col-md-5 ml-auto mr-auto download-area">
+              <a href="http://www.creative-tim.com/product/paper-kit-2" class="btn btn-danger btn-round">Download free HTML</a>
+            </div>
+          </div>
                     <div class="row text-center upgrade-pro">
-    					<div class="col-md-8 ml-auto mr-auto">
-    	                    <h2 class="title">Want more?</h2>
-    	                    <p class="description">We've just launched <a href="http://demos.creative-tim.com/paper-kit-2-pro/presentation.html?ref=utp-pk2-demos" class="text-danger" target="_blank">Paper Kit 2 PRO</a>. It has a huge number of components, sections and example pages.</p>
-    	                </div>
-    					<div class="col-sm-5 ml-auto mr-auto">
-    						<a href="https://www.creative-tim.com/product/paper-kit-2-pro?ref=utp-pk-demos" class="btn btn-info btn-round" target="_blank">
-    							<i class="nc-icon nc-spaceship" aria-hidden="true"></i> Upgrade to PRO
-    						</a>
-    					</div>
-    	            </div>
+              <div class="col-md-8 ml-auto mr-auto">
+                          <h2 class="title">Want more?</h2>
+                          <p class="description">We've just launched <a href="http://demos.creative-tim.com/paper-kit-2-pro/presentation.html?ref=utp-pk2-demos" class="text-danger" target="_blank">Paper Kit 2 PRO</a>. It has a huge number of components, sections and example pages.</p>
+                      </div>
+              <div class="col-sm-5 ml-auto mr-auto">
+                <a href="https://www.creative-tim.com/product/paper-kit-2-pro?ref=utp-pk-demos" class="btn btn-info btn-round" target="_blank">
+                  <i class="nc-icon nc-spaceship" aria-hidden="true"></i> Upgrade to PRO
+                </a>
+              </div>
+                  </div>
                     <div class="row justify-content-md-center sharing-area text-center">
                         <div class="text-center col-md-12 col-lg-8">
                             <h3>Thank you for supporting us!</h3>
@@ -1066,10 +1068,10 @@
                             </a>
                         </div>
                     </div>
-				</div>
-			</div>
         </div>
-	</div>
+      </div>
+        </div>
+  </div>
     <footer class="footer">
         <div class="container">
             <div class="row">
