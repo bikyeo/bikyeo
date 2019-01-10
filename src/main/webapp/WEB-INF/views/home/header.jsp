@@ -24,35 +24,16 @@
 		</div>
 		<div class="collapse navbar-collapse" id="navbarToggler">
 			<ul class="navbar-nav ml-auto">
-<!-- 				<li class="nav-item"><a class="nav-link" rel="tooltip" -->
-<!-- 					title="Like us on Facebook" data-placement="bottom" -->
-<!-- 					href="https://www.facebook.com/CreativeTim" target="_blank"> <i -->
-<!-- 						class="fa fa-facebook-square"></i> -->
-<!-- 						<p class="d-lg-none">Facebook</p> -->
-<!-- 				</a></li> -->
-<!-- 				<li class="nav-item"><a class="nav-link" rel="tooltip" -->
-<!-- 					title="Follow us on Instagram" data-placement="bottom" -->
-<!-- 					href="https://www.instagram.com/CreativeTimOfficial" -->
-<!-- 					target="_blank"> <i class="fa fa-instagram"></i> -->
-<!-- 						<p class="d-lg-none">Instagram</p> -->
-<!-- 				</a></li> -->
-<!-- 				<li class="nav-item"><a class="nav-link" rel="tooltip" -->
-<!-- 					title="Star on GitHub" data-placement="bottom" -->
-<!-- 					href="https://www.github.com/CreativeTimOfficial/paper-kit" -->
-<!-- 					target="_blank"> <i class="fa fa-github"></i> -->
-<!-- 						<p class="d-lg-none">GitHub</p> -->
-<!-- 				</a></li> -->
-			 <li class="nav-item"><a
-          href="https://www.creative-tim.com/product/paper-kit-2-pro?ref=pk2-free-local"
-          target="_blank" class="nav-link d-lg-none" id="rent">대여소 정보조회</a></li>
-      
-				<li class="nav-item"><a
-          href="https://www.creative-tim.com/product/paper-kit-2-pro?ref=pk2-free-local"
-          target="_blank" class="nav-link">Sign In</a></li>
-				<li class="nav-item"><a
-					href="https://www.creative-tim.com/product/paper-kit-2-pro?ref=pk2-free-local"
-					target="_blank" class="nav-link">Sign Up</a>
-				</li>
+				<li class="nav-item"><a href="" target="_blank"
+					class="nav-link d-lg-none none_link">대여소 정보조회</a></li>
+				<li class="nav-item"><a href="" target="_blank"
+					class="nav-link d-lg-none none_link">FAQ게시판</a></li>
+				<li class="nav-item"><a href="" target="_blank"
+					class="nav-link d-lg-none none_link">QnA게시판</a></li>
+				<li class="nav-item"><a href="" target="_blank"
+					class="nav-link">Sign In</a></li>
+				<li class="nav-item"><a href="" target="_blank"
+					class="nav-link">Sign Up</a></li>
 			</ul>
 		</div>
 	</div>
