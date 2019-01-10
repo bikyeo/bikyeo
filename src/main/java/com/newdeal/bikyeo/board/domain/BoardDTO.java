@@ -1,4 +1,4 @@
-package com.newdeal.board.domain;
+package com.newdeal.bikyeo.board.domain;
 
 public class BoardDTO {
   

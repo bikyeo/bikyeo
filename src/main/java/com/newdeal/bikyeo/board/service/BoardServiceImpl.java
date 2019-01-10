@@ -1,4 +1,4 @@
-package com.newdeal.board.service;
+package com.newdeal.bikyeo.board.service;
 
 public class BoardServiceImpl implements BoardService {
 

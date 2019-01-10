@@ -1,4 +1,4 @@
-package com.newdeal.member.doamin;
+package com.newdeal.bikyeo.member.doamin;
 
 public class MemberDTO {
 

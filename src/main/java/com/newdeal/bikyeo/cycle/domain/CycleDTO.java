@@ -1,4 +1,4 @@
-package com.newdeal.cycle.domain;
+package com.newdeal.bikyeo.cycle.domain;
 
 public class CycleDTO {
 

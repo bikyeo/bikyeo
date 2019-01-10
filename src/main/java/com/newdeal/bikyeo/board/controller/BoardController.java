@@ -1,4 +1,4 @@
-package com.newdeal.board.controller;
+package com.newdeal.bikyeo.board.controller;
 
 
 public class BoardController {

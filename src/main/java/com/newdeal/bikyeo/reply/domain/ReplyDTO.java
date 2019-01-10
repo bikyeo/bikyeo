@@ -1,4 +1,4 @@
-package com.newdeal.reply.domain;
+package com.newdeal.bikyeo.reply.domain;
 
 public class ReplyDTO {
   
