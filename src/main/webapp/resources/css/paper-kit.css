@@ -5931,3 +5931,13 @@ textarea.form-control {
 .following img {
   max-width: 70px;
 }
+
+/* 작성일 : 19.01.10 */
+/* 작성자 : 송기원 */
+/* 설명 : 메인 텍스트 크기 */
+.main-text{
+	font-size: 12em;
+}
+.main-button{
+	font-size: 6em;
+}
