@@ -17,12 +17,12 @@
 		<div class="content-center">
 			<div class="container">
 				<div class="title-brand">
-					<h1 class="presentation-title">Bikyeo</h1>
+					<p class="presentation-title main-text">Bikyeo</p>
 				</div>
-        <div>
-      <button class="transparent btn btn-danger btn-lg">대여하기</button>
+        <div class="text-center">
+      <button class="main-button btn btn-outline-primary">대여하기</button>
     
-      <button class="transparent btn btn-danger btn-lg">반납하기</button>
+      <button class="main-button btn btn-outline-danger">반납하기</button>
         </div>
 				<h2 class="presentation-subtitle text-center"></h2>
 			</div>
