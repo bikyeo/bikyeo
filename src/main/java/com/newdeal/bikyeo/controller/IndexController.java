@@ -15,6 +15,6 @@ public class IndexController {
   @RequestMapping("/index.do")
   public String index() {
     //return "index.jsp";
-    return "home.home";
+    return "home.main";
   }
 }
