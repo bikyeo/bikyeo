@@ -10,7 +10,7 @@ public class IndexController {
    * 메소드명 : index()
    * 작성일 : 19.01.09
    * 작성자 : 송기원
-   * 설명 : 인덱스페이
+   * 설명 : 인덱스페이지
    */
   @RequestMapping("/index.do")
   public String index() {
