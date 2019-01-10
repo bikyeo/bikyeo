@@ -6,7 +6,7 @@
  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 
 
@@ -19,17 +19,16 @@
 				<div class="title-brand">
 					<p class="presentation-title main-text">Bikyeo</p>
 				</div>
-        <div class="text-center">
-      <button class="main-button btn btn-outline-primary">대여하기</button>
-    
-      <button class="main-button btn btn-outline-danger">반납하기</button>
-        </div>
+				<div class="text-center">
+					<button class="main-button btn btn-outline-primary" id="share">대여하기</button>
+
+					<button class="main-button btn btn-outline-danger" id="return">반납하기</button>
+				</div>
 				<h2 class="presentation-subtitle text-center"></h2>
 			</div>
 		</div>
-		<h6 class="category category-absolute">
-			Designed and coded by Bikyeo
-				</h6>
+		<h6 class="category category-absolute">Designed and coded by
+			Bikyeo</h6>
 	</div>
 	<div class="main">
 		<div class="section section-buttons">
@@ -1134,3 +1133,18 @@
 	</div>
 </div>
 </div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#share').click(function(){
+      location.href='sharemain.do';
+      
+    })
+    
+    $('#return').click(function(){
+      
+      $('#myModal').modal('show');
+      
+    })
+    
+  })
+</script>
