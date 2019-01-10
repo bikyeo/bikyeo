@@ -1,8 +1,8 @@
 <!-- 
-파일명 : home.jsp
-작성일 : 19.01.09
+파일명 : footer.jsp
+작성일 : 19.01.10
 작성자 : 송기원
-설명 : 인덱스 페이지 푸터 부분
+설명 : 일반 페이지 푸터 부분
  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
