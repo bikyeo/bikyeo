@@ -8,7 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -56,7 +56,7 @@
 <!--  Paper Kit Initialization and functons -->
 <script src="${root}/js/paper-kit.js?v=2.1.0"></script>
 </head>
-<body>
+<body class="body-margin">
 	<!-- Header  영역 -->
 	<tiles:insertAttribute name="header" />
 	<!-- Main 영역 -->
@@ -65,6 +65,41 @@
 
 	<!-- Footer 영역  -->
 	<tiles:insertAttribute name="footer" />
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="exampleModalLabel">Modal
+          title</h5>
+        <button type="button" class="close" data-dismiss="modal"
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">Far far away, behind the word
+        mountains, far from the countries Vokalia and Consonantia, there
+        live the blind texts. Separated they live in Bookmarksgrove right at
+        the coast of the Semantics, a large language ocean. A small river
+        named Duden flows by their place and supplies it with the necessary
+        regelialia. It is a paradisematic country, in which roasted parts of
+        sentences fly into your mouth. Even the all-powerful Pointing has no
+        control about the blind texts it is an almost unorthographic life
+        One day however a small line of blind text by the name of Lorem
+        Ipsum decided to leave for the far World of Grammar.</div>
+      <div class="modal-footer">
+        <div class="left-side">
+          <button type="button" class="btn btn-default btn-link"
+            data-dismiss="modal">Never mind</button>
+        </div>
+        <div class="divider"></div>
+        <div class="right-side">
+          <button type="button" class="btn btn-danger btn-link">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 
 </html>
