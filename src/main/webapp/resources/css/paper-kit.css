@@ -1181,7 +1181,6 @@ a:focus, a:active, button::-moz-focus-inner, input[type="reset"]::-moz-focus-inn
 	color: #66615b;
 	font-size: 14px;
 	padding: 7px 12px;
-	height: 40px;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
