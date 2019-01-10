@@ -1,3 +1,9 @@
+<!-- 
+파일명 : home.jsp
+작성일 : 19.01.09
+작성자 : 송기원
+설명 : 인덱스 페이지 푸터 부분
+ -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <footer class="footer">
