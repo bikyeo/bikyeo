@@ -21,9 +21,8 @@
 		</select>
 	<div class="input-group col-9">
       <input type="text" class="input-group form-control" placeholder="질문을 입력해주세요">		 
-			<div class="form-group">
 			   <button type="button" class="input-group-prepend btn btn-danger">검색</button>
-			</div>  
+			  
 		</div>
 		
   <table class="table">
