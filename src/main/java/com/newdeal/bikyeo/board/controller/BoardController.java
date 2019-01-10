@@ -13,7 +13,7 @@ public class BoardController {
    * 설명 : 게시판페이지
    */
   
-  @RequestMapping("/board")
+  @RequestMapping("/board.do")
   public String board() {
     
     return "board.board";
