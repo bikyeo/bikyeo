@@ -1,8 +1,8 @@
 <!-- 
 파일명 : home.jsp
-작성일 : 19.01.09
-작성자 : 송기원
-설명 : 인덱스 페이지 타일즈 템플릿
+작성일 : 19.01.10
+작성자 : 염승민
+설명 : 일반 페이지 타일즈 템플릿
  -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
