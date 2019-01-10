@@ -1141,7 +1141,11 @@
     })
     
     $('#return').click(function(){
-      
+      Swal(
+              'Good job!',
+              'You clicked the button!',
+              'success'
+            )
       $('#myModal').modal('show');
       
     })

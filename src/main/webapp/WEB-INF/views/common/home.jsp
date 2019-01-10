@@ -58,9 +58,8 @@
 
 <!-- SweetAlert2 -->
 <script src="${root}/sw2/sweetalert2.all.min.js"></script>
-<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
-<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 <script src="${root}/sw2/sweetalert2.min.js"></script>
+
 <link rel="stylesheet" href="${root}/sw2/sweetalert2.min.css" />
 </head>
 <body class="body-margin">
