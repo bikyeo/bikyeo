@@ -6873,6 +6873,7 @@ translate3d
 .cycle-background {
 	background-color: rgba(0, 0, 0, 0.5);
 	padding: 10px 0;
+	margin-top: 5px;
 }
 
 .bg-circle {

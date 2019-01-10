@@ -9,7 +9,7 @@
 <body>
 <div class="container">
 	<div class="row">
-		<select class="form-control col-3">
+		<select class="custom-select col-3">
 		  <option value="개요">개요</option>
       <option value="이용방법">이용방법</option>
       <option value="홈페이지">홈페이지</option>

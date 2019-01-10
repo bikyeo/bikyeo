@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <div class="text-center container">
 	<div class="row">
-		<select class="form-control col-2">
+		<select class="custom-select col-2">
 			<option>지역구</option>
 			<option>대여소</option>
 		</select>
