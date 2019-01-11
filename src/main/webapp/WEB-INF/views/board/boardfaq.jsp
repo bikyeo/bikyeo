@@ -17,7 +17,7 @@
       <option value="대여소">대여소</option>
       <option value="단말기">단말기</option>
       <option value="자전거">자전거</option>   
-		  <option selected="selected">질문 선택</option>
+		  <option selected="selected">FAQ질문 선택</option>
 		</select>
 	<div class="input-group col-9">
       <input type="text" class="input-group form-control" placeholder="질문을 입력해주세요">		 

@@ -13,12 +13,17 @@ public class BoardController {
    * 설명 : 게시판페이지
    */
   
-  @RequestMapping("/board.do")
-  public String board() {
+  @RequestMapping("/boardfaq.do")
+  public String boardfaq() {
     
-    return "board.board";
+    return "board.boardfaq";
   }
   
+  @RequestMapping("/boardqna.do")
+  public String boardqna() {
+    
+    return "board.boardqna";
+  }
   
   
   
