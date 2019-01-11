@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <div class="content-center section section-image section-login"
-	style="background-image: url('${root}/img/background.jpg');">
+	style="background-image: url('${root}/img/background2.jpg');">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 ml-auto mr-auto">
@@ -32,11 +32,11 @@
 					</div>
 				</div>
 				<div class="col text-center">
-					<a href=""
-						class="btn btn-outline-neutral btn-round btn-lg" target="_blank">회원가입</a>
+					<a href="${root}/signup.do"
+						class="btn btn-outline-neutral btn-round btn-lg">회원가입</a>
 				</div>
 			</div>
 		</div>
+		<h6 class="category category-absolute">Designed and coded by Bikyeo</h6>
 	</div>
-	<h6 class="category category-absolute">Designed and coded by Bikyeo</h6>
 </div>

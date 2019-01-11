@@ -29,13 +29,13 @@ public class IndexController {
   }
   
   /*
-   * 메소드명 : signIn()
+   * 메소드명 : signUp()
    * 작성일 : 19.01.11
    * 작성자 : 염승민
    * 설명 : 회원가입 페이지
    */
-  @RequestMapping("/signin.do")
-  public String signIn() {
-    return "home.signIn";
+  @RequestMapping("/signup.do")
+  public String signUp() {
+    return "home.signUp";
   }
 }
