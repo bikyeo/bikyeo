@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+/* 작성일 : 19.01.10 */
+/* 작성자 : 송기원 */
+/* 설명 : 메인 텍스트 크기 */
+.main-text {
+  font-size: 12em;
+}
+
+/* 작성일 : 19.01.10 */
+/* 작성자 : 송기원 */
+/* 설명 : 자전거 대여 검색 패딩*/
+.search-padding {
+  padding-left: 30px;
+  padding-right: 0;
+}
+
+.cycle-background {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px 0;
+  margin-top: 5px;
+}
+
+/* 자전거 표시 색상*/
+.bg-circle {
+ margin: 0 30px;
+}
+
+.bg-naver{
+  background-color: #1EC800;
+}
+
+.bg-red{
+  background-color: red;
+}
+
+.bg-orange{
+  background-color: orange;
+}
+
+.bg-green{
+  background-color: green;
+}
+
+.main-button {
+  font-size: 6em;
+}
+
+

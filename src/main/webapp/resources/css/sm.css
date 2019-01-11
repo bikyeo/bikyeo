@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+
+/* 작성일 : 19.01.10 */
+/* 작성자 : 염승민 */
+/* 설명 : 로그인 요소 수정*/
+.login-margin {
+  margin-top: 100px;
+}
+
+.btn-naver {
+  background-color: #1EC800;
+  border-color: #1EC800;
+}
+
+.btn-naver:hover {
+  background-color: #0DB700;
+  border-color: #0DB700;
+}
+
+.btn-kakao {
+  background-color: #FAB900;
+  border-color: #FAB900; 
+  color: #333333;
+}
+
+.btn-kakao:hover {
+  background-color: #E0AC00;
+  border-color: #E0AC00; 
+  color: #333333;
+}
+
+/* 작성일 : 19.01.10 */
+/* 작성자 : 염승민 */
+/* 설명 : 일반 페이지 바디 마진 값*/
+.body-margin {
+  margin-top: 100px;
+}
+
