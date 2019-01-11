@@ -15,7 +15,7 @@ public class CycleShareController {
   @RequestMapping("/sharemain.do")
   public String sharemain() {
     //return "index.jsp";
-    return "share.main";
+    return "share.sharemain";
   }
 
 

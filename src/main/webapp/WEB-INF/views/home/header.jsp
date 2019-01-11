@@ -31,9 +31,9 @@
 				<li class="nav-item"><a href="" target="_blank"
 					class="nav-link d-lg-none none_link">QnA게시판</a></li>
 				<li class="nav-item"><a href="" target="_blank"
-					class="nav-link">Sign In</a></li>
+					class="nav-link text-white">Sign In</a></li>
 				<li class="nav-item"><a href="" target="_blank"
-					class="nav-link">Sign Up</a></li>
+					class="nav-link text-white">Sign Up</a></li>
 			</ul>
 		</div>
 	</div>
