@@ -55,7 +55,7 @@
   var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
         center: new daum.maps.LatLng(37.4994553, 127.02924710000002), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
+        level: 7 // 지도의 확대 레벨
     };
 
 var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -68,18 +68,18 @@ var positions = [
         image: "${root}/img/black.png"
     },
     {
-        title: '생태연못', 
-        latlng: new daum.maps.LatLng(37.4994553, 126.02924710000002),
+        title: '대사관', 
+        latlng: new daum.maps.LatLng(37.48296879999999, 127.02947629999994),
         image: "${root}/img/red.png"
     },
     {
-        title: '텃밭', 
-        latlng: new daum.maps.LatLng(36.4994553, 127.02924710000002),
+        title: '도곡공원', 
+        latlng: new daum.maps.LatLng(37.4901432, 127.04509589999998),
         image: "${root}/img/orange.png"
     },
     {
-        title: '근린공원',
-        latlng: new daum.maps.LatLng(36.8994553, 127.02924710000002),
+        title: '역삼역',
+        latlng: new daum.maps.LatLng(37.5004569, 127.03651739999998),
         image: "${root}/img/green.png"
     }
 ];
