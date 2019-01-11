@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <div class="content-center section section-image section-login"
-	style="background-image: url('${root}/img/login-image.jpg');">
+	style="background-image: url('${root}/img/background.jpg');">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 ml-auto mr-auto">
@@ -38,4 +38,5 @@
 			</div>
 		</div>
 	</div>
+	<h6 class="category category-absolute">Designed and coded by Bikyeo</h6>
 </div>
