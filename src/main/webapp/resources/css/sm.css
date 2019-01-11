@@ -37,3 +37,9 @@
   margin-top: 100px;
 }
 
+.form-check-radio label {
+	margin-top: 0px;
+}
+.register-check select {
+  height: calc(2.25em + 2px);	
+}
