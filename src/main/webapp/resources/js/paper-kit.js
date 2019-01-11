@@ -140,13 +140,14 @@ pk = {
                     transparent = false;
                     $('.navbar[color-on-scroll]').removeClass('navbar-transparent');
                     $('.none_link').removeClass('d-lg-none');
-                    
+                    $('.nav-link').removeClass('text-white');
                 }
             } else {
                 if( !transparent ) {
                     transparent = true;
                     $('.navbar[color-on-scroll]').addClass('navbar-transparent');
                     $('.none_link').addClass('d-lg-none');
+                    $('.nav-link').addClass('text-white');
                     
                 }
             }

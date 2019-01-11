@@ -65,6 +65,14 @@
 <link rel="stylesheet" href="${root}/css/sm.css" />
 <link rel="stylesheet" href="${root}/css/mk.css" />
 
+<!-- 맵 api script -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7bac65a1ad27df9cef7f991882677d17"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7bac65a1ad27df9cef7f991882677d17&libraries=LIBRARY"></script>
+<!-- services 라이브러리 불러오기 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7bac65a1ad27df9cef7f991882677d17&libraries=services"></script>
+<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7bac65a1ad27df9cef7f991882677d17&libraries=services,clusterer,drawing"></script>
+
 </head>
 <body>
 	<!-- Header  영역 -->

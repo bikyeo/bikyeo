@@ -46,4 +46,23 @@
   font-size: 6em;
 }
 
+/* 다음 맵 크기 대여소 현황*/
 
+.map-rent{
+	width:1200px;
+	height:450px;
+}
+
+/* 다음 맵 크기 추천코스*/
+
+.map-recommend{
+  width:500px;
+  height:400px;
+}
+
+/* 메인 사진이랑 다음맵 사이 거리*/
+
+.main-map{
+	margin : 50px;
+	
+}
