@@ -23,13 +23,13 @@
 		</div>
 		<div class="collapse navbar-collapse" id="navbarToggler">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a href="" target="_blank"
-					class="nav-link" id="rent">대여소 정보조회</a></li>
-				<li class="nav-item"><a href="" target="_blank"
-					class="nav-link" id="rent">FAQ게시판</a></li>
-				<li class="nav-item"><a href="" target="_blank"
-					class="nav-link" id="rent">QnA게시판</a></li>
-				<li class="nav-item"><a href="" target="_blank"
+				<li class="nav-item"><a href="${root}/sharemain.do"
+					class="nav-link">대여소 정보조회</a></li>
+				<li class="nav-item"><a href="${root}/boardfaq.do"
+					class="nav-link">FAQ게시판</a></li>
+				<li class="nav-item"><a href="${root}/boardqna.do"
+					class="nav-link">QnA게시판</a></li>
+				<li class="nav-item"><a href="${root}/login.do"
 					class="nav-link">Sign In</a></li>
 				<li class="nav-item"><a href="" target="_blank"
 					class="nav-link">Sign Up</a></li>

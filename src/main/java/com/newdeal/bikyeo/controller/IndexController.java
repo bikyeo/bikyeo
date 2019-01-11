@@ -23,7 +23,7 @@ public class IndexController {
    * 작성자 : 염승민
    * 설명 : 로그인페이지
    */
-  @RequestMapping("login.do")
+  @RequestMapping("/login.do")
   public String login() {
     return "home.login";
   }
