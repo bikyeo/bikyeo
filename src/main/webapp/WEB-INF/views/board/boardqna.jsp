@@ -30,17 +30,17 @@
     <tr>
       <th scope="col">글번호</th>
       <th scope="col">질문</th>
-      <th scope="col">답변</th>
+      <th scope="col">답변상황</th>
     </tr>
   </thead>
     <tbody>
       <th scope="row">1</th>
         <td>행복구에 대여소 설치 예정이 있나요?</td>
-        <td>이번년도는 예산 부족으로 설치가 힘들 것으로 예상됩니다.</td>
+        <td>대기 중</td>
         <tr>
       <th scope="row">2</th>
         <td>낙원동 대여소 수리를 해주세요.</td>
-        <td>낙원동 대여소는 이번 달 말에 수리가 예정되어 있습니다. 따릉이를 이용해주셔서 감사합니다.</td>
+        <td>응답완료</td>
         <tr> 
     </tbody>
   
