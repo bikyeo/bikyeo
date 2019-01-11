@@ -15,11 +15,16 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="font-weight-bold cycle-background col-12 text-center text-white">
-			<span class="cycle-padding"><img class="cycle-img" src="${root}/img/black.png"></span><span>0대</span>
-			<span class="cycle-padding"><img class="cycle-img" src="${root}/img/red.png"></span><span>1~3대</span>
-			<span class="cycle-padding"><img class="cycle-img" src="${root}/img/orange.png"></span><span>4~6대</span>
-			<span class="cycle-padding"><img class="cycle-img" src="${root}/img/green.png"></span><span>7대 이상</span>
+		<div
+			class="font-weight-bold cycle-background col-12 text-center text-white">
+			<span class="cycle-padding"><img class="cycle-img"
+				src="${root}/img/black.png"></span><span>0대</span> <span
+				class="cycle-padding"><img class="cycle-img"
+				src="${root}/img/red.png"></span><span>1~3대</span> <span
+				class="cycle-padding"><img class="cycle-img"
+				src="${root}/img/orange.png"></span><span>4~6대</span> <span
+				class="cycle-padding"><img class="cycle-img"
+				src="${root}/img/green.png"></span><span>7대 이상</span>
 		</div>
 	</div>
 </div>
@@ -31,6 +36,7 @@
 
 
 <script type="text/javascript">
+
 //   var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 //   var options = { //지도를 생성할 때 필요한 기본 옵션
 //     center: new daum.maps.LatLng(37.4994553, 127.02924710000002), //지도의 중심좌표.
@@ -52,55 +58,146 @@
 
 //   //아래 코드는 지도 위의 마커를 제거하는 코드입니다
 //   //marker.setMap(null);
-  var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
-    mapOption = { 
-        center: new daum.maps.LatLng(37.4994553, 127.02924710000002), // 지도의 중심좌표
-        level: 7 // 지도의 확대 레벨
+//   var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+//     mapOption = { 
+//         center: new daum.maps.LatLng(37.4994553, 127.02924710000002), // 지도의 중심좌표
+//         level: 7 // 지도의 확대 레벨
+//     };
+
+// var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+ 
+// // 마커를 표시할 위치와 title 객체 배열입니다 
+// var positions = [
+//     {
+//         title: '비트교육센터', 
+//         latlng: new daum.maps.LatLng(37.4994553, 127.02924710000002),
+//         image: "${root}/img/black.png"
+//     },
+//     {
+//         title: '대사관', 
+//         latlng: new daum.maps.LatLng(37.48296879999999, 127.02947629999994),
+//         image: "${root}/img/red.png"
+//     },
+//     {
+//         title: '도곡공원', 
+//         latlng: new daum.maps.LatLng(37.4901432, 127.04509589999998),
+//         image: "${root}/img/orange.png"
+//     },
+//     {
+//         title: '역삼역',
+//         latlng: new daum.maps.LatLng(37.5004569, 127.03651739999998),
+//         image: "${root}/img/green.png"
+//     }
+// ];
+
+    
+// for (var i = 0; i < positions.length; i ++) {
+    
+//     // 마커 이미지의 이미지 크기 입니다
+//     var imageSize = new daum.maps.Size(15, 15); 
+    
+//     // 마커 이미지를 생성합니다    
+//     var markerImage = new daum.maps.MarkerImage(positions[i].image, imageSize); 
+    
+//     // 마커를 생성합니다
+//     var marker = new daum.maps.Marker({
+//         map: map, // 마커를 표시할 지도
+//         position: positions[i].latlng, // 마커를 표시할 위치
+//         title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+//         image : markerImage // 마커 이미지 
+//     });
+
+//     var infowindow = new daum.maps.InfoWindow({
+//       content: '<div>근린공원</div><button>대여</button>' // 인포윈도우에 표시할 내용
+//   });
+//     daum.maps.event.addListener(marker, 'click', makeClickListener(map, marker, infowindow));
+//     daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+// }
+// function makeClickListener(map, marker, infowindow) {
+//   console.log(marker);
+//    return function() {
+//      infowindow.open(map, marker);
+//    };
+  
+// }
+// function makeOutListener(infowindow) {
+//   return function() {
+//       infowindow.close();
+//   };
+// }
+
+
+
+
+$(document).ready(function() {
+  function makeClickListener(map, marker, infowindow) {
+    return function() {
+      infowindow.open(map, marker);
     };
+   
+}
+
+
+  var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+  mapOption = { 
+      center: new daum.maps.LatLng(37.4994553, 127.02924710000002), // 지도의 중심좌표
+      level: 7 // 지도의 확대 레벨
+  };
 
 var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
- 
-// 마커를 표시할 위치와 title 객체 배열입니다 
-var positions = [
-    {
-        title: '비트교육센터', 
-        latlng: new daum.maps.LatLng(37.4994553, 127.02924710000002),
-        image: "${root}/img/black.png"
-    },
-    {
-        title: '대사관', 
-        latlng: new daum.maps.LatLng(37.48296879999999, 127.02947629999994),
-        image: "${root}/img/red.png"
-    },
-    {
-        title: '도곡공원', 
-        latlng: new daum.maps.LatLng(37.4901432, 127.04509589999998),
-        image: "${root}/img/orange.png"
-    },
-    {
-        title: '역삼역',
-        latlng: new daum.maps.LatLng(37.5004569, 127.03651739999998),
-        image: "${root}/img/green.png"
-    }
-];
 
-// 마커 이미지의 이미지 주소입니다
-var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-    
-for (var i = 0; i < positions.length; i ++) {
-    
-    // 마커 이미지의 이미지 크기 입니다
-    var imageSize = new daum.maps.Size(15, 15); 
-    
-    // 마커 이미지를 생성합니다    
-    var markerImage = new daum.maps.MarkerImage(positions[i].image, imageSize); 
-    
-    // 마커를 생성합니다
-    var marker = new daum.maps.Marker({
-        map: map, // 마커를 표시할 지도
-        position: positions[i].latlng, // 마커를 표시할 위치
-        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-        image : markerImage // 마커 이미지 
+        $.ajax({
+            url : "${root}/resources/json/cycle.json", // test.jsp 에서 받아옴
+            dataType :"json", // 데이터타입을 json 으로 받아옴
+            success : function(data) {
+              
+              $.each(data.DATA,function(index,obj){
+                var imageSize = new daum.maps.Size(15, 15); 
+                
+                // 마커 이미지를 생성합니다    
+                var markerImage = new daum.maps.MarkerImage("${root}/img/green.png", imageSize); 
+                var positions = [{ 
+                  title:obj.content_nm,
+                  latlng:new daum.maps.LatLng(obj.latitude,obj.longitude),
+                  image:markerImage
+                    }];
+                  // 마커를 생성합니다
+                  var marker = new daum.maps.Marker({
+                      map: map, // 마커를 표시할 지도
+                      position: new daum.maps.LatLng(obj.latitude,obj.longitude), // 마커를 표시할 위치
+                      title : obj.content_nm, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                      image : markerImage, // 마커 이미지 
+                      click:0
+                  
+                  });
+                  var infowindow = new daum.maps.InfoWindow({
+                    content: '<div>'+obj.content_nm+'</div>' // 인포윈도우에 표시할 내용
+                });
+
+                  daum.maps.event.addListener(marker, 'click', makeClickListener(map, marker, infowindow));
+                }    
+            })
+            }
+              ,
+            error : function(e) {
+                console.log(e.responseText);
+            }
+            
+        });
     });
-}
+  
+
+// $(document).ready(function() {
+//         $.ajax({
+//             url : "${root}/resources/json/cycle.json", // test.jsp 에서 받아옴
+//             dataType :"json", // 데이터타입을 json 으로 받아옴
+//             success : function(data) {
+//                 console.log(data);
+//             },
+//             error : function(e) {
+//                 console.log(e.responseText);
+//             }
+//         });
+//     });
+  
 </script>
