@@ -32,7 +32,7 @@
 					class="nav-link d-lg-none none_link">QnA게시판</a></li>
 				<li class="nav-item"><a href="${root}/login.do"
 					class="nav-link text-white">Sign In</a></li>
-				<li class="nav-item"><a href="${root}/sharemain.do"
+				<li class="nav-item"><a href="${root}/signup.do"
 					class="nav-link text-white">Sign Up</a></li>
 			</ul>
 		</div>

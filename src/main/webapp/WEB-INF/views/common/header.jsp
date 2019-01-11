@@ -31,7 +31,7 @@
 					class="nav-link">QnA게시판</a></li>
 				<li class="nav-item"><a href="${root}/login.do"
 					class="nav-link">Sign In</a></li>
-				<li class="nav-item"><a href="" target="_blank"
+				<li class="nav-item"><a href="${root}/signup.do"
 					class="nav-link">Sign Up</a></li>
 			</ul>
 		</div>
