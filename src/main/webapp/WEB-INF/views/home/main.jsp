@@ -20,9 +20,9 @@
 					<p class="presentation-title main-text">Bikyeo</p>
 				</div>
 				<div class="text-center">
-					<button class="main-button btn btn-outline-primary" id="share">대여하기</button>
+					<button class="main-button btn btn-success" id="share">대여하기</button>
 
-					<button class="main-button btn btn-outline-danger" id="return">반납하기</button>
+					<button class="main-button btn btn-danger" id="return">반납하기</button>
 				</div>
 				<h2 class="presentation-subtitle text-center"></h2>
 			</div>
