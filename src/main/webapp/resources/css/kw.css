@@ -60,3 +60,29 @@
 	margin : 50px;
 	
 }
+
+.title-cycle{
+  font-size: 5px;
+  font-weight: bold;
+}
+
+.no-margin{
+  margin:0;
+}
+
+.rent-margin{
+  margin:10px;
+  font-size:12px;
+}
+
+.ma-bottom{
+  width:200px;
+  margin-bottom: 17px;
+  
+}
+
+.rent-button{
+  font-size: 12px;
+  padding:1px;
+  margin-top:5px;
+}

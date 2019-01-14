@@ -1,12 +1,12 @@
 package com.newdeal.bikyeo.cycle.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/cycle")
 public class CycleShareController {
-  
   
   /*
    * 메소드명 : sharemain()
@@ -19,7 +19,7 @@ public class CycleShareController {
     //return "index.jsp";
     return "share.sharemain";
   }
-  @RequestMapping("/cycle.do")
+  @RequestMapping(value="/cycle.do")
   public String cycle(int p_Num) {
     System.out.println(p_Num);
     //return "index.jsp";
