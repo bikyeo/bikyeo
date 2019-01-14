@@ -175,7 +175,8 @@ var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니�
                 });
 
                   daum.maps.event.addListener(marker, 'click', makeClickListener(map, marker, infowindow));
-                }    
+                   
+              
             })
             }
               ,
