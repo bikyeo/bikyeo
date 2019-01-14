@@ -1,6 +1,6 @@
 package com.newdeal.bikyeo.cycle.domain;
 
-public class ShareDTO {
+public class ShareDto {
   
   private String S_Num;
   private String m_Email;

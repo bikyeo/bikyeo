@@ -2,6 +2,10 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.bit.member.dao.MemberDao">
-
+<mapper namespace="com.newdeal.bikyeo.member.dao.MemberDao">
+  <select id="searchId" parameterType="String" resultType="int">
+    select count(*) 
+    from member 
+    where m_Email = #{email}
+  </select>
 </mapper>

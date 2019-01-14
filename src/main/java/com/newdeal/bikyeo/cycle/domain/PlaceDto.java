@@ -1,6 +1,6 @@
 package com.newdeal.bikyeo.cycle.domain;
 
-public class PlaceDTO {
+public class PlaceDto {
 
   private int p_Num;
   private int p_Holder;

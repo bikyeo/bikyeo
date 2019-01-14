@@ -1,6 +1,6 @@
 package com.newdeal.bikyeo.cycle.domain;
 
-public class CycleDTO {
+public class CycleDto {
 
   private int c_Num;
   private int p_num;

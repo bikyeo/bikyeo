@@ -1,10 +1,17 @@
 package com.newdeal.bikyeo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import com.newdeal.bikyeo.member.service.MemberService;
 
 @Controller
 public class IndexController {
+  
+  @Autowired 
+  MemberService memberService;
   
   /*
    * 메소드명 : index()
@@ -37,5 +44,16 @@ public class IndexController {
   @RequestMapping("/signup.do")
   public String signUp() {
     return "home.signUp";
+  }
+
+  /*
+   * 메소드명 : searchId()
+   * 작성일 : 19.01.11
+   * 작성자 : 염승민
+   * 설명 : 아이디 중복체크
+   */
+  @RequestMapping("/searchId.do")
+  public @ResponseBody int searchId(@RequestParam String email) {
+    return memberService.searchId(email);
   }
 }

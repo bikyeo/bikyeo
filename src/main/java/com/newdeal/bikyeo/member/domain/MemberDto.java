@@ -1,6 +1,6 @@
-package com.newdeal.bikyeo.member.doamin;
+package com.newdeal.bikyeo.member.domain;
 
-public class MemberDTO {
+public class MemberDto {
 
   private String m_mail;
   private String m_Pwd;
