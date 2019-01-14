@@ -109,8 +109,7 @@
         Ipsum decided to leave for the far World of Grammar.</div>
       <div class="modal-footer">
         <div class="left-side">
-          <button type="button" class="btn btn-default btn-link"
-            data-dismiss="modal">Never mind</button>
+          <button type="button" class="btn btn-default btn-link">Never mind</button>
         </div>
         <div class="divider"></div>
         <div class="right-side">

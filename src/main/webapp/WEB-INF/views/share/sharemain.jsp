@@ -24,6 +24,7 @@
 				src="${root}/img/orange.png"></span><span>4~6대</span> <span
 				class="cycle-padding"><img class="cycle-img"
 				src="${root}/img/green.png"></span><span>7대 이상</span>
+		
 		</div>
 	</div>
 </div>
@@ -121,9 +122,51 @@ var markerImage = new daum.maps.MarkerImage("${root}/img/green.png", imageSize);
  
  $(document).on("click", "button[name='c_Code']", function() {
    var c_Code = $(this).attr('c_code');
+
+   $('#exampleModalLabel').attr('class','font-weight-bold');
+   $('#exampleModalLabel').text('자전거 대여');
+   $('.modal-body').text('');
+   var time = new Date(); 
+   var pmam;
+   $(document).on("change",".custom-select",function(){
+     $('.return-time').remove();
+     var rentHour = time.getHours() + $('#rent-time').val()*1;
+     console.log(rentHour);
+     if(rentHour >= 13){
+       rentHour = rentHour-12;
+       pmam="pm";
+     }else if(rentHour >= 24){
+       pmam="am";
+     }
+     var currentTime = time.getFullYear()+'.'+(time.getMonth() + 1)+'.'+time.getDate()+' '+ rentHour+':'+ time.getMinutes() + pmam;
+     $('.modal-body').append('<div class="text-center return-margin return-time"><span class="cycle-padding font-weight-bold">반납 예정시간</span>'+currentTime+'</div>');
+   })
+   var html = "";
+   html += '<div class="text-center return-margin">'
+   html += '<span class="cycle-padding font-weight-bold">대여 시간</span>';
+   html += '<select class="custom-select" id="rent-time">';
+   html += '<option value="1">1시간</value>';
+   html += '<option value="2">2시간</value>';
+   html += '<option value="3">3시간</value>';
+   html += '<option value="4">4시간</value>';
+   html += '<option value="5">5시간</value>';
+   html += '<option value="6">6시간</value>';
+   html += '<option value="7">7시간</value>';
+   html += '<option value="8">8시간</value>';
+   html += '<option value="9">9시간</value>';
+   html += '<option value="10">10시간</value>';
+   html += '<option value="11">11시간</value>';
+   html += '<option value="12">12시간</value>';
+   html += '</select>';
+   html += '</div>';
+   $('.modal-body').append(html);
+   $('.left-side').children().attr('id','rent');
+   $('.left-side').children().text('대여하기');
+   $('.right-side').children().attr('data-dismiss','modal');
+   $('.right-side').children().text('취소');
+   
    $('#myModal').modal('show');
-    
-   console.log(c_Code);
+   
    $.ajax({
      url : "${root}/cycle/cycle.do", 
      data:c_Code,
