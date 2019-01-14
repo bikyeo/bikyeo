@@ -44,6 +44,11 @@ public class ShareDTO {
   public void setS_Edate(String s_Edate) {
     this.s_Edate = s_Edate;
   }
+  @Override
+  public String toString() {
+    return "ShareDTO [S_Num=" + S_Num + ", m_Email=" + m_Email + ", p_Num=" + p_Num + ", s_Sdate="
+        + s_Sdate + ", s_Pdate=" + s_Pdate + ", s_Edate=" + s_Edate + "]";
+  }
   
   
   
