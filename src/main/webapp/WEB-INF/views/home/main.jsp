@@ -45,7 +45,7 @@
 	<script type="text/javascript">
     $(document).ready(function() {
       $('#share').click(function() {
-        location.href = '${root}/cycle/sharemain.do';
+        location.href = '${root}/cycleshare/sharemain.do';
 
       })
 

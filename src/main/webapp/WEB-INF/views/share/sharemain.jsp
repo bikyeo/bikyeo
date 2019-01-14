@@ -81,29 +81,36 @@ var markerImage = new daum.maps.MarkerImage("${root}/img/green.png", imageSize);
          // 커스텀 오버레이에 표시할 컨텐츠 입니다
          // 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
          // 별도의 이벤트 메소드를 제공하지 않습니다 
-         console.log(obj.content_id);
 
          var content = "";
+         content += '<div class="text-center ma-bottom"><br>';
+         content += '<div class="title-cycle">'+obj.content_nm+'</div>';
+         content += '<hr class="no-margin">'; 
          $.ajax({
            url : "${root}/cycle/cycle.do", // test.jsp 에서 받아옴
-           data: {"p_Num":obj.content_id},
+           data: {
+             "p_Num":obj.content_id
+                   },
            type: "GET",
            dataType :"json", // 데이터타입을 json 으로 받아옴
            success : function(data) {
-             
+             $.each(data,function(index,obj){
+               index *= 1;
+               index = index+1;
+               content += '<div><span class="rent-margin">'+ index +' 번 자전거</span>';
+               content += '<span><button type="button" class="btn btn-primary rent-button" name="c_Code" c_Code="'+obj.c_Code+'">대여</button></span></div>';    
+               //속성에 자전거번호(c_code) 가져가기
+                 
+             })
+             content += '</div>';
+             var infowindow = new daum.maps.InfoWindow({
+               content: content,
+               removable: move// 인포윈도우에 표시할 내용
+             });
+             daum.maps.event.addListener(marker, 'click', makeClickListener(map, marker, infowindow)); 
            }
          })
-         content += '<div class="text-center ma-bottom"><br><div class="title-cycle">'+obj.content_nm+'</div>';
-         content += '<hr class="no-margin">';
-         content += '<div><span class="rent-margin">'+index+' 번 자전거</span>';
-         content += '<span><button class="btn btn-primary rent-button">대여</button></span></div>';
-         content += '</div>';
-         var infowindow = new daum.maps.InfoWindow({
-           content: content,
-           removable: move// 인포윈도우에 표시할 내용
-         });
-         daum.maps.event.addListener(marker, 'click', makeClickListener(map, marker, infowindow));
-         
+    
        }else{
          return;
        } 
@@ -111,6 +118,23 @@ var markerImage = new daum.maps.MarkerImage("${root}/img/green.png", imageSize);
    
    }
  })
+ 
+ $(document).on("click", "button[name='c_Code']", function() {
+   var c_Code = $(this).attr('c_code');
+   $('#myModal').modal('show');
+    
+   console.log(c_Code);
+   $.ajax({
+     url : "${root}/cycle/cycle.do", 
+     data:c_Code,
+     method: "PUT",
+     success : function(data) {
+       
+       }
+     })
+ })
+ 
+ 
 })
  
 </script>

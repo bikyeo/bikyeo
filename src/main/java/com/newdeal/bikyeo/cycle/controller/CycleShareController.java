@@ -1,11 +1,13 @@
 package com.newdeal.bikyeo.cycle.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/cycle")
+@RequestMapping("/cycleshare")
 public class CycleShareController {
   
   /*
@@ -19,11 +21,11 @@ public class CycleShareController {
     //return "index.jsp";
     return "share.sharemain";
   }
-  @RequestMapping(value="/cycle.do")
-  public String cycle(int p_Num) {
-    System.out.println(p_Num);
-    //return "index.jsp";
-    return "share.sharemain";
+  
+  @RequestMapping(value="/cycle.do", method=RequestMethod.PUT)
+  public @ResponseBody int rent(@RequestBody String c_Code) {
+    
+    return 1;
   }
 
 

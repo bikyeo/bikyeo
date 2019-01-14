@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newdeal.bikyeo.cycle.dao.CycleDao">
+  <select id="cycle" parameterType="int" resultType="cycleDto">
+    select c_Code from cycle where p_Num=#{p_Num}
+  </select>
+</mapper>
