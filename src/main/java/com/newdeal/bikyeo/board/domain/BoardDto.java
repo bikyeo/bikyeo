@@ -1,6 +1,6 @@
 package com.newdeal.bikyeo.board.domain;
 
-public class BoardDTO {
+public class BoardDto {
   
   private int b_Num;
   private int bt_num;

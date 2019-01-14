@@ -24,7 +24,7 @@
 		</div>
 		<div class="collapse navbar-collapse" id="navbarToggler">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a href="${root}/cycle/sharemain.do"
+				<li class="nav-item"><a href="${root}/sharemain.do"
 					class="nav-link d-lg-none none_link">대여소 정보조회</a></li>
 				<li class="nav-item"><a href="${root}/boardfaq.do"
 					class="nav-link d-lg-none none_link">FAQ게시판</a></li>

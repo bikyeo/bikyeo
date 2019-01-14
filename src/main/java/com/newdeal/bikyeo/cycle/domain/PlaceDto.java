@@ -1,6 +1,6 @@
 package com.newdeal.bikyeo.cycle.domain;
 
-public class PlaceDTO {
+public class PlaceDto {
 
   private int p_Num;
   private int p_Holder;
@@ -15,10 +15,6 @@ public class PlaceDTO {
   }
   public void setP_Holder(int p_Holder) {
     this.p_Holder = p_Holder;
-  }
-  @Override
-  public String toString() {
-    return "PlaceDTO [p_Num=" + p_Num + ", p_Holder=" + p_Holder + "]";
   }
   
   

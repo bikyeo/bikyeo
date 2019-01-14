@@ -1,6 +1,6 @@
 package com.newdeal.bikyeo.reply.domain;
 
-public class ReplyDTO {
+public class ReplyDto {
   
     private int r_num;
     private int b_Num;
