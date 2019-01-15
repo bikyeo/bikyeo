@@ -172,6 +172,9 @@ ALTER TABLE BOARD
             b_Num -- 게시글번호
         );
 
+ALTER TABLE BOARD
+    MODIFY COLUMN b_Num INT NOT NULL AUTO_INCREMENT COMMENT '게시글번호';
+
 -- 댓글
 CREATE TABLE REPLY (
     r_Num     INT          NOT NULL COMMENT '댓글번호', -- 댓글번호
@@ -191,6 +194,9 @@ ALTER TABLE REPLY
             r_Num -- 댓글번호
         );
 
+ALTER TABLE REPLY
+    MODIFY COLUMN r_Num INT NOT NULL AUTO_INCREMENT COMMENT '댓글번호';
+
 -- 자전거대여
 CREATE TABLE SHARE (
     s_Num   INT         NOT NULL COMMENT '자전거대여번호', -- 자전거대여번호
@@ -208,6 +214,9 @@ ALTER TABLE SHARE
         PRIMARY KEY (
             s_Num -- 자전거대여번호
         );
+
+ALTER TABLE SHARE
+    MODIFY COLUMN s_Num INT NOT NULL AUTO_INCREMENT COMMENT '자전거대여번호';
 
 -- 자전거대여소
 CREATE TABLE PLACE (
