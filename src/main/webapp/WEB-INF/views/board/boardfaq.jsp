@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+  pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="root" value="${pageContext.request.contextPath}" />
 
 
 <div class="container" style="height: auto; width: 100%; border:1px solid black;">
@@ -28,7 +23,7 @@
   </div>  
   <br>
   
-    <div class="row" style="heigth:auto; width:100%; border-bottom:1px solid black;">
+    <div class="row" style="heigth:auto; width:100%;">
     <span class="col-4">글번호</span>
     <span class="col-4">질문</span>
     <span class="col-4">답변</span>
@@ -46,5 +41,3 @@
   </div>
 </div>
 
-</body>
-</html>
