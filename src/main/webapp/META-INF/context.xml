@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <Context>
-      
+
   <Resource name="jdbc/bikyeo" auth="Container"
       type="javax.sql.DataSource"
       factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
@@ -14,7 +13,8 @@
   <WatchedResource>WEB-INF/web.xml</WatchedResource>
 
 </Context>
-<!-- <Context>
+<!-- 
+<Context>
       
   <Resource name="jdbc/bikyeo" auth="Container"
       type="javax.sql.DataSource"
@@ -27,4 +27,5 @@
 
   <WatchedResource>WEB-INF/web.xml</WatchedResource>
 
-</Context> -->
+</Context>
+-->

@@ -2,19 +2,19 @@ package com.newdeal.bikyeo.member.domain;
 
 public class MemberDto {
 
-  private String m_mail;
+  private String m_Email;
   private String m_Pwd;
   private String m_Name;
-  private int m_Gender;
+  private String m_Gender;
   private String m_Phone;
   private int enabled;
   private String m_Regdate;
   private String m_Update;
-  public String getM_mail() {
-    return m_mail;
+  public String getM_Email() {
+    return m_Email;
   }
-  public void setM_mail(String m_mail) {
-    this.m_mail = m_mail;
+  public void setM_Email(String m_Email) {
+    this.m_Email = m_Email;
   }
   public String getM_Pwd() {
     return m_Pwd;
@@ -28,10 +28,10 @@ public class MemberDto {
   public void setM_Name(String m_Name) {
     this.m_Name = m_Name;
   }
-  public int getM_Gender() {
+  public String getM_Gender() {
     return m_Gender;
   }
-  public void setM_Gender(int m_Gender) {
+  public void setM_Gender(String m_Gender) {
     this.m_Gender = m_Gender;
   }
   public String getM_Phone() {
@@ -57,6 +57,13 @@ public class MemberDto {
   }
   public void setM_Update(String m_Update) {
     this.m_Update = m_Update;
+  }
+  
+  @Override
+  public String toString() {
+    return "MemberDto [m_Email=" + m_Email + ", m_Pwd=" + m_Pwd + ", m_Name=" + m_Name
+        + ", m_Gender=" + m_Gender + ", m_Phone=" + m_Phone + ", enabled=" + enabled
+        + ", m_Regdate=" + m_Regdate + ", m_Update=" + m_Update + "]";
   }
   
 }
