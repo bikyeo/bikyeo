@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- <Context>
+<Context>
       
   <Resource name="jdbc/bikyeo" auth="Container"
       type="javax.sql.DataSource"
@@ -13,9 +13,8 @@
 
   <WatchedResource>WEB-INF/web.xml</WatchedResource>
 
-</Context> -->
-
-<Context>
+</Context>
+<!-- <Context>
       
   <Resource name="jdbc/bikyeo" auth="Container"
       type="javax.sql.DataSource"
@@ -28,4 +27,4 @@
 
   <WatchedResource>WEB-INF/web.xml</WatchedResource>
 
-</Context>
+</Context> -->

@@ -60,6 +60,7 @@
 		</div>
 	</div>
 </div>
+</div>
 
 	<script type="text/javascript">
     $(document).ready(function() {
@@ -99,7 +100,8 @@
     //아래 코드는 지도 위의 마커를 제거하는 코드입니다
     //marker.setMap(null);
 $(document).ready(function(){
-       var url= 'http://api.openweathermap.org/data/2.5/weather?q=seoul&APPID=83c62b5028f8bad78c5410a0efae908f';
+  //날씨 데이터   
+  var url= 'http://api.openweathermap.org/data/2.5/weather?q=seoul&APPID=83c62b5028f8bad78c5410a0efae908f';
        $.getJSON(url,function(data){
           var sys=data.sys;
           var city =data.name;
@@ -125,9 +127,8 @@ $(document).ready(function(){
           html += '<span class="temp-md-text">최고온도 </span><span class="return-margin temp-md-text text-danger">'+parseInt(temp_max-273.15)+' ℃</span></div></div> ';
           $('#weather').append(html);
       });
-});
 
-$(document).ready(function(){
+// 미세먼지 데이터
   var url = 'http://api.airvisual.com/v2/nearest_city?lat=37.5662952&lon=126.97794509999994&rad=1000&key=EEXR8nRPQtm3MpZxK';
   $.getJSON(url,function(data){
     var mise = data.data.current.pollution.aqius;
