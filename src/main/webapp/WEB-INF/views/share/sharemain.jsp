@@ -152,6 +152,8 @@ $.ajax({
    var rentHour;
    var rentday;
    var rent_data;
+   var currentTime;
+   var returnTime;
    $(document).on("change",".custom-select",function(){
      $('.return-time').remove();
      rentHour = time.getHours()*1 + $('#rent-time').val()*1;
@@ -178,11 +180,10 @@ $.ajax({
          }
        }) 
      }
-     var currentTime = rentday+' '+ rentHour+':'+ time.getMinutes() + pmam;
-     var current = "오늘 "+rentHour+':'+ time.getMinutes() + pmam;
-     var body="";
-     body += '<div class="text-center return-margin return-time"><span class="cycle-padding font-weight-bold">반납 예정시간</span>'+currentTime+'</div>';
-     $('.modal-body').append(body);
+     currentTime = rentday+' '+ rentHour+':'+ time.getMinutes() + pmam;
+     
+     returnTime = '<div class="text-center return-margin return-time"><span class="cycle-padding font-weight-bold">반납 예정시간</span>'+currentTime+'</div>';
+     $('.modal-body').append(returnTime);
    })
    var html = "";
    html += '<div class="text-center return-margin">'
@@ -225,6 +226,20 @@ $.ajax({
        type: "POST",
        success : function(data) {
          console.log(data);
+         if(data ==1){
+         Swal({
+           title:'대여에 성공하셨습니다.',
+           text: '반납예정시간 : '+currentTime,
+           type: 'success',
+           confirmButtonText: '확인'
+         }).then((result) => {
+           if (result.value) {
+             location.href="${root}/cycleshare/sharemain.do";
+           }
+         })
+         }else{
+           swal("대여에 실패하였습니다.","","danger");
+         } 
          }
        })
      

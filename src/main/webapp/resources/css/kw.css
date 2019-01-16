@@ -4,138 +4,198 @@
 /* 작성자 : 송기원 */
 /* 설명 : 메인 텍스트 크기 */
 .main-text {
-  font-size: 12em;
+	font-size: 12em;
 }
 
 /* 작성일 : 19.01.10 */
 /* 작성자 : 송기원 */
 /* 설명 : 자전거 대여 검색 패딩*/
 .search-padding {
-  padding-left: 30px;
-  padding-right: 0;
+	padding-left: 30px;
+	padding-right: 0;
 }
 
 .cycle-background {
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 10px 0;
-  margin-top: 5px;
+	background-color: rgba(0, 0, 0, 0.5);
+	padding: 10px 0;
+	margin-top: 5px;
 }
 
 /* 자전거 표시 색상*/
 .bg-circle {
- margin: 0 30px;
+	margin: 0 30px;
 }
 
 /* 자전거 몇대인지 확인 하는 이미지*/
-.cycle-img{
-	width:15px;
-  height:15px;	
+.cycle-img {
+	width: 15px;
+	height: 15px;
 }
 
-.cycle-padding{
-  padding: 20px;
+.cycle-padding {
+	padding: 20px;
 }
 
 .main-button {
-  font-size: 6em;
+	font-size: 6em;
 }
 
 /* 다음 맵 크기 대여소 현황*/
-
-.map-rent{
-	width:1200px;
-	height:450px;
+.map-rent {
+	width: 1200px;
+	height: 450px;
 }
 
 /* 다음 맵 크기 추천코스*/
-
-.map-recommend{
-  width:400px;
-  height:300px;
+.map-recommend {
+	width: 400px;
+	height: 300px;
 }
 
 /* 메인 사진이랑 다음맵 사이 거리*/
-
-.main-map{
-	margin : 50px 80px;
-	
+.main-map {
+	margin: 50px 80px;
 }
 
-.title-cycle{
-  font-size: 5px;
-  font-weight: bold;
+.title-cycle {
+	font-size: 5px;
+	font-weight: bold;
 }
 
-.no-margin{
-  margin:0;
+.no-margin {
+	margin: 0;
 }
 
-.rent-margin{
-  margin:10px;
-  font-size:12px;
+.rent-margin {
+	margin: 10px;
+	font-size: 12px;
 }
 
-.ma-bottom{
-  width:200px;
-  margin-bottom: 17px;
-  
+.ma-bottom {
+	width: 200px;
+	margin-bottom: 17px;
 }
 
-.rent-button{
-  font-size: 5px;
-  padding:1px;
-  margin-top:2px;
+.rent-button {
+	font-size: 5px;
+	padding: 1px;
+	margin-top: 2px;
 }
 
-.return-margin{
+.return-margin {
 	margin: 10px;
 }
 
-.rented-button:disabled{
-	opacity:1;
-}
-.rented-button:hover{
-	background-color:#dc3545;
-	border-color:#dc3545;
+.rented-button:disabled {
+	opacity: 1;
 }
 
-.weather-icon{
-	width : 100px;
-	height : 100px;
+.rented-button:hover {
+	background-color: #dc3545;
+	border-color: #dc3545;
 }
 
-.weather-bg{
-	margin:50px 30px;
-  width:303px;
-  height:200px;
+.weather-icon {
+	width: 100px;
+	height: 100px;
 }
-.map-bg{
-	margin:50px;
+
+.weather-bg {
+	margin: 50px 30px;
+	width: 303px;
+	height: 200px;
+}
+
+.map-bg {
+	margin: 50px;
 	background-color: rgba(0, 0, 0, 0.1);
-  
 }
 
-.map-margin{
-	margin:30px;
+.map-margin {
+	margin: 30px;
 }
 
-.weather-text{
+.weather-text {
 	font-size: 30px;
 }
 
-.temp-lg-text{
-  font-size: 40px;
+.temp-lg-text {
+	font-size: 40px;
 }
 
-.temp-md-text{
-  font-size: 20px;
+.temp-md-text {
+	font-size: 20px;
 }
 
-.progress-margin{
-  margin:24px;
+.progress-margin {
+	margin: 24px;
 }
 
-.pro-margin-left{
+.pro-margin-left {
 	margin-left: 45px;
 }
 
+/* 자전거 추천코스 css*/
+.dot {
+	overflow: hidden;
+	float: left;
+	width: 12px;
+	height: 12px;
+	background:
+		url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');
+}
+
+.dotOverlay {
+	position: relative;
+	bottom: 10px;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	border-bottom: 2px solid #ddd;
+	float: left;
+	font-size: 12px;
+	padding: 5px;
+	background: #fff;
+}
+
+.dotOverlay:nth-of-type(n) {
+	border: 0;
+	box-shadow: 0px 1px 2px #888;
+}
+
+.number {
+	font-weight: bold;
+	color: #ee6152;
+}
+
+.dotOverlay:after {
+	content: '';
+	position: absolute;
+	margin-left: -6px;
+	left: 50%;
+	bottom: -8px;
+	width: 11px;
+	height: 8px;
+	background:
+		url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white_small.png')
+}
+
+.distanceInfo {
+	position: relative;
+	top: 5px;
+	left: 5px;
+	list-style: none;
+	margin: 0;
+}
+
+.distanceInfo .label {
+	display: inline-block;
+	width: 50px;
+}
+
+.distanceInfo:after {
+	content: none;
+}
+
+.distInfo{
+  margin-right:20px;
+}
