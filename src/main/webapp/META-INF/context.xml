@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!-- 
 <Context>
       
   <Resource name="jdbc/bikyeo" auth="Container"
@@ -13,8 +13,8 @@
 
   <WatchedResource>WEB-INF/web.xml</WatchedResource>
 
-</Context>
-<!--  
+</Context> -->
+
 <Context>
       
   <Resource name="jdbc/bikyeo" auth="Container"
@@ -29,4 +29,3 @@
   <WatchedResource>WEB-INF/web.xml</WatchedResource>
 
 </Context>
- -->

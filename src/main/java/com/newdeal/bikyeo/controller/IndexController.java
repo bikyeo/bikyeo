@@ -3,6 +3,7 @@ package com.newdeal.bikyeo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.newdeal.bikyeo.member.service.MemberService;
@@ -48,12 +49,14 @@ public class IndexController {
 
   /*
    * 메소드명 : searchId()
-   * 작성일 : 19.01.11
+   * 작성일 : 19.01.14
    * 작성자 : 염승민
    * 설명 : 아이디 중복체크
    */
-  @RequestMapping("/searchId.do")
-  public @ResponseBody int searchId(@RequestParam String email) {
-    return memberService.searchId(email);
+  @RequestMapping(value="/searchId.do", method=RequestMethod.GET, headers={"Content-Type=application/json"})
+  public @ResponseBody int searchId(@RequestParam String m_Email) {
+    return memberService.searchId(m_Email);
   }
+  
+  
 }
