@@ -4,7 +4,8 @@
 <c:set var="root" value="${pageContext.request.contextPath}" />
 
 
-<div class="container" style="height: auto; width: 100%; border:1px solid black;">
+<div class="container background-color: #819FF7;">
+
 	<div class="row">
 		<select class="custom-select col-3">
 		  <option value="개요">개요</option>
@@ -19,25 +20,25 @@
 	<div class="input-group col-9">
       <input type="text" class="input-group form-control" placeholder="질문을 입력해주세요">		 
 			   <button type="button" class="input-group-prepend btn btn-danger">검색</button>		  
-		</div>
+	</div>
   </div>  
   <br>
-  
-    <div class="row" style="heigth:auto; width:100%;">
-    <span class="col-4">글번호</span>
-    <span class="col-4">질문</span>
-    <span class="col-4">답변</span>
 
+   <div class="row menu-background"> 
+		    <span class="col-2 text-left">글번호</span>
+		    <span class="col-5 text-center">질문</span>
+		    <span class="col-5 text-center">답변</span>   
   </div>
+<c:forEach var="list" items="${list}">  
   <div class="row">
-    <span class="col-4">1</span>
-    <span class="col-4">따릉이가 뭔가요?</span>
-    <span class="col-4">자전거입니다.</span>
+ 
+    <span class="col-2 foreachlistcolor text-left input-group-addon">${list.b_Num }</span>
+    <span class="col-5 foreachlist text-center input-group-addon">${list.b_Subject }</span>
+    <span class="col-5 text-center input-group-addon">${list.b_Content }</span>
+    
   </div>
-  <div class="row">
-    <span class="col-4">2</span>
-    <span class="col-4">이달 예산은 충분한가요?</span>
-    <span class="col-4">아뇨</span>
-  </div>
+</c:forEach>
+
 </div>
+<a href="${root}/board/boardwrite.do" button type="button" class="input-group-prepend btn btn-danger">글쓰기</a></button>
 

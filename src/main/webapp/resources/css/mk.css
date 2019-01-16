@@ -1,1 +1,24 @@
 @charset "UTF-8";
+
+/* 게시판 제목 */
+.menu-background{
+	background-color: #E6E6E6;
+	heigth:auto; 
+	width:100%;
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+/* foreach문 리스트 내용들 */
+.foreachlist{
+	font-weight: bold;
+
+}
+
+.foreachlistcolor{
+	
+	background-color: #81F7D8;
+	font-weight: bold;
+}
+
+

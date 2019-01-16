@@ -7,4 +7,5 @@ public interface BoardDao {
   
   List<BoardDto> getboardlist();
 
+   List<BoardDto> boardwrite();
 }

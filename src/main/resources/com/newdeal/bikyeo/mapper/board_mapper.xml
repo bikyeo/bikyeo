@@ -7,4 +7,17 @@
   <select id="getboardlist" resultType="boardDto">
     select b_Num,b_Subject,b_Content from board
   </select>
+  
+  <insert id="boardwrite" parameterType="boardDto">
+  
+  insert into board (bt_Num, m_Email, b_Subject,b_Content,b_Img,b_hit)
+VALUES (#{bt_Num},#{m_Email},#{b_Subject},#{b_Content},#{b_Img},b_hit);
+  
+  
+  </insert>
+  
+  
+  
+  
+  
 </mapper>

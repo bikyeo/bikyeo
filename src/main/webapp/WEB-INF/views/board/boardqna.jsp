@@ -29,14 +29,13 @@
     <span class="col-4">질문</span>
     <span class="col-4">내용</span>
   </div>
-  <c:forEach var="list" items="${list}">
+
   <div class="row">  
 
-    <span class="col-4">${list.b_Num}</span>
-    <span class="col-4">${list.b_Subject}</span>
-    <span class="col-4">${list.b_Content}</span>
+    <span class="col-4"></span>
+    <span class="col-4"></span>
+    <span class="col-4"></span>
   </div>
- </c:forEach>
 </div>
 
   

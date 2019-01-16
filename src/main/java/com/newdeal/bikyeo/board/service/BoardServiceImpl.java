@@ -19,4 +19,11 @@ public class BoardServiceImpl implements BoardService {
     return sqlSession.getMapper(BoardDao.class).getboardlist();
   }
 
+  @Override
+  public List<BoardDto> boardwrite() {
+    
+    return sqlSession.getMapper(BoardDao.class).boardwrite();
+    
+  }
+
 }
