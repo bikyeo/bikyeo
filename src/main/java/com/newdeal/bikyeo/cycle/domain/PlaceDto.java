@@ -4,6 +4,7 @@ public class PlaceDto {
 
   private int p_Num;
   private int p_Holder;
+  
   public int getP_Num() {
     return p_Num;
   }

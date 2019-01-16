@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newdeal.bikyeo.cycle.dao.CycleShareDao">
+  <insert id="rent" parameterType="cycleDto">
+    insert into share 
+    (m_Email,p_Num,s_Sdate,s_Pdate)
+    values 
+    ('abc@abc.com',#{p_Num},NOW(),DATE_ADD(NOW(), INTERVAL #{rent_hour} HOUR)) 
+  </insert>
+</mapper>

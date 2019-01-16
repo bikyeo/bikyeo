@@ -8,6 +8,7 @@ public class ShareDto {
   private String s_Sdate;
   private String s_Pdate;
   private String s_Edate;
+  
   public String getS_Num() {
     return S_Num;
   }

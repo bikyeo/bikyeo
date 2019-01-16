@@ -17,4 +17,6 @@ public class CycleServiceImpl implements CycleService{
   public List<CycleDto> cycle(int p_Num) {
     return sqlSession.getMapper(CycleDao.class).cycle(p_Num);
   }
+  
+  
 }
