@@ -1,9 +1,16 @@
 package com.newdeal.bikyeo.board.controller;
 
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import com.newdeal.bikyeo.board.domain.BoardDto;
+import com.newdeal.bikyeo.board.service.BoardService;
 
 @Controller
+@RequestMapping("/board")
 public class BoardController {
 
   /*
@@ -12,18 +19,35 @@ public class BoardController {
    * 작성자 : 김무균
    * 설명 : 게시판페이지
    */
-  
-  @RequestMapping("/boardfaq.do")
-  public String boardfaq() {
+
+  @Autowired
+  BoardService boardService;
+
+
+  @RequestMapping(value="/boardfaq.do",method=RequestMethod.GET)
+  public String boardfaq(Model model) {
     
+    List<BoardDto> list = boardService.getboardlist();
+    model.addAttribute("list", list);
     return "board.boardfaq";
   }
+
+  
   
   @RequestMapping("/boardqna.do")
   public String boardqna() {
-    
     return "board.boardqna";
   }
+  
+  
+  @RequestMapping(value="/boardwrite.do", method=RequestMethod.PUT)
+  public String boardinsert(Model model) {
+
+    model.addAttribute("write", boardService.getboardlist());
+    return "board.boardwrite";
+  }
+  
+  
   
   
   

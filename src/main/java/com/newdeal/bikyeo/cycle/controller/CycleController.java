@@ -20,5 +20,5 @@ public class CycleController {
   public @ResponseBody List<CycleDto> cycle(int p_Num) {
     return cycleService.cycle(p_Num);
   }
-
+ 
 }

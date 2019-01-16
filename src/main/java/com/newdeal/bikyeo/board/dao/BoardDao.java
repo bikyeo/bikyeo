@@ -1,5 +1,11 @@
 package com.newdeal.bikyeo.board.dao;
 
-public interface BoardDao {
+import java.util.List;
+import com.newdeal.bikyeo.board.domain.BoardDto;
 
+public interface BoardDao {
+  
+  List<BoardDto> getboardlist();
+
+   List<BoardDto> boardwrite();
 }

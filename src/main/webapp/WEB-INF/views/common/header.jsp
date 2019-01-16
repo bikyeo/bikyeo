@@ -25,9 +25,9 @@
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><a href="${root}/cycleshare/sharemain.do"
 					class="nav-link">대여소 정보조회</a></li>
-				<li class="nav-item"><a href="${root}/boardfaq.do"
+				<li class="nav-item"><a href="${root}/board/boardfaq.do"
 					class="nav-link">FAQ게시판</a></li>
-				<li class="nav-item"><a href="${root}/boardqna.do"
+				<li class="nav-item"><a href="${root}/board/boardqna.do"
 					class="nav-link">QnA게시판</a></li>
 				<li class="nav-item"><a href="${root}/login.do"
 					class="nav-link">Sign In</a></li>
