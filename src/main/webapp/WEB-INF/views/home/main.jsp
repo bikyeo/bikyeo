@@ -8,8 +8,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="root" value="${pageContext.request.contextPath}" />
-
-
 <div class="wrapper">
 	<div class="page-header section-dark"
 		style="background-image: url('${root}/img/background.jpg')">
@@ -64,6 +62,17 @@
 
 	<script type="text/javascript">
     $(document).ready(function() {
+      var msg = '${msg}';
+      
+      if(msg == 'success') {
+        Swal({
+          type: 'success',
+          title: '인증 완료',
+          html: '인증이 완료되었습니다.',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: '확인'
+        });
+      }
       $('#share').click(function() {
         location.href = '${root}/cycleshare/sharemain.do';
 
