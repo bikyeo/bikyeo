@@ -29,10 +29,19 @@ public class BoardController {
     
     List<BoardDto> list = boardService.getboardlist();
     model.addAttribute("list", list);
+    
+    System.out.println(model);
     return "board.boardfaq";
   }
 
-  
+  @RequestMapping(value="/boardfaqlook.do")
+  public String boardfaqlook() {
+   
+    return "board.boardfaqlook";
+  }
+
+
+
   
   @RequestMapping("/boardqna.do")
   public String boardqna() {
