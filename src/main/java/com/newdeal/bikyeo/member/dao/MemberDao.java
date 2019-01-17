@@ -9,4 +9,6 @@ public interface MemberDao {
   int memberInsert(MemberDto memberDto);
   
   int memberAuthInsert(String m_Email);
+  
+  int memberConfirm(String m_Email);
 }

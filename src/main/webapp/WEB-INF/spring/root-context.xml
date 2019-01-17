@@ -29,5 +29,27 @@
 	</bean>
 	
 	<tx:annotation-driven transaction-manager="txManager"/>
-
+	
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <property name="host" value="smtp.gmail.com" />
+    <property name="port" value="587" />
+    <property name="username" value="bikyeo.masters@gmail.com" />
+    <property name="password" value="bk1!2@3#4$" />
+    <property name="javaMailProperties">
+      <props>
+        <prop key="mail.debug">true</prop>
+        <prop key="mail.smtp.auth">true</prop>
+        <prop key="mail.smtp.starttls.enable">true</prop>
+        <prop key="mail.mime.charset">UTF-8</prop>
+        <prop key="mail.transport.protocol">smtp</prop>
+      </props>
+    </property>
+  </bean>
+  
+  <bean id="freeMarkerConfiguration" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
+    <property name="templateLoaderPath" value="/resources/templates/"/>
+    <property name="defaultEncoding" value="utf-8" />
+  </bean>
+  
+  <bean id="mailer" class="com.newdeal.bikyeo.common.util.Mailer" />
 </beans>
