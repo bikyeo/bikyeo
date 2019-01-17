@@ -32,14 +32,10 @@
 	<div class="container">
 		<div class="row">
 			<div class="main-map text-center">
-			  <div class="border border-secondary rounded">
 			  <h1 class="map-margin font-weight-bold">추천 코스</h1>
-			  <hr class="no-margin">
-			  <div id="course"></div>
 				<div id="map" class="map-recommend rounded"></div>
-				</div>
 			</div>
-			<div class="main-map text-center weather-margin">
+			<div class="main-map text-center">
 			<div class="text-center weather-bg border border-secondary rounded">
       <div class="font-weight-bold weather-text">현재 날씨</div>
       <hr class="no-margin">
@@ -83,54 +79,14 @@
   </script>
 	<script type="text/javascript">
 //추천코스 
-//여의도 중심 37.5215695, 126.92731149999993
-//월드컵 상암코스 37.57199999999, 126.893999997
-//청계천 코스 37.5745263, 126.9877290000006
-var mapContainer ;
-var random = Math.round(Math.random()*2)
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+    mapOption = { 
+        center: new daum.maps.LatLng(37.5215695, 126.92431149999993), // 지도의 중심좌표
+        level: 7 // 지도의 확대 레벨
+    };
 
-var place1=[];
-if(random==0){
-  place1.push(new daum.maps.LatLng(37.5215695, 126.92431149999993));
-  place1.push(new daum.maps.LatLng(37.518436, 126.92037979999998));
-  place1.push(new daum.maps.LatLng(37.5193776, 126.94021029999999));
-  place1.push(new daum.maps.LatLng(37.5284017, 126.93430119999994));
-  place1.push(new daum.maps.LatLng(37.523816, 126.91891599999997));
-  mapContainer = document.getElementById('map'), // 지도를 표시할 div  
-  mapOption = { 
-      center: new daum.maps.LatLng(37.5215695, 126.92731149999993), // 지도의 중심좌표
-      level: 6 // 지도의 확대 레벨
-  };
-  $('#course').append('여의도 코스');
-}else if(random==1){
-  place1.push(new daum.maps.LatLng(37.56965599999999, 126.89905799999997));
-  place1.push(new daum.maps.LatLng(37.5623116, 126.89510459999997));
-  place1.push(new daum.maps.LatLng(37.5674467, 126.88545499999998));
-  place1.push(new daum.maps.LatLng(37.5722114, 126.88606159999995));
-  place1.push(new daum.maps.LatLng(37.579203, 126.88929600000006));
-  mapContainer = document.getElementById('map'), // 지도를 표시할 div  
-  mapOption = { 
-      center: new daum.maps.LatLng(37.57199999999, 126.893999997), // 지도의 중심좌표
-      level: 6 // 지도의 확대 레벨
-  };
-  $('#course').append('상암 코스');
-}else if(random==2){
-  place1.push(new daum.maps.LatLng(37.5705263, 126.97657290000006));
-  place1.push(new daum.maps.LatLng(37.5794091, 126.98036909999996));
-  place1.push(new daum.maps.LatLng(37.579617, 126.97704099999999));
-  place1.push(new daum.maps.LatLng(37.5658049, 126.97514610000007));
-  place1.push(new daum.maps.LatLng(37.5687861, 126.97925250000003));
-  place1.push(new daum.maps.LatLng(37.5698006, 127.00168180000003));
-  mapContainer = document.getElementById('map'), // 지도를 표시할 div  
-  mapOption = { 
-      center: new daum.maps.LatLng(37.5745263, 126.9877290000006), // 지도의 중심좌표
-      level: 6 // 지도의 확대 레벨
-  };
-  $('#course').append('청계천 코스');
-}
-               
 var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-map.setZoomable(false);
+
 var drawingFlag = false; // 선이 그려지고 있는 상태를 가지고 있을 변수입니다
 var moveLine; // 선이 그려지고 있을때 마우스 움직임에 따라 그려질 선 객체 입니다
 var clickLine // 마우스로 클릭한 좌표로 그려질 선 객체입니다
@@ -139,28 +95,49 @@ var dots = {}; // 선이 그려지고 있을때 클릭할 때마다 클릭 지�
 
 // 지도에 클릭 이벤트를 등록합니다
 // 지도를 클릭하면 선 그리기가 시작됩니다 그려진 선이 있으면 지우고 다시 그립니다
-// daum.maps.event.addListener(map, 'click', function(mouseEvent) {
-$(document).ready(function(){
+daum.maps.event.addListener(map, 'click', function(mouseEvent) {
+
     // 마우스로 클릭한 위치입니다 
-//     var clickPosition = mouseEvent.latLng;
+    var clickPosition = mouseEvent.latLng;
     // 지도 클릭이벤트가 발생했는데 선을 그리고있는 상태가 아니면
-//     if (!drawingFlag) {
+    if (!drawingFlag) {
 
         // 상태를 true로, 선이 그리고있는 상태로 변경합니다
-//         drawingFlag = true;
+        drawingFlag = true;
         
         // 지도 위에 선이 표시되고 있다면 지도에서 제거합니다
         deleteClickLine();
         
         // 지도 위에 커스텀오버레이가 표시되고 있다면 지도에서 제거합니다
         deleteDistnce();
-       
+        var place1 = [];
+           place1.push(new daum.maps.LatLng(37.5215695, 126.92431149999993));
+           place1.push(new daum.maps.LatLng(37.518436, 126.92037979999998));
+           place1.push(new daum.maps.LatLng(37.5193776, 126.94021029999999));
+           place1.push(new daum.maps.LatLng(37.5284017, 126.93430119999994));
+           place1.push(new daum.maps.LatLng(37.523816, 126.91891599999997));
+           
+        var place2 = [];
+            place2.push(new daum.maps.LatLng(37.56965599999999, 126.89905799999997));
+            place2.push(new daum.maps.LatLng(37.5623116, 126.89510459999997));
+            place2.push(new daum.maps.LatLng(37.5674467, 126.88545499999998));
+            place2.push(new daum.maps.LatLng(37.5722114, 126.88606159999995));
+            place2.push(new daum.maps.LatLng(37.579203, 126.88929600000006));
+        
+        var place3 = [];
+            place3.push(new daum.maps.LatLng(37.5705263, 126.97657290000006));
+            place3.push(new daum.maps.LatLng(37.5794091, 126.98036909999996));
+            place3.push(new daum.maps.LatLng(37.579617, 126.97704099999999));
+            place3.push(new daum.maps.LatLng(37.5658049, 126.97514610000007));
+            place3.push(new daum.maps.LatLng(37.5713521, 127.02462749999995));
+            
             
         var recommend = [];
+        console.log(place1[1]);
         deleteCircleDot();
         clickLine = new daum.maps.Polyline({
             map: map, // 선을 표시할 지도입니다 
-            path: [place1[0]], // 선을 구성하는 좌표 배열입니다 클릭한 위치를 넣어줍니다
+            path: [clickPosition], // 선을 구성하는 좌표 배열입니다 클릭한 위치를 넣어줍니다
             strokeWeight: 3, // 선의 두께입니다 
             strokeColor: '#db4040', // 선의 색깔입니다
             strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
@@ -176,31 +153,96 @@ $(document).ready(function(){
         });
     
         // 클릭한 지점에 대한 정보를 지도에 표시합니다
-        displayCircleDot(place1[0], 0);
+        displayCircleDot(clickPosition, 0);
 
             
-//     } else { // 선이 그려지고 있는 상태이면
+    } else { // 선이 그려지고 있는 상태이면
 
         // 그려지고 있는 선의 좌표 배열을 얻어옵니다
-        for(var i=0;i < place1.length-1;i++){
         var path = clickLine.getPath();
 
         // 좌표 배열에 클릭한 위치를 추가합니다
-        path.push(place1[i+1]);
+        path.push(clickPosition);
+        
         // 다시 선에 좌표 배열을 설정하여 클릭 위치까지 선을 그리도록 설정합니다
         clickLine.setPath(path);
 
         var distance = Math.round(clickLine.getLength());
-        content = getTimeHTML(distance); // 커스텀오버레이에 추가될 내용입니다
-        // 그려진 선의 거리정보를 지도에 표시합니다
-        showDistance(content, path[path.length-1]);  
-        displayCircleDot(place1[i+1], distance);
-        }
-//         console.log(clickLine.getPath());
-//     }
+        console.log(clickLine.getLength());
+        console.log(distance);
+        displayCircleDot(clickPosition, distance);
+    }
 });
     
-       
+// 지도에 마우스무브 이벤트를 등록합니다
+// 선을 그리고있는 상태에서 마우스무브 이벤트가 발생하면 그려질 선의 위치를 동적으로 보여주도록 합니다
+daum.maps.event.addListener(map, 'mousemove', function (mouseEvent) {
+
+    // 지도 마우스무브 이벤트가 발생했는데 선을 그리고있는 상태이면
+    if (drawingFlag){
+        
+        // 마우스 커서의 현재 위치를 얻어옵니다 
+        var mousePosition = mouseEvent.latLng; 
+
+        // 마우스 클릭으로 그려진 선의 좌표 배열을 얻어옵니다
+        var path = clickLine.getPath();
+        
+        // 마우스 클릭으로 그려진 마지막 좌표와 마우스 커서 위치의 좌표로 선을 표시합니다
+        var movepath = [path[path.length-1], mousePosition];
+        moveLine.setPath(movepath);    
+        moveLine.setMap(map);
+        
+        var distance = Math.round(clickLine.getLength() + moveLine.getLength()), // 선의 총 거리를 계산합니다
+            content = '<div class="dotOverlay distanceInfo">총거리 <span class="number">' + distance + '</span>m</div>'; // 커스텀오버레이에 추가될 내용입니다
+        
+        // 거리정보를 지도에 표시합니다
+        showDistance(content, mousePosition);   
+    }             
+});                 
+
+// 지도에 마우스 오른쪽 클릭 이벤트를 등록합니다
+// 선을 그리고있는 상태에서 마우스 오른쪽 클릭 이벤트가 발생하면 선 그리기를 종료합니다
+daum.maps.event.addListener(map, 'rightclick', function (mouseEvent) {
+
+    // 지도 오른쪽 클릭 이벤트가 발생했는데 선을 그리고있는 상태이면
+    if (drawingFlag) {
+        
+        // 마우스무브로 그려진 선은 지도에서 제거합니다
+        moveLine.setMap(null);
+        moveLine = null;  
+        
+        // 마우스 클릭으로 그린 선의 좌표 배열을 얻어옵니다
+        var path = clickLine.getPath();
+ 
+        // 선을 구성하는 좌표의 개수가 2개 이상이면
+        if (path.length > 1) {
+
+            // 마지막 클릭 지점에 대한 거리 정보 커스텀 오버레이를 지웁니다
+            if (dots[dots.length-1].distance) {
+                dots[dots.length-1].distance.setMap(null);
+                dots[dots.length-1].distance = null;    
+            }
+
+            var distance = Math.round(clickLine.getLength()), // 선의 총 거리를 계산합니다
+                content = getTimeHTML(distance); // 커스텀오버레이에 추가될 내용입니다
+                
+            // 그려진 선의 거리정보를 지도에 표시합니다
+            showDistance(content, path[path.length-1]);  
+             
+        } else {
+
+            // 선을 구성하는 좌표의 개수가 1개 이하이면 
+            // 지도에 표시되고 있는 선과 정보들을 지도에서 제거합니다.
+            deleteClickLine();
+            deleteCircleDot(); 
+            deleteDistnce();
+
+        }
+        
+        // 상태를 false로, 그리지 않고 있는 상태로 변경합니다
+        drawingFlag = false;          
+    }  
+});    
 
 // 클릭으로 그려진 선을 지도에서 제거하는 함수입니다
 function deleteClickLine() {
@@ -213,23 +255,13 @@ function deleteClickLine() {
 // 마우스 드래그로 그려지고 있는 선의 총거리 정보를 표시하거
 // 마우스 오른쪽 클릭으로 선 그리가 종료됐을 때 선의 정보를 표시하는 커스텀 오버레이를 생성하고 지도에 표시하는 함수입니다
 function showDistance(content, position) {
-  var place1dis = new daum.maps.LatLng(37.517, 126.91891599999997);
-  var place2dis = new daum.maps.LatLng(37.57899999999, 126.893999997);
-  var place3dis = new daum.maps.LatLng(37.5745263, 126.9877290000006);
-  
+    
     if (distanceOverlay) { // 커스텀오버레이가 생성된 상태이면
-      var place1 = new daum.maps.LatLng(37.523816, 126.91891599999997);
-      var place2 = new daum.maps.LatLng(37.579203, 126.88929600000006);
-      var place3 = new daum.maps.LatLng(37.5698006, 127.00168180000003);
-     distanceOverlay.setContent(content);       
-       if(position.jb == place1.jb){
-        distanceOverlay.setPosition(place1dis);
-       
-        }else if(position.jb == place2.jb){
-          distanceOverlay.setPosition(place2dis);
-        }else if(position.jb == place3.jb){
-          distanceOverlay.setPosition(place3dis);
-        }        
+        
+        // 커스텀 오버레이의 위치와 표시할 내용을 설정합니다
+        distanceOverlay.setPosition(position);
+        distanceOverlay.setContent(content);
+        
     } else { // 커스텀 오버레이가 생성되지 않은 상태이면
         
         // 커스텀 오버레이를 생성하고 지도에 표시합니다
@@ -266,19 +298,7 @@ function displayCircleDot(position, distance) {
 
     // 지도에 표시합니다
     circleOverlay.setMap(map);
-    if(distance==0){
-      var distanceOverlay = new daum.maps.CustomOverlay({
-        content: '<div class="dotOverlay font-weight-bold">출발위치</div>',
-        position: position,
-        yAnchor: 1,
-        zIndex: 2
-    });
 
-    // 지도에 표시합니다
-    distanceOverlay.setMap(map);
-    
-    }
-    
     if (distance > 0) {
         // 클릭한 지점까지의 그려진 선의 총 거리를 표시할 커스텀 오버레이를 생성합니다
         var distanceOverlay = new daum.maps.CustomOverlay({
@@ -345,7 +365,7 @@ function getTimeHTML(distance) {
 	
 $(document).ready(function(){
   //날씨 데이터   
-  var url= 'http://api.openweathermap.org/data/2.5/weather?q=Seoul&APPID=83c62b5028f8bad78c5410a0efae908f';
+  var url= 'http://api.openweathermap.org/data/2.5/weather?q=seoul&APPID=83c62b5028f8bad78c5410a0efae908f';
        $.getJSON(url,function(data){
           var sys=data.sys;
           var city =data.name;
