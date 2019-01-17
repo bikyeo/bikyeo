@@ -7,5 +7,5 @@ public interface BoardService {
   
   List<BoardDto> getboardlist();
   List<BoardDto> boardwrite();
-
+  BoardDto boardread(int b_Num);
 }

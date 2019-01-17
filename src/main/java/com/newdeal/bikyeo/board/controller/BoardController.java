@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import com.newdeal.bikyeo.board.domain.BoardDto;
 import com.newdeal.bikyeo.board.service.BoardService;
 
@@ -30,13 +31,17 @@ public class BoardController {
     List<BoardDto> list = boardService.getboardlist();
     model.addAttribute("list", list);
     
-    System.out.println(model);
+
     return "board.boardfaq";
   }
 
-  @RequestMapping(value="/boardfaqlook.do")
-  public String boardfaqlook() {
-   
+  @RequestMapping(value="/boardfaqlook.do", method=RequestMethod.GET)
+  public String boardfaqlook(Model model, @RequestParam("b_Num") int b_Num) {
+    
+    model.addAttribute("bno", boardService.boardread(b_Num));
+    
+    System.out.println(boardService.boardread(b_Num));
+    
     return "board.boardfaqlook";
   }
 

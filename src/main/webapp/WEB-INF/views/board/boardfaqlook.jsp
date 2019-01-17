@@ -7,15 +7,14 @@
 
 <div class="container">
   <div class="row board-menu">
-      <span class="col-8 h5 font-weight-bold text-left">제목</span>
-      <span class="col-2 text-left" >작성자</span>
-      <span class="col-2 text-left">날짜</span>  
+      <span class="col-10 h5 font-weight-bold text-left">${bno.b_Subject }</span>
+      <span class="col-2 text-left">${bno.b_Regdate }</span>  
   </div>
   <div class="row">
     <span class="col-12 h5">${bno.b_Content }</span>
   
   
   </div>
-
+<a href="${root}/board/boardfaq.do" button type="button" class="input-group-prepend btn btn-danger">목록</a></button>
 </div>
       

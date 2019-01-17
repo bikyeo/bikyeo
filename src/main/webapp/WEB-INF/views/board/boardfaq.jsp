@@ -40,7 +40,7 @@
   <div class="row board-list h5">
  
     <span class="col-2  font-weight-bold text-left">${list.b_Num }</span>
-    <span class="col-5  font-weight-bold text-center"><a href="${root}/board/boardfaqlook.do">${list.b_Subject }</a></span>
+    <span class="col-5  font-weight-bold text-center"><a href="${root}/board/boardfaqlook.do?b_Num=${list.b_Num }">${list.b_Subject }</a></span>
     <span class="col-5 text-center">${list. b_Regdate }</span>
     
     

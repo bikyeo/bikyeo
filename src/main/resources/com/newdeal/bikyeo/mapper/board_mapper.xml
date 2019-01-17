@@ -9,5 +9,11 @@
 limit 0, 10;
   </select>
   
+  <select id="boardread" resultType="boardDto">
+  select b_Content, b_regdate, b_Subject
+from board, member where b_Num = #{b_Num}
+  
+  
+  </select>
 
 </mapper>
