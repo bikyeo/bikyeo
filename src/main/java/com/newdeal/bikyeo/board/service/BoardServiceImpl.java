@@ -26,4 +26,11 @@ public class BoardServiceImpl implements BoardService {
     
   }
 
+  @Override
+  public BoardDto boardread(int b_Num) {
+    
+    return sqlSession.getMapper(BoardDao.class).boardread(b_Num);
+    
+  }
+
 }

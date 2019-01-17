@@ -1,24 +1,23 @@
 @charset "UTF-8";
 
-/* 게시판 제목 */
-.menu-background{
-	background-color: #E6E6E6;
-	heigth:auto; 
-	width:100%;
-	font-weight: bold;
-	font-size: 1.5em;
+/* 글번호, 질문, 날짜*/
+.board-menu{
+  border-bottom: 2px solid #CCC5B9;
+  border-top: 2px solid #CCC5B9;
+  font-weight: 300;
+  margin: 15px 0 10px;
+  text-align: center;
+  padding-top : 10px;
+  padding-bottom: 10px;
 }
 
-/* foreach문 리스트 내용들 */
-.foreachlist{
-	font-weight: bold;
-
+/*리스트*/
+.board-list{
+  border-bottom: 1px solid #CCC5B9;
+  border-top: 1px solid #CCC5B9;
+  font-weight: 300;
+  margin: 15px 0 10px;
+  text-align: center;
+  padding-top : 10px;
+  padding-bottom: 10px;
 }
-
-.foreachlistcolor{
-	
-	background-color: #81F7D8;
-	font-weight: bold;
-}
-
-
