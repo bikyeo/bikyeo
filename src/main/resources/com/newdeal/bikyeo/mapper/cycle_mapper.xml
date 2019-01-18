@@ -15,5 +15,12 @@
     update cycle set c_Status = 1 where c_Code = #{c_Code}
   </update>
   
+  <update id="retucycle" parameterType="cycleDto">
+    update cycle set c_Status = 0, c_Move = #{c_Move} where c_Code = #{c_Code}
+  </update>
+  
+  <select id="placecheck" parameterType="cycleDto" resultType="int">
+   select count(c_Code) from cycle where c_Move = #{c_Move}
+  </select>
   
 </mapper>

@@ -31,4 +31,13 @@ public class CycleShareServiceImpl implements CycleShareService{
     
     return sqlSession.getMapper(CycleShareDao.class).returncycle(m_Email);
   }
+
+  @Transactional
+  @Override
+  public int recycle(CycleDto cycleDto) {
+    int result = 0;  
+    sqlSession.getMapper(CycleDao.class).retucycle(cycleDto);
+    result = sqlSession.getMapper(CycleShareDao.class).recycle(cycleDto);
+    return result;
+  }
 }

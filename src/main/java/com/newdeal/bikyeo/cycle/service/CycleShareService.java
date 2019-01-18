@@ -11,4 +11,6 @@ public interface CycleShareService {
 
   List<ShareDto> returncycle(String m_Email);
 
+  int recycle(CycleDto cycleDto);
+
 }

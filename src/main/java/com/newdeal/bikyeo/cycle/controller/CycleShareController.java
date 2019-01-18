@@ -49,5 +49,15 @@ public class CycleShareController {
   public @ResponseBody List<ShareDto> returncycle(Principal principal) throws SQLException {
     return cycleShareService.returncycle(principal.getName());
   }
+  
+  @RequestMapping(value="/return.do", method=RequestMethod.PUT, headers= {"Content-Type=application/json"})
+  public @ResponseBody int recycle(Principal principal,@RequestBody CycleDto cycleDto) throws SQLException {
+    int i=0;
+     ShareDto shareDto = new ShareDto();
+     shareDto.setM_Email(principal.getName());
+     cycleDto.setShareDto(shareDto);
+     i = cycleShareService.recycle(cycleDto);
+    return i; 
+  }
 
 }

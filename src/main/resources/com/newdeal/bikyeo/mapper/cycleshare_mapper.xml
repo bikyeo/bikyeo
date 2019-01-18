@@ -11,7 +11,12 @@
   </insert>
 
   <select id="returncycle" parameterType="String" resultType="shareDto">
-   select * from share where m_Email = #{m_Email}
+    select * from share where m_Email = #{m_Email} and s_Edate is null
   </select>
+  
+  <update id="recycle" parameterType="cycleDto">
+    update share set s_Edate = NOW() where m_Email = #{shareDto.m_Email} and c_Code = #{c_Code}
+  </update>
+  
   
 </mapper>

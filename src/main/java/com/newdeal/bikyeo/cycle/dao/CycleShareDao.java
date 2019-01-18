@@ -10,4 +10,6 @@ public interface CycleShareDao {
 
   List<ShareDto> returncycle(String m_Email);
 
+  int recycle(CycleDto cycleDto);
+
 }
