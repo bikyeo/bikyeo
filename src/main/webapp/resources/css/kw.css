@@ -205,13 +205,7 @@
 }
 
 /* 자동완성 기능 css*/
-* {
-	box-sizing: border-box;
-}
 
-body {
-	font: 16px Arial;
-}
 
 /*the container must be positioned relative:*/
 .autocomplete {
