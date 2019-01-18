@@ -34,6 +34,10 @@ ALTER TABLE SHARE
 ALTER TABLE SHARE
     DROP FOREIGN KEY FK_PLACE_TO_SHARE; -- 자전거대여소 -> 자전거대여
 
+-- 자전거대여
+ALTER TABLE SHARE
+    DROP FOREIGN KEY FK_CYCLE_TO_SHARE; -- 자전거 -> 자전거대여
+
 -- 자전거
 ALTER TABLE CYCLE
     DROP FOREIGN KEY FK_PLACE_TO_CYCLE; -- 자전거대여소 -> 자전거
@@ -202,6 +206,7 @@ CREATE TABLE SHARE (
     s_Num   INT         NOT NULL COMMENT '자전거대여번호', -- 자전거대여번호
     m_Email VARCHAR(40) NOT NULL COMMENT '이메일', -- 이메일
     p_Num   INT         NOT NULL COMMENT '자전거대여소번호', -- 자전거대여소번호
+    c_Code  VARCHAR(7)  NOT NULL COMMENT '자전거번호', -- 자전거번호
     s_Sdate DATETIME    NOT NULL COMMENT '대여일', -- 대여일
     s_Pdate DATETIME    NOT NULL COMMENT '반납예정일', -- 반납예정일
     s_Edate DATETIME    NULL     COMMENT '반납일' -- 반납일
@@ -336,6 +341,16 @@ ALTER TABLE SHARE
         )
         REFERENCES PLACE ( -- 자전거대여소
             p_Num -- 자전거대여소번호
+        );
+
+-- 자전거대여
+ALTER TABLE SHARE
+    ADD CONSTRAINT FK_CYCLE_TO_SHARE -- 자전거 -> 자전거대여
+        FOREIGN KEY (
+            c_Code -- 자전거번호
+        )
+        REFERENCES CYCLE ( -- 자전거
+            c_Code -- 자전거번호
         );
 
 -- 자전거
