@@ -475,7 +475,7 @@ function select(){
           var remove=true;
           var content = "";
           content += '<div class="text-center ma-bottom"><br>';
-          content += '<div class="title-cycle">'+obj.content_nm+'</div>';
+          content += '<div class="title-cycle rent-mabottom rent-subject">'+obj.content_nm+'</div>';
           content += '<hr class="no-margin">'; 
           $.ajax({
             url : "${root}/cycle/cycle.do", // test.jsp 에서 받아옴
@@ -511,7 +511,7 @@ function select(){
                 }
                   
               })
-              content += '<hr class="no-margin">'; 
+              content += '<hr class="rent-mabottom">'; 
               content += '<div><span class="rent-margin font-weight-bold">대여가능 자전거 : '+ cyclecount +' / 20</span></div>'
               content += '</div>';
               var infowindow = new daum.maps.InfoWindow({
@@ -613,6 +613,9 @@ function select(){
        data: JSON.stringify(rent_data),
        contentType: "application/json;charset=utf-8",
        dateType:"json",
+       beforeSend: function(xhr) {
+         xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+       },
        type: "POST",
        success : function(data) {
          console.log(data);
@@ -639,6 +642,7 @@ function select(){
  
  
 })
+//자동 완성 기능
 
 function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,
@@ -682,7 +686,7 @@ function autocomplete(inp, arr) {
   });
   /*execute a function presses a key on the keyboard:*/
   inp.addEventListener("keydown", function(e) {
-      var x = document.getElementById(this.id + "autocomplete-list");
+      var x = document.getElementById(this.id + " autocomplete-list");
       if (x) x = x.getElementsByTagName("div");
       if (e.keyCode == 40) {
         /*If the arrow DOWN key is pressed,

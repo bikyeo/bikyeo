@@ -268,3 +268,12 @@ input {
 
 .autocomplete-list {
 }
+
+.rent-mabottom{
+	margin-top:0;
+	margin-bottom: 8px;
+}
+
+.rent-subject{
+	font-size:18px;
+}

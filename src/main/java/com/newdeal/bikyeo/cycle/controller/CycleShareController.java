@@ -1,12 +1,12 @@
 package com.newdeal.bikyeo.cycle.controller;
 
+import java.security.Principal;
 import java.sql.SQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.newdeal.bikyeo.cycle.domain.CycleDto;
 import com.newdeal.bikyeo.cycle.domain.ShareDto;
@@ -31,10 +31,16 @@ public class CycleShareController {
   }
   
   @RequestMapping(value="/cycle.do", method=RequestMethod.POST, headers= {"Content-Type=application/json"})
-  public @ResponseBody int rent(@RequestBody CycleDto cycleDto) throws SQLException {
-
+  public @ResponseBody int rent(Principal principal,@RequestBody CycleDto cycleDto) throws SQLException {
+    ShareDto shareDto = new ShareDto();
+    shareDto.setM_Email(principal.getName());
+    cycleDto.setShareDto(shareDto);
     return cycleShareService.rent(cycleDto);
   }
 
+  @RequestMapping(value="/return.do", method=RequestMethod.GET, headers= {"Content-Type=application/json"})
+  public @ResponseBody int returncycle(Principal principal) throws SQLException {
+    return cycleShareService.returncycle(principal.getName());
+  }
 
 }

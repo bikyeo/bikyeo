@@ -7,4 +7,6 @@ public interface CycleShareService {
 
   int rent(CycleDto cycleDto) throws SQLException;
 
+  int returncycle(String name);
+
 }

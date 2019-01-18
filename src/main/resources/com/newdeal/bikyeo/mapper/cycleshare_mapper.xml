@@ -7,6 +7,6 @@
     insert into share 
     (m_Email,p_Num,s_Sdate,s_Pdate)
     values 
-    ('abc@abc.com',#{p_Num},NOW(),DATE_ADD(NOW(), INTERVAL #{rent_hour} HOUR)) 
+    (#{shareDto.m_Email},#{p_Num},NOW(),DATE_ADD(NOW(), INTERVAL #{rent_hour} HOUR)) 
   </insert>
 </mapper>

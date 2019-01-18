@@ -66,6 +66,8 @@
 
 	<script type="text/javascript">
     $(document).ready(function() {
+//반납하기     
+      
       var msg = '${msg}';
       
       if(msg == 'success') {
@@ -83,6 +85,18 @@
       })
 
       $('#return').click(function() {
+        $.ajax({
+          url : "${root}/cycleshare/return.do", 
+          contentType: "application/json;charset=utf-8",
+          dateType:"json",
+          beforeSend: function(xhr) {
+            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+          },
+          type: "POST",
+          success : function(data) {
+            
+          }
+        })
         Swal('Good job!', 'You clicked the button!', 'success')
         $('#myModal').modal('show');
 

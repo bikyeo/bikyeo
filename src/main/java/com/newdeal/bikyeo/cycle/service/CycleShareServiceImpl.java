@@ -23,4 +23,10 @@ public class CycleShareServiceImpl implements CycleShareService{
     result = sqlSession.getMapper(CycleShareDao.class).rent(cycleDto);
     return result;
   }
+
+  @Override
+  public int returncycle(String name) {
+    // TODO Auto-generated method stub
+    return 0;
+  }
 }
