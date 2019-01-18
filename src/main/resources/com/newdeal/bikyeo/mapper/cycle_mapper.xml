@@ -5,10 +5,10 @@
 <mapper namespace="com.newdeal.bikyeo.cycle.dao.CycleDao">
   <select id="cycle" parameterType="int" resultType="cycleDto">
     select c_Code,p_Num,c_Status,c_Move,
-    (select count(c_Code) cyclecount from cycle
-     where c_Move= #{p_Num} and c_Status=0) cyclecount 
+      (select count(c_Code) cyclecount 
+        from cycle where c_Move= #{p_Num} and c_Status=0) cyclecount 
       from cycle
-     where c_Move=#{p_Num}
+      where c_Move=#{p_Num}
    </select>
   
   <update id="cyclerent" parameterType="cycleDto">
