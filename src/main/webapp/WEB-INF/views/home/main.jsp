@@ -85,6 +85,21 @@
       })
 
       $('#return').click(function() {
+        var check = '${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal}';
+        if(check ==""){
+          swal("로그인 후 이용해주세요.","","info");
+          return false; 
+        }
+        
+        var html="";
+        var placenum;
+        var placearray=[];
+        var indexcycle;
+        var c_Code;
+        var placename;
+        var placenamearray=[];
+        
+        
         $.ajax({
           url : "${root}/cycleshare/return.do", 
           contentType: "application/json;charset=utf-8",
@@ -92,14 +107,51 @@
           beforeSend: function(xhr) {
             xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
           },
-          type: "POST",
+          type: "GET",
           success : function(data) {
+            if(data.length != 0){
+            $('#exampleModalLabel').attr('class','font-weight-bold');
+            $('#exampleModalLabel').text('대여중인 자전거');
+            $('.modal-body').text('');
+            html += '<span>반납할 자전거 : </span>';
+            html += '<select class="custom-select" id="return-select">';                           
+            $.each(data,function(index,obj){
+              placearray.push(obj.p_Num*1);
+             placenum = obj.p_Num*1;
+             indexcycle = obj.c_Code.substring(5,7);
+             c_Code = obj.c_Code;   
+             html += '<option value="'+c_Code+'"> '+indexcycle+' 번 자전거</option>';                         
+            })
+            html +='</select>';
+            $('.modal-body').append(html);
+            var k = placearray.length;
+            var url = "${root}/resources/json/cycle.json";
+              $.getJSON(url,function(data){
+              for(var i=0;i < k;i++){
+                for(var j=0; j< data.DATA.length;j++){
+                  if(placearray[i]==data.DATA[j].content_id){
+                    placenamearray.push(data.DATA[j].content_nm);
+                    break;
+                  }
+                }
+              }
+              for(var i=0;i < k;i++){ 
+              $('#return-select').find('option').eq(i).prepend(placenamearray[i]);
+              }
+             })
+          
+            $('.left-side').children().text('반납하기');
+            $('.right-side').children().attr('data-dismiss','modal');
+            $('.right-side').children().text('취소');
             
+            $('#myModal').modal('show');
+            }else{
+              Swal('대여중인 자전거가 없습니다.', '', 'info');
+                     
+            }
           }
         })
-        Swal('Good job!', 'You clicked the button!', 'success')
-        $('#myModal').modal('show');
-
+        
       })
 
     })

@@ -1,6 +1,7 @@
 package com.newdeal.bikyeo.cycle.service;
 
 import java.sql.SQLException;
+import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.newdeal.bikyeo.cycle.dao.CycleDao;
 import com.newdeal.bikyeo.cycle.dao.CycleShareDao;
 import com.newdeal.bikyeo.cycle.domain.CycleDto;
+import com.newdeal.bikyeo.cycle.domain.ShareDto;
 
 @Service
 public class CycleShareServiceImpl implements CycleShareService{
@@ -25,8 +27,8 @@ public class CycleShareServiceImpl implements CycleShareService{
   }
 
   @Override
-  public int returncycle(String name) {
-    // TODO Auto-generated method stub
-    return 0;
+  public List<ShareDto> returncycle(String m_Email) {
+    
+    return sqlSession.getMapper(CycleShareDao.class).returncycle(m_Email);
   }
 }

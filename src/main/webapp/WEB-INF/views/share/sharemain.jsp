@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 <div class="text-center container">
 	<div class="row">
+	
 <!-- 		<select class="custom-select col-2" id="search-select"> -->
 <!-- 			<option value="0">지역구</option> -->
 <!-- 			<option value="1">대여소</option> -->
@@ -532,6 +534,11 @@ function select(){
 
  
  $(document).on("click", "button[name='c_Code']", function() {
+   var check = '${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal}';
+   if(check ==""){
+     swal("로그인 후 이용해주세요.","","info");
+     return false; 
+   }
    var c_Code = $(this).attr('c_code');
    var p_Num = $(this).attr('p_Num');
    $('#exampleModalLabel').attr('class','font-weight-bold');
@@ -545,6 +552,7 @@ function select(){
    var currentTime;
    var returnTime;
    $(document).on("change","#rent-time",function(){
+    
      $('.return-time').remove();
      rentHour = time.getHours()*1 + $('#rent-time').val()*1;
      rentday = "오늘";
@@ -602,12 +610,13 @@ function select(){
    $('#myModal').modal('show');
    
    $(document).on("click", "#rent", function() {
-    console.log($('#rent-time').val());
     rent_data = {"c_Code" : c_Code,
                  "p_Num" : p_Num,
                  "rent_hour":$('#rent-time').val()
                  };
-
+    if($('#rent-time').val()=='no-time'){
+      swal("시간을 선택해주세요.","","warning");
+    }else{
     $.ajax({
        url : "${root}/cycleshare/cycle.do", 
        data: JSON.stringify(rent_data),
@@ -631,11 +640,16 @@ function select(){
            }
          })
          }else{
-           swal("대여에 실패하였습니다.","","danger");
+           swal("대여에 실패하였습니다.","","info");
          } 
+         },
+         error:function(request, status, error) {
+           swal("시간을 선택해주세요.","","warning");
+
          }
+
        })
-     
+    }
    })
    
  })
