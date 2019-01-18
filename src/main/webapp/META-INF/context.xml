@@ -14,7 +14,7 @@
 
 </Context>
 
-<!--  <Context>
+<!-- <Context>
       
   <Resource name="jdbc/bikyeo" auth="Container"
       type="javax.sql.DataSource"
@@ -27,5 +27,4 @@
 
   <WatchedResource>WEB-INF/web.xml</WatchedResource>
 
-</Context>
--->
+</Context> -->
