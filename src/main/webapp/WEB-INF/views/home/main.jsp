@@ -91,6 +91,14 @@
     })
   </script>
 	<script type="text/javascript">
+	var status = '${param.status}'
+	if(status == 'logout'){
+    Swal({
+      type: 'info',
+      title: '로그아웃',
+      html: '성공적으로 로그아웃 되었습니다.<br>다음에 또 이용해주세요.'
+    });
+  }
 //추천코스 
 //여의도 중심 37.5215695, 126.92731149999993
 //월드컵 상암코스 37.57199999999, 126.893999997
