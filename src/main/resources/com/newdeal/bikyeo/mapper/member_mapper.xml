@@ -11,7 +11,7 @@
   
   <insert id="memberInsert" parameterType="memberDto">
     insert into member (m_Email, m_Pwd, m_Name, m_Gender, m_Phone, enabled, m_Regdate, m_Update) 
-    values (#{m_Email}, #{m_Pwd}, #{m_Name}, #{m_Gender}, #{m_Phone}, 0, now(), now()) 
+    values (#{m_Email}, #{m_Pwd}, #{m_Name}, #{m_Gender}, #{m_Phone}, #{enabled}, now(), now()) 
   </insert>
   
   <insert id="memberAuthInsert" parameterType="String">

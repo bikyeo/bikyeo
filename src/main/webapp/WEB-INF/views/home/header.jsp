@@ -50,6 +50,16 @@
 <script type="text/javascript">
 $(document).ready(function(){
   $('#logoutBtn').click(function(){
+    var user = '${pageContext.request.userPrincipal.name}';
+    var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    if(!regExp.test(user)) {
+	    var company = user.substr(0,5);
+	    if(company=='kakao') {
+	      Kakao.init('7bac65a1ad27df9cef7f991882677d17');
+	      Kakao.Auth.logout();
+	      console.log('a');
+	    }
+    }
     var form = document.createElement("form");
     form.setAttribute("charset", "UTF-8");
     form.setAttribute("method", "Post");  //Post 방식

@@ -72,6 +72,10 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7bac65a1ad27df9cef7f991882677d17&libraries=services"></script>
 <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7bac65a1ad27df9cef7f991882677d17&libraries=services,clusterer,drawing"></script>
+<!-- 카카오 로그인 api -->
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<!-- 네이버 로그인 api -->
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 
 </head>
 <body>

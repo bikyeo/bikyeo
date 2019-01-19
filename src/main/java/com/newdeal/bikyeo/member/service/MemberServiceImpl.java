@@ -18,16 +18,16 @@ import freemarker.template.TemplateException;
 
 @Service
 public class MemberServiceImpl implements MemberService{
-  
+
   @Autowired
   SqlSession sqlSession;
-  
+
   @Autowired
   BCryptPasswordEncoder bcryptPasswordEncoder;
-  
+
   @Autowired
   Mailer mailer;
-  
+
   @Override
   public int searchId(String m_Email) {
     return sqlSession.getMapper(MemberDao.class).searchId(m_Email);
@@ -37,25 +37,34 @@ public class MemberServiceImpl implements MemberService{
   @Override
   public int memberInsert(MemberDto memberDto) throws SQLException, MessagingException, IOException, TemplateException {
     int result = 0;
-    memberDto.setM_Pwd(bcryptPasswordEncoder.encode(memberDto.getM_Pwd()));
-    sqlSession.getMapper(MemberDao.class).memberInsert(memberDto);
-    result = sqlSession.getMapper(MemberDao.class).memberAuthInsert(memberDto.getM_Email());
     
-    Mail mail = new Mail();
-    mail.setFrom("bikyeo.masters@gmail.com");
-    mail.setTo(memberDto.getM_Email());
-    mail.setSubject("안녕하세요 Bikyeo입니다!");
-    mail.setTemplate("signup.ftl");
+    if(!memberDto.getM_Email().equals(memberDto.getM_Pwd())) {
+      memberDto.setM_Pwd(bcryptPasswordEncoder.encode(memberDto.getM_Pwd()));
+      memberDto.setEnabled(0);
+      sqlSession.getMapper(MemberDao.class).memberInsert(memberDto);
+      result = sqlSession.getMapper(MemberDao.class).memberAuthInsert(memberDto.getM_Email());
 
-    Map<String, String> model = new HashMap<>();
-    
-    model.put("name", memberDto.getM_Name());
-    model.put("signature", "Bikyeo");
-    model.put("m_Email", memberDto.getM_Email());
-    mail.setModel(model);
+      Mail mail = new Mail();
+      mail.setFrom("bikyeo.masters@gmail.com");
+      mail.setTo(memberDto.getM_Email());
+      mail.setSubject("안녕하세요 Bikyeo입니다!");
+      mail.setTemplate("signup.ftl");
 
-    mailer.sendSimpleMessage(mail);
-    
+      Map<String, String> model = new HashMap<>();
+
+      model.put("name", memberDto.getM_Name());
+      model.put("signature", "Bikyeo");
+      model.put("m_Email", memberDto.getM_Email());
+      mail.setModel(model);
+
+      mailer.sendSimpleMessage(mail);
+    } else {
+      memberDto.setM_Pwd(bcryptPasswordEncoder.encode(memberDto.getM_Pwd()));
+      memberDto.setEnabled(1);
+      sqlSession.getMapper(MemberDao.class).memberInsert(memberDto);
+      result = sqlSession.getMapper(MemberDao.class).memberAuthInsert(memberDto.getM_Email());
+
+    }
     return result;
   }
 
@@ -63,5 +72,5 @@ public class MemberServiceImpl implements MemberService{
   public int memberConfirm(String m_Email) {
     return sqlSession.getMapper(MemberDao.class).memberConfirm(m_Email);
   }
-  
+
 }
