@@ -8,5 +8,9 @@ public interface CycleDao {
 
   void cyclerent(CycleDto cycleDto);
 
+  void retucycle(CycleDto cycleDto);
+
+  int placecheck(CycleDto cycleDto);
+
  
 }

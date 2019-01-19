@@ -85,6 +85,21 @@
       })
 
       $('#return').click(function() {
+        var check = '${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal}';
+        if(check ==""){
+          swal("로그인 후 이용해주세요.","","info");
+          return false; 
+        }
+        
+        var html="";
+        var placenum;
+        var placearray=[];
+        var indexcycle;
+        var c_Code;
+        var placename;
+        var placenamearray=[];
+        
+        
         $.ajax({
           url : "${root}/cycleshare/return.do", 
           contentType: "application/json;charset=utf-8",
@@ -92,16 +107,194 @@
           beforeSend: function(xhr) {
             xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
           },
-          type: "POST",
+          type: "GET",
           success : function(data) {
+            console.log(data);
+            if(data.length != 0){
+            $('#exampleModalLabel').attr('class','font-weight-bold');
+            $('#exampleModalLabel').text('대여중인 자전거');
+            $('.modal-body').text('');
+            html += '<span class="return-margin">반납할 자전거 : </span>';
+            html += '<select class="custom-select return-margin" id="return-select">';                           
+            $.each(data,function(index,obj){
+              var num = index*1
+              num = num+1;
+             placearray.push(obj.c_Move*1);
+             c_Code = obj.c_Code;   
+             html += '<option value="'+c_Code+'">'+num+' 번 자전거 : </option>';                         
+            })
+            html +='</select>';
+            $('.modal-body').append(html);
+            console.log(placearray);
+            var k = placearray.length;
+            var url = "${root}/resources/json/cycle.json";
+              $.getJSON(url,function(data){
+              for(var i=0;i < k;i++){
+                for(var j=0; j< data.DATA.length;j++){
+                  if(placearray[i]==data.DATA[j].content_id){
+                    placenamearray.push(data.DATA[j].content_nm);
+                    break;
+                  }
+                }
+              }
+//               console.log(placenamearray);
+              for(var i=0;i < k;i++){ 
+              $('#return-select').find('option').eq(i).append(placenamearray[i]);
+              }
+             })
+            $('.modal-body').append('<br><span class="return-margin">반납할 지역구 : </span>');
+            html = '<select class="custom-select return-margin" id="return-district">'; 
+            html += '<option value="no-data">지역구</option>';
+            var districts = ["도봉구","노원구","강북구","성북구","중랑구",
+              "은평구","종로구","서대문구","중구","동대문구",
+              "성동구","광진구","용산구","마포구","강서구",
+              "양천구","영등포구","구로구","금천구","동작구",
+              "관악구","서초구","강남구","송파구","강동구"];
+            for(var i =0;i < districts.length;i++){
+            html += '<option value="'+i+'">'+districts[i]+'</option>';
+            };
+            html += '</select>';
+            $('.modal-body').append(html);
             
+            html = '<br><span class="return-margin">반납할 대여소 : </span>';
+            html += '<select class="custom-select return-margin" id="return-place">';
+            html += '<option>대여소명</option>';
+            $('.modal-body').append(html);
+            
+            $('#return-district').on('change',function(){
+              $('#return-place').empty();
+              $('#return-place').append('<option>대여소명</option>');
+              
+              var district = districts[$('#return-district').val()];
+              
+              var url = "${root}/resources/json/cycle.json";
+              $.getJSON(url,function(data){
+              
+                $.each(data.DATA,function(index,obj){
+                  if(district == obj.addr_gu){
+                    $('#return-place').append('<option value="'+obj.content_id+'">'+obj.content_nm+'</option>');
+                  }
+                  
+                })
+              })
+              
+            })
+            
+            $('#return-place').on('change',function(){
+              var place = $(this);
+              var placeval = place.val();
+              var placedata = {"c_Move":place.val()};
+              $.ajax({
+                type: "POST",
+                url : "${root}/cycle/placecheck.do", 
+                data : JSON.stringify(placedata),
+                contentType: "application/json;charset=utf-8",
+                dateType:"json",
+                beforeSend: function(xhr) {
+                  xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                },
+                success : function(data) {
+                  console.log(data);
+                  if(data >= 20){
+                    Swal({
+                      title:'자전거를 반납할 수 없습니다.',
+                      text: '대여소에 자전거가 모두 차있습니다.',
+                      type: 'error',
+                      confirmButtonText: '확인'
+                    }).then((result) => {
+                      if (result.value) {
+                        place.empty();
+                        place.append('<option>대여소명</option>');
+                        
+                      }
+                      $('#return-district').val('no-data');
+                     
+                    })
+                    
+                  }
+                  
+                }
+                
+              })
+              $('#return-district').focus();
+            })
+            
+            
+            $('.left-side').children().attr('id','return-submit');
+            $('.left-side').children().text('반납하기');
+            $('.right-side').children().attr('data-dismiss','modal');
+            $('.right-side').children().text('취소');
+            
+            $('#myModal').modal('show');
+            }else{
+              Swal('대여중인 자전거가 없습니다.', '', 'info');
+                     
+            }
           }
         })
-        Swal('Good job!', 'You clicked the button!', 'success')
-        $('#myModal').modal('show');
-
+        
       })
 
+      
+      $(document).on('click','#return-submit',function(){
+        if($('#return-district').val()=="no-data"){
+          swal("지역구를 선택해주세요.","","info");    
+        } else if($('#return-place').val()=="대여소명"){
+          swal("대여소를 선택해주세요.","","info");
+        }else{
+        var data = { "c_Code": $('#return-select').val(),
+                     "c_Move": $('#return-place').val()
+                     };
+        console.log(data);
+        
+        $.ajax({
+          url : "${root}/cycleshare/return.do",
+          data : JSON.stringify(data),
+          beforeSend: function(xhr) {
+            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+          },
+          contentType: "application/json;charset=utf-8",
+          dateType:"json",   
+          type: "PUT",
+          success : function(data) {
+            console.log(data);
+            var time = new Date();
+            var pmam;
+            var hour=time.getHours()*1;
+            var rentday;
+            var rent_data;
+            var currentTime;
+            if(time.getHours()*1 >= 13){
+              hour = time.getHours()*-12;
+              pmam = "PM";
+            }else if(time.getHours()*1 == 12){
+              pmam = "PM";
+            }else if(time.getHours()*1 <= 12){
+              pmam = "AM";
+            }
+            currentTime = hour+':'+ time.getMinutes() + pmam;
+            if(data>0){
+              Swal({
+                title:'반납에 성공하셨습니다.',
+                text: '반납시간 : '+currentTime,
+                type: 'success',
+                confirmButtonText: '확인'
+              }).then((result) => {
+                if (result.value) {
+                  location.href="${root}/index.do";
+                }
+              })
+              
+            }else{
+              swal("반납에 실패하였습니다.","","error");
+            }
+          }
+        })
+        }
+      
+      })
+      
+      
     })
   </script>
 	<script type="text/javascript">
@@ -399,7 +592,7 @@ $(document).ready(function(){
       });
 
 // 미세먼지 데이터
-  var url = 'http://api.airvisual.com/v2/nearest_city?lat=37.5662952&lon=126.97794509999994&rad=1000&key=EEXR8nRPQtm3MpZxK';
+  var url = 'http://api.airvisual.com/v2/nearest_city?lat=37.5662952&lon=126.97794509999994&rad=500&key=EEXR8nRPQtm3MpZxK';
   $.getJSON(url,function(data){
     var mise = data.data.current.pollution.aqius;
     var misedata = "";

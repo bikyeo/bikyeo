@@ -2,6 +2,7 @@ package com.newdeal.bikyeo.cycle.controller;
 
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,15 +33,31 @@ public class CycleShareController {
   
   @RequestMapping(value="/cycle.do", method=RequestMethod.POST, headers= {"Content-Type=application/json"})
   public @ResponseBody int rent(Principal principal,@RequestBody CycleDto cycleDto) throws SQLException {
-    ShareDto shareDto = new ShareDto();
-    shareDto.setM_Email(principal.getName());
-    cycleDto.setShareDto(shareDto);
-    return cycleShareService.rent(cycleDto);
+    int i=0;
+    if(principal==null) {
+      i=0;
+   }else {
+     ShareDto shareDto = new ShareDto();
+     shareDto.setM_Email(principal.getName());
+     cycleDto.setShareDto(shareDto);
+     i = cycleShareService.rent(cycleDto);     
+   }
+    return i; 
   }
 
   @RequestMapping(value="/return.do", method=RequestMethod.GET, headers= {"Content-Type=application/json"})
-  public @ResponseBody int returncycle(Principal principal) throws SQLException {
+  public @ResponseBody List<CycleDto> returncycle(Principal principal) throws SQLException {
     return cycleShareService.returncycle(principal.getName());
+  }
+  
+  @RequestMapping(value="/return.do", method=RequestMethod.PUT, headers= {"Content-Type=application/json"})
+  public @ResponseBody int recycle(Principal principal,@RequestBody CycleDto cycleDto) throws SQLException {
+    int i=0;
+     ShareDto shareDto = new ShareDto();
+     shareDto.setM_Email(principal.getName());
+     cycleDto.setShareDto(shareDto);
+     i = cycleShareService.recycle(cycleDto);
+    return i; 
   }
 
 }
