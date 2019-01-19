@@ -10,8 +10,14 @@
     (#{shareDto.m_Email},#{p_Num},#{c_Code},NOW(),DATE_ADD(NOW(), INTERVAL #{rent_hour} HOUR)) 
   </insert>
 
-  <select id="returncycle" parameterType="String" resultType="shareDto">
-    select * from share where m_Email = #{m_Email} and s_Edate is null
+  <select id="returncycle" parameterType="String" resultType="cycleDto">
+    select c_Code,c_Move 
+    from cycle 
+    where c_Code in
+    (select c_Code 
+    from share 
+    where m_Email = #{m_Email} 
+    and s_Edate is null)
   </select>
   
   <update id="recycle" parameterType="cycleDto">

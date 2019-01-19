@@ -109,6 +109,7 @@
           },
           type: "GET",
           success : function(data) {
+            console.log(data);
             if(data.length != 0){
             $('#exampleModalLabel').attr('class','font-weight-bold');
             $('#exampleModalLabel').text('대여중인 자전거');
@@ -116,14 +117,15 @@
             html += '<span class="return-margin">반납할 자전거 : </span>';
             html += '<select class="custom-select return-margin" id="return-select">';                           
             $.each(data,function(index,obj){
-             placearray.push(obj.p_Num*1);
-             placenum = obj.p_Num*1;
-             indexcycle = obj.c_Code.substring(5,7);
+              var num = index*1
+              num = num+1;
+             placearray.push(obj.c_Move*1);
              c_Code = obj.c_Code;   
-             html += '<option value="'+c_Code+'"> '+indexcycle+' 번 자전거</option>';                         
+             html += '<option value="'+c_Code+'">'+num+' 번 자전거 : </option>';                         
             })
             html +='</select>';
             $('.modal-body').append(html);
+            console.log(placearray);
             var k = placearray.length;
             var url = "${root}/resources/json/cycle.json";
               $.getJSON(url,function(data){
@@ -135,8 +137,9 @@
                   }
                 }
               }
+//               console.log(placenamearray);
               for(var i=0;i < k;i++){ 
-              $('#return-select').find('option').eq(i).prepend(placenamearray[i]);
+              $('#return-select').find('option').eq(i).append(placenamearray[i]);
               }
              })
             $('.modal-body').append('<br><span class="return-margin">반납할 지역구 : </span>');

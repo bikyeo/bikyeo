@@ -27,7 +27,7 @@ public class CycleShareServiceImpl implements CycleShareService{
   }
 
   @Override
-  public List<ShareDto> returncycle(String m_Email) {
+  public List<CycleDto> returncycle(String m_Email) {
     
     return sqlSession.getMapper(CycleShareDao.class).returncycle(m_Email);
   }

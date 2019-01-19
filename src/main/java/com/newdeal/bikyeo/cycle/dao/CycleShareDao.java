@@ -8,7 +8,7 @@ public interface CycleShareDao {
 
   int rent(CycleDto cycleDto);
 
-  List<ShareDto> returncycle(String m_Email);
+  List<CycleDto> returncycle(String m_Email);
 
   int recycle(CycleDto cycleDto);
 

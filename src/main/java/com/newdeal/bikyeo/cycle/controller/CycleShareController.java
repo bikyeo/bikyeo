@@ -46,7 +46,7 @@ public class CycleShareController {
   }
 
   @RequestMapping(value="/return.do", method=RequestMethod.GET, headers= {"Content-Type=application/json"})
-  public @ResponseBody List<ShareDto> returncycle(Principal principal) throws SQLException {
+  public @ResponseBody List<CycleDto> returncycle(Principal principal) throws SQLException {
     return cycleShareService.returncycle(principal.getName());
   }
   

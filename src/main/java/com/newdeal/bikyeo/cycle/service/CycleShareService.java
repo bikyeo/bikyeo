@@ -9,7 +9,7 @@ public interface CycleShareService {
 
   int rent(CycleDto cycleDto) throws SQLException;
 
-  List<ShareDto> returncycle(String m_Email);
+  List<CycleDto> returncycle(String m_Email);
 
   int recycle(CycleDto cycleDto);
 
