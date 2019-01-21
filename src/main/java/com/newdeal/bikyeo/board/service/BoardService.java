@@ -6,6 +6,13 @@ import com.newdeal.bikyeo.board.domain.BoardDto;
 public interface BoardService {
   
   List<BoardDto> getboardlist();
-  List<BoardDto> boardwrite();
+  
+  void boardWrite(BoardDto boardDto);
+  
   BoardDto boardread(int b_Num);
+  
+  void boardModify(BoardDto boardDto);
+
+  int delete(int b_Num);
+  
 }
