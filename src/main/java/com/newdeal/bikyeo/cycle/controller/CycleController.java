@@ -3,6 +3,7 @@ package com.newdeal.bikyeo.cycle.controller;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,4 +22,10 @@ public class CycleController {
     return cycleService.cycle(p_Num);
   }
  
+  @RequestMapping(value="/placecheck.do", method=RequestMethod.POST)
+  public @ResponseBody int placecheck(@RequestBody CycleDto cycleDto) {
+    return cycleService.placecheck(cycleDto);
+  }
+ 
+  
 }

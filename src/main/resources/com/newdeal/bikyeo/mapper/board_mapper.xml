@@ -10,8 +10,9 @@
     where b_Num > 0 order by b_Num desc limit 0, 10
  </select>
   
+
   <select id="boardread" resultType="boardDto">
-   select b_Num, b_Content, b_regdate, b_Subject
+    select b_Num, b_Content, b_regdate, b_Subject
     from board where b_Num = #{b_Num}
   </select>
 

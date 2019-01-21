@@ -1,32 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+<beans:beans
+	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
-  <http auto-config="true" use-expressions="true">
-     <intercept-url pattern="/*" access="permitAll" />
-    <form-login login-page="/login" default-target-url="/member/list" 
-        authentication-failure-url="/?error" 
-        username-parameter="id" password-parameter="password" /> 
-    <logout logout-url="/logout" logout-success-url="/" /> 
-    <access-denied-handler error-page="/login/accessDenied" />
-    <csrf disabled="true"/>
-  </http>
+
+	<http pattern="/resources/**" security="none"></http>
+
+	<http auto-config="true" use-expressions="true">
+		<csrf />
+		<intercept-url pattern="/login.do" access="isAnonymous()" />
+		<form-login login-page="/login.do"
+			login-processing-url="/login.do" default-target-url="/index.do"
+			authentication-failure-url="/login.do?status=fail"
+			authentication-success-handler-ref="customAuthenticationSuccessHandler"
+			username-parameter="m_Email" password-parameter="m_Pwd" />
+		<logout logout-url="/logout.do"
+			logout-success-url="/index.do?status=logout"
+			invalidate-session="true" />
+		<session-management>
+			<concurrency-control max-sessions="1"
+				error-if-maximum-exceeded="false" />
+		</session-management>
+	</http>
+
+	<beans:bean id="customAuthenticationSuccessHandler"
+		class="com.newdeal.bikyeo.common.util.CustomAuthenticationSuccessHandler">
+	  <beans:property name="targetUrlParameter" value="loginRedirect" />
+	  <beans:property name="useReferer" value="false" />
+	  <beans:property name="defaultUrl" value="/index.do" />
+  </beans:bean>
   
-  <beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
-  
-  <!-- provider -->
-  <authentication-manager>
-    <authentication-provider>
-    <jdbc-user-service data-source-ref="ds" role-prefix="" 
-        users-by-username-query="select id, password, 1 enabled from users where id = ?;" 
-        authorities-by-username-query="select u.id, a.authority from authorities a join users u on a.seq = u.seq where id = ?;" 
-        />
-    <password-encoder ref="bcryptPasswordEncoder"/>
-    </authentication-provider>
-  </authentication-manager>
+	<beans:bean id="bcryptPasswordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+	<beans:bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<beans:property name="basenames">
+			<beans:list>
+				<beans:value>/resources/messages/spring_security_messages
+				</beans:value>
+			</beans:list>
+		</beans:property>
+		<beans:property name="defaultEncoding" value="UTF-8" />
+		<beans:property name="cacheSeconds" value="5" />
+	</beans:bean>
+
+	<!-- provider -->
+	<authentication-manager>
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="ds"
+				role-prefix=""
+				users-by-username-query="select m_Email, m_Pwd, enabled from member where m_Email = ?"
+				authorities-by-username-query="select ma.m_Email, a.a_Name as authority from member_auth ma join auth a on ma.a_Code = a.a_Code where ma.m_Email = ?" />
+			<password-encoder ref="bcryptPasswordEncoder" />
+		</authentication-provider>
+	</authentication-manager>
 
 
 

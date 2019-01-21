@@ -8,7 +8,6 @@
 
       <h4 class="mb-3 text-center">회원 가입</h4>
       <form>
-
         <label for="firstName">이메일</label>
         <div class="input-group form-group-no-border">
           <span class="input-group-addon"> <i class="nc-icon nc-email-85"></i>
@@ -299,7 +298,6 @@
       }
       
       var gender = $('input[name="m_Gender"]:checked').val();
-      console.log(gender);
       
       var data = JSON.stringify({
         m_Email : email,
@@ -315,6 +313,9 @@
         dataType: 'JSON',
         contentType:'application/json; charset=UTF-8',
         data: data,
+        beforeSend: function(xhr) {
+          xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+        },
         success: function(data) {
           if (data >= 1) {
             Swal({

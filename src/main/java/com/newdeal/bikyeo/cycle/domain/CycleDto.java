@@ -1,13 +1,21 @@
 package com.newdeal.bikyeo.cycle.domain;
 
 public class CycleDto {
-
+  private ShareDto shareDto; 
   private String c_Code;
   private int p_Num;
   private int c_Status;
   private int c_Move;
   private int rent_hour;
   private int cyclecount;
+  
+  
+  public ShareDto getShareDto() {
+    return shareDto;
+  }
+  public void setShareDto(ShareDto shareDto) {
+    this.shareDto = shareDto;
+  }
   public String getC_Code() {
     return c_Code;
   }
@@ -46,9 +54,12 @@ public class CycleDto {
   }
   @Override
   public String toString() {
-    return "CycleDto [c_Code=" + c_Code + ", p_Num=" + p_Num + ", c_Status=" + c_Status
-        + ", c_Move=" + c_Move + ", rent_hour=" + rent_hour + ", cyclecount=" + cyclecount + "]";
+    return "CycleDto [shareDto=" + shareDto + ", c_Code=" + c_Code + ", p_Num=" + p_Num
+        + ", c_Status=" + c_Status + ", c_Move=" + c_Move + ", rent_hour=" + rent_hour
+        + ", cyclecount=" + cyclecount + "]";
   }
+  
+  
   
   
   

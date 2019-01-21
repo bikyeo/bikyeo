@@ -2,18 +2,18 @@ package com.newdeal.bikyeo.cycle.domain;
 
 public class ShareDto {
   
-  private String S_Num;
+  private String s_Num;
   private String m_Email;
   private String p_Num;
+  private String c_Code;
   private String s_Sdate;
   private String s_Pdate;
   private String s_Edate;
-  
   public String getS_Num() {
-    return S_Num;
+    return s_Num;
   }
   public void setS_Num(String s_Num) {
-    S_Num = s_Num;
+    this.s_Num = s_Num;
   }
   public String getM_Email() {
     return m_Email;
@@ -26,6 +26,12 @@ public class ShareDto {
   }
   public void setP_Num(String p_Num) {
     this.p_Num = p_Num;
+  }
+  public String getC_Code() {
+    return c_Code;
+  }
+  public void setC_Code(String c_Code) {
+    this.c_Code = c_Code;
   }
   public String getS_Sdate() {
     return s_Sdate;
@@ -47,12 +53,10 @@ public class ShareDto {
   }
   @Override
   public String toString() {
-    return "ShareDto [S_Num=" + S_Num + ", m_Email=" + m_Email + ", p_Num=" + p_Num + ", s_Sdate="
-        + s_Sdate + ", s_Pdate=" + s_Pdate + ", s_Edate=" + s_Edate + "]";
+    return "ShareDto [s_Num=" + s_Num + ", m_Email=" + m_Email + ", p_Num=" + p_Num + ", c_Code="
+        + c_Code + ", s_Sdate=" + s_Sdate + ", s_Pdate=" + s_Pdate + ", s_Edate=" + s_Edate + "]";
   }
   
   
   
-  
-
 }

@@ -5,8 +5,24 @@
 <mapper namespace="com.newdeal.bikyeo.cycle.dao.CycleShareDao">
   <insert id="rent" parameterType="cycleDto">
     insert into share 
-    (m_Email,p_Num,s_Sdate,s_Pdate)
+    (m_Email,p_Num,c_Code,s_Sdate,s_Pdate)
     values 
-    ('abc@abc.com',#{p_Num},NOW(),DATE_ADD(NOW(), INTERVAL #{rent_hour} HOUR)) 
+    (#{shareDto.m_Email},#{p_Num},#{c_Code},NOW(),DATE_ADD(NOW(), INTERVAL #{rent_hour} HOUR)) 
   </insert>
+
+  <select id="returncycle" parameterType="String" resultType="cycleDto">
+    select c_Code,c_Move 
+    from cycle 
+    where c_Code in
+    (select c_Code 
+    from share 
+    where m_Email = #{m_Email} 
+    and s_Edate is null)
+  </select>
+  
+  <update id="recycle" parameterType="cycleDto">
+    update share set s_Edate = NOW() where m_Email = #{shareDto.m_Email} and c_Code = #{c_Code}
+  </update>
+  
+  
 </mapper>

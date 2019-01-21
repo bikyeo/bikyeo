@@ -58,5 +58,14 @@ public class IndexController {
     return memberService.searchId(m_Email);
   }
   
+  @RequestMapping("/socialSignUp.do")
+  public String kakaoSignUp() {
+    return "home.socialSignUp";
+  }
+  
+  @RequestMapping("/callback.do")
+  public String callback() {
+    return "home.callback";
+  }
   
 }
