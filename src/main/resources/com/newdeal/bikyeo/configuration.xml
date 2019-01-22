@@ -10,6 +10,8 @@
     <typeAlias type="com.newdeal.bikyeo.cycle.domain.CycleDto" alias="cycleDto" />
     <typeAlias type="com.newdeal.bikyeo.cycle.domain.ShareDto" alias="shareDto" />
     <typeAlias type="com.newdeal.bikyeo.board.domain.BoardDto" alias="boardDto" />
+	  <typeAlias type="com.newdeal.bikyeo.cycle.domain.PaymentDto" alias="paymentDto" />
+    
 	</typeAliases>
 
 </configuration>

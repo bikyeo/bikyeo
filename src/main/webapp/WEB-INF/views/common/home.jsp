@@ -79,6 +79,9 @@
 <!-- 네이버 로그인 api -->
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 
+<!-- 카카오 페이 아임포트 -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
 
 </head>
 <body class="body-margin">

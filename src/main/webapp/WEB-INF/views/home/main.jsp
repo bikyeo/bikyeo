@@ -242,6 +242,10 @@
         } else if($('#return-place').val()=="대여소명"){
           swal("대여소를 선택해주세요.","","info");
         }else{
+          
+          
+          
+          
         var data = { "c_Code": $('#return-select').val(),
                      "c_Move": $('#return-place').val()
                      };
@@ -568,6 +572,10 @@ function getTimeHTML(distance) {
 	
 	
 $(document).ready(function(){
+
+  
+
+
   //날씨 데이터   
   var url= 'http://api.openweathermap.org/data/2.5/weather?q=Seoul&APPID=83c62b5028f8bad78c5410a0efae908f';
        $.getJSON(url,function(data){

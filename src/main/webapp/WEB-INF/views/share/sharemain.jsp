@@ -536,7 +536,7 @@ function select(){
 
  
  $(document).on("click", "button[name='c_Code']", function() {
-   var check = '${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal}';
+   var check = '${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}';
    if(check ==""){
      swal("로그인 후 이용해주세요.","","info");
      return false; 
@@ -553,6 +553,7 @@ function select(){
    var rent_data;
    var currentTime;
    var returnTime;
+   var pay;
    $(document).on("change","#rent-time",function(){
     
      $('.return-time').remove();
@@ -580,15 +581,17 @@ function select(){
          }
        }) 
      }
+     pay = $('#rent-time').val()*1*1000;
      currentTime = rentday+' '+ rentHour+':'+ time.getMinutes() + pmam;
      
-     returnTime = '<div class="text-center return-margin return-time"><span class="cycle-padding font-weight-bold">반납 예정시간</span>'+currentTime+'</div>';
+     returnTime = '<div class="text-center return-margin return-time"><span class="returnInfo font-weight-bold">반납 예정시간</span>'+currentTime+'</div>';
+     returnTime += '<div class="text-center return-margin return-time"><span class="payInfo font-weight-bold">결제금액</span>'+pay+' 원</div>';
      $('.modal-body').append(returnTime);
    })
    var html = "";
    html += '<div class="text-center return-margin">'
    html += '<span class="cycle-padding font-weight-bold">대여 시간</span>';
-   html += '<select class="custom-select" id="rent-time">';
+   html += '<select class="custom-select selectInfo" id="rent-time">';
    html += '<option value="no-time">시간</value>';
    html += '<option value="1">1시간</value>';
    html += '<option value="2">2시간</value>';
@@ -612,45 +615,86 @@ function select(){
    $('#myModal').modal('show');
    
    $(document).on("click", "#rent", function() {
-    rent_data = {"c_Code" : c_Code,
-                 "p_Num" : p_Num,
-                 "rent_hour":$('#rent-time').val()
-                 };
     if($('#rent-time').val()=='no-time'){
       swal("시간을 선택해주세요.","","warning");
     }else{
-    $.ajax({
-       url : "${root}/cycleshare/cycle.do", 
-       data: JSON.stringify(rent_data),
-       contentType: "application/json;charset=utf-8",
-       dateType:"json",
-       beforeSend: function(xhr) {
-         xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-       },
-       type: "POST",
-       success : function(data) {
-         console.log(data);
-         if(data ==1){
-         Swal({
-           title:'대여에 성공하셨습니다.',
-           text: '반납예정시간 : '+currentTime,
-           type: 'success',
-           confirmButtonText: '확인'
-         }).then((result) => {
-           if (result.value) {
-             location.href="${root}/cycleshare/sharemain.do";
-           }
-         })
-         }else{
-           swal("대여에 실패하였습니다.","","info");
-         } 
-         },
-         error:function(request, status, error) {
-           swal("시간을 선택해주세요.","","warning");
+      var m_Phone;
+      var m_Name;
+      var m_Email;
+      $.ajax({
+        url : "${root}/member/info.do", // test.jsp 에서 받아옴
+        type: "GET",
+        dataType :"json", // 데이터타입을 json 으로 받아옴
+        success : function(data) {
+          m_Phone = data.m_Phone;
+          m_Name = data.m_Name;
+          m_Email = data.m_Email;
+ 
+        //카카오 페이
+          IMP.init('imp31057577');
+          IMP.request_pay({
+              pg : 'kakaopay',
+              pay_method : 'card',
+              merchant_uid : 'merchant_' + new Date().getTime(),
+              name : '자전거대여',
+              amount : pay,
+              buyer_email : m_Email,
+              buyer_name : m_Name,
+              buyer_tel : m_Phone,
+          }, function(rsp) {
+              if ( rsp.success ) {
+                   rent_data = {"c_Code" : c_Code,
+                           "p_Num" : p_Num,
+                           "rent_hour":$('#rent-time').val(),
+                           "paymentDto" : {
+                             "sp_Pay":rsp.paid_amount
+                             }
+                           };
+                   console.log(rent_data);
+                  $.ajax({
+                     url : "${root}/cycleshare/cycle.do", 
+                     data: JSON.stringify(rent_data),
+                     contentType: "application/json;charset=utf-8",
+                     dateType:"json",
+                     beforeSend: function(xhr) {
+                       xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                     },
+                     type: "POST",
+                     success : function(data) {
+                       if(data ==1){
+                       Swal({
+                         title:'대여에 성공하셨습니다.',
+                         text: '반납예정시간 : '+currentTime,
+                         type: 'success',
+                         confirmButtonText: '확인'
+                       }).then((result) => {
+                         if (result.value) {
+                           location.href="${root}/cycleshare/sharemain.do";
+                         }
+                       })
+                       }else{
+                         swal("대여에 실패하였습니다.","","info");
+                       } 
+                       },
+                       error:function(request, status, error) {
+                         swal("시간을 선택해주세요.","","warning");
 
-         }
+                       }
 
-       })
+                     })
+                  
+                  
+                  
+              } else {
+                  var msg = '결제에 실패하였습니다.';
+                  msg += '에러내용 : ' + rsp.error_msg;
+              }
+
+              alert(msg);
+          });
+        }
+      })
+
     }
    })
    

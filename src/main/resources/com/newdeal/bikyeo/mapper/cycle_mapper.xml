@@ -12,7 +12,7 @@
    </select>
   
   <update id="cyclerent" parameterType="cycleDto">
-    update cycle set c_Status = 1 where c_Code = #{c_Code}
+    update cycle set c_Status = 1 , c_Prev = c_Move where c_Code = #{c_Code}
   </update>
   
   <update id="retucycle" parameterType="cycleDto">

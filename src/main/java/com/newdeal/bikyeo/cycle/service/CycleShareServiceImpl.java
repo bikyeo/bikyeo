@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.newdeal.bikyeo.cycle.dao.CycleDao;
 import com.newdeal.bikyeo.cycle.dao.CycleShareDao;
+import com.newdeal.bikyeo.cycle.dao.PaymentDao;
 import com.newdeal.bikyeo.cycle.domain.CycleDto;
-import com.newdeal.bikyeo.cycle.domain.ShareDto;
 
 @Service
 public class CycleShareServiceImpl implements CycleShareService{
@@ -21,8 +21,12 @@ public class CycleShareServiceImpl implements CycleShareService{
   @Override
   public int rent(CycleDto cycleDto) throws SQLException {
     int result = 0;  
+//    System.out.println(cycleDto.getPaymentDto().getSp_Pay());
     sqlSession.getMapper(CycleDao.class).cyclerent(cycleDto);
     result = sqlSession.getMapper(CycleShareDao.class).rent(cycleDto);
+//    System.out.println(result);
+    sqlSession.getMapper(PaymentDao.class).cyclerent(cycleDto);
+     
     return result;
   }
 
