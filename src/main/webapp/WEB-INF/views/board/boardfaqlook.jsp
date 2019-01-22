@@ -25,7 +25,7 @@ $(document).ready(function(){
 </script>
 <div class="container">
  <form role="form" action="${root }/board/boardmodify.do" method="post">
-
+ <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
   <div class="row board-menu">  
    <label class="col-2">글번호</label>
     <input type="text" class="col-10 h5 font-weight-bold text-left" name="b_Num" value="${bno.b_Num }" readonly>
