@@ -120,6 +120,7 @@ public class MemberServiceImpl implements MemberService{
     
     int result = 1;
     sqlSession.getMapper(MemberDao.class).memberDeleteAuth(memberDto);
+    sqlSession.getMapper(MemberDao.class).memberDeleteSharePayment(memberDto);
     sqlSession.getMapper(MemberDao.class).memberDeleteShare(memberDto);
     result = sqlSession.getMapper(MemberDao.class).memberDelete(memberDto);
     JSONObject jsonObject = new JSONObject();
@@ -171,10 +172,26 @@ public class MemberServiceImpl implements MemberService{
 
   @Override
   public String memberShare(String m_Email) {
+    
     List<Map<String,String>> list = sqlSession.getMapper(MemberDao.class).memberShare(m_Email);
     Iterator<Map<String,String>> iterator= list.iterator();
     JSONArray jsonArray = new JSONArray();
     while (iterator.hasNext()) {
+      JSONObject jsonObject = new JSONObject(iterator.next());
+      jsonArray.put(jsonObject);
+    }
+    JSONObject jsonObject = new JSONObject(sqlSession.getMapper(MemberDao.class).memberInfo(m_Email));
+    jsonObject.put("jsonArray", jsonArray);
+    return jsonObject.toString();
+  }
+
+  @Override
+  public String sharePayment(String m_Email) {
+    
+    List<Map<String,String>> list = sqlSession.getMapper(MemberDao.class).sharePayment(m_Email);
+    Iterator<Map<String,String>> iterator= list.iterator();
+    JSONArray jsonArray = new JSONArray();
+    while(iterator.hasNext()) {
       JSONObject jsonObject = new JSONObject(iterator.next());
       jsonArray.put(jsonObject);
     }

@@ -8,23 +8,7 @@ ALTER TABLE MEMBER_AUTH
 
 -- 게시판
 ALTER TABLE BOARD
-    DROP FOREIGN KEY FK_BOARDTYPE_TO_BOARD; -- 게시판종류 -> 게시판
-
--- 게시판
-ALTER TABLE BOARD
     DROP FOREIGN KEY FK_MEMBER_TO_BOARD; -- 회원 -> 게시판
-
--- 댓글
-ALTER TABLE REPLY
-    DROP FOREIGN KEY FK_BOARD_TO_REPLY; -- 게시판 -> 댓글
-
--- 댓글
-ALTER TABLE REPLY
-    DROP FOREIGN KEY FK_MEMBER_TO_REPLY; -- 회원 -> 댓글
-
--- 댓글
-ALTER TABLE REPLY
-    DROP FOREIGN KEY FK_REPLY_TO_REPLY; -- 댓글 -> 댓글
 
 -- 자전거대여
 ALTER TABLE SHARE
@@ -42,6 +26,10 @@ ALTER TABLE SHARE
 ALTER TABLE CYCLE
     DROP FOREIGN KEY FK_PLACE_TO_CYCLE; -- 자전거대여소 -> 자전거
 
+-- 결제
+ALTER TABLE SHARE_PAYMENT
+    DROP FOREIGN KEY FK_SHARE_TO_SHARE_PAYMENT; -- 자전거대여 -> 결제
+
 -- 회원
 ALTER TABLE MEMBER
     DROP PRIMARY KEY; -- 회원 기본키
@@ -50,17 +38,9 @@ ALTER TABLE MEMBER
 ALTER TABLE AUTH
     DROP PRIMARY KEY; -- 권한 기본키
 
--- 게시판종류
-ALTER TABLE BOARDTYPE
-    DROP PRIMARY KEY; -- 게시판종류 기본키
-
 -- 게시판
 ALTER TABLE BOARD
     DROP PRIMARY KEY; -- 게시판 기본키
-
--- 댓글
-ALTER TABLE REPLY
-    DROP PRIMARY KEY; -- 댓글 기본키
 
 -- 자전거대여
 ALTER TABLE SHARE
@@ -74,6 +54,10 @@ ALTER TABLE PLACE
 ALTER TABLE CYCLE
     DROP PRIMARY KEY; -- 자전거 기본키
 
+-- 결제
+ALTER TABLE SHARE_PAYMENT
+    DROP PRIMARY KEY; -- 결제 기본키
+
 -- 회원
 DROP TABLE IF EXISTS MEMBER RESTRICT;
 
@@ -83,14 +67,8 @@ DROP TABLE IF EXISTS MEMBER_AUTH RESTRICT;
 -- 권한
 DROP TABLE IF EXISTS AUTH RESTRICT;
 
--- 게시판종류
-DROP TABLE IF EXISTS BOARDTYPE RESTRICT;
-
 -- 게시판
 DROP TABLE IF EXISTS BOARD RESTRICT;
-
--- 댓글
-DROP TABLE IF EXISTS REPLY RESTRICT;
 
 -- 자전거대여
 DROP TABLE IF EXISTS SHARE RESTRICT;
@@ -100,6 +78,9 @@ DROP TABLE IF EXISTS PLACE RESTRICT;
 
 -- 자전거
 DROP TABLE IF EXISTS CYCLE RESTRICT;
+
+-- 결제
+DROP TABLE IF EXISTS SHARE_PAYMENT RESTRICT;
 
 -- 회원
 CREATE TABLE MEMBER (
@@ -142,28 +123,12 @@ ALTER TABLE AUTH
             a_Code -- 권한코드
         );
 
--- 게시판종류
-CREATE TABLE BOARDTYPE (
-    bt_Num  INT         NOT NULL COMMENT '게시판종류번호', -- 게시판종류번호
-    bt_Name VARCHAR(30) NOT NULL COMMENT '게시판종류이름' -- 게시판종류이름
-)
-COMMENT '게시판종류';
-
--- 게시판종류
-ALTER TABLE BOARDTYPE
-    ADD CONSTRAINT PK_BOARDTYPE -- 게시판종류 기본키
-        PRIMARY KEY (
-            bt_Num -- 게시판종류번호
-        );
-
 -- 게시판
 CREATE TABLE BOARD (
     b_Num     INT          NOT NULL COMMENT '게시글번호', -- 게시글번호
-    bt_Num    INT          NOT NULL COMMENT '게시판종류번호', -- 게시판종류번호
     m_Email   VARCHAR(40)  NOT NULL COMMENT '이메일', -- 이메일
     b_Subject VARCHAR(300) NOT NULL COMMENT '게시글제목', -- 게시글제목
     b_Content LONGTEXT     NOT NULL COMMENT '게시글내용', -- 게시글내용
-    b_Img     VARCHAR(300) NULL     COMMENT '사진이름', -- 사진이름
     b_Regdate DATETIME     NOT NULL DEFAULT now() COMMENT '글작성일', -- 글작성일
     b_hit     INT          NOT NULL DEFAULT 0 COMMENT '조회수' -- 조회수
 )
@@ -178,28 +143,6 @@ ALTER TABLE BOARD
 
 ALTER TABLE BOARD
     MODIFY COLUMN b_Num INT NOT NULL AUTO_INCREMENT COMMENT '게시글번호';
-
--- 댓글
-CREATE TABLE REPLY (
-    r_Num     INT          NOT NULL COMMENT '댓글번호', -- 댓글번호
-    b_Num     INT          NOT NULL COMMENT '게시글번호', -- 게시글번호
-    m_Email   VARCHAR(40)  NOT NULL COMMENT '댓글작성자', -- 댓글작성자
-    r_Pnum    INT          NOT NULL COMMENT '댓글부모', -- 댓글부모
-    r_Order   INT(1)       NOT NULL COMMENT '댓글순서', -- 댓글순서
-    r_Content VARCHAR(300) NOT NULL COMMENT '댓글내용', -- 댓글내용
-    r_Regdate DATETIME     NOT NULL DEFAULT now() COMMENT '댓글작성일' -- 댓글작성일
-)
-COMMENT '댓글';
-
--- 댓글
-ALTER TABLE REPLY
-    ADD CONSTRAINT PK_REPLY -- 댓글 기본키
-        PRIMARY KEY (
-            r_Num -- 댓글번호
-        );
-
-ALTER TABLE REPLY
-    MODIFY COLUMN r_Num INT NOT NULL AUTO_INCREMENT COMMENT '댓글번호';
 
 -- 자전거대여
 CREATE TABLE SHARE (
@@ -242,7 +185,8 @@ CREATE TABLE CYCLE (
     c_Code   VARCHAR(7) NOT NULL COMMENT '자전거번호', -- 자전거번호
     p_Num    INT        NOT NULL COMMENT '자전거대여소번호', -- 자전거대여소번호
     c_Status INT(1)     NOT NULL COMMENT '자전거상태', -- 자전거상태
-    c_Move   INT        NOT NULL COMMENT '자전거이동상태' -- 자전거이동상태
+    c_Move   INT        NOT NULL COMMENT '자전거이동상태', -- 자전거이동상태
+    c_Prev   INT        NOT NULL COMMENT '자전거이전' -- 자전거이전
 )
 COMMENT '자전거';
 
@@ -252,6 +196,26 @@ ALTER TABLE CYCLE
         PRIMARY KEY (
             c_Code -- 자전거번호
         );
+
+-- 결제
+CREATE TABLE SHARE_PAYMENT (
+    sp_Num    INT      NOT NULL COMMENT '결제번호', -- 결제번호
+    s_Num     INT      NOT NULL COMMENT '자전거대여번호', -- 자전거대여번호
+    sp_Pay    INT      NOT NULL COMMENT '결제금액', -- 결제금액
+    sp_Status INT(1)   NOT NULL COMMENT '결제사유', -- 결제사유
+    sp_Date   DATETIME NOT NULL COMMENT '결제날짜' -- 결제날짜
+)
+COMMENT '결제';
+
+-- 결제
+ALTER TABLE SHARE_PAYMENT
+    ADD CONSTRAINT PK_SHARE_PAYMENT -- 결제 기본키
+        PRIMARY KEY (
+            sp_Num -- 결제번호
+        );
+
+ALTER TABLE SHARE_PAYMENT
+    MODIFY COLUMN sp_Num INT NOT NULL AUTO_INCREMENT COMMENT '결제번호';
 
 -- 회원권한
 ALTER TABLE MEMBER_AUTH
@@ -275,52 +239,12 @@ ALTER TABLE MEMBER_AUTH
 
 -- 게시판
 ALTER TABLE BOARD
-    ADD CONSTRAINT FK_BOARDTYPE_TO_BOARD -- 게시판종류 -> 게시판
-        FOREIGN KEY (
-            bt_Num -- 게시판종류번호
-        )
-        REFERENCES BOARDTYPE ( -- 게시판종류
-            bt_Num -- 게시판종류번호
-        );
-
--- 게시판
-ALTER TABLE BOARD
     ADD CONSTRAINT FK_MEMBER_TO_BOARD -- 회원 -> 게시판
         FOREIGN KEY (
             m_Email -- 이메일
         )
         REFERENCES MEMBER ( -- 회원
             m_Email -- 이메일
-        );
-
--- 댓글
-ALTER TABLE REPLY
-    ADD CONSTRAINT FK_BOARD_TO_REPLY -- 게시판 -> 댓글
-        FOREIGN KEY (
-            b_Num -- 게시글번호
-        )
-        REFERENCES BOARD ( -- 게시판
-            b_Num -- 게시글번호
-        );
-
--- 댓글
-ALTER TABLE REPLY
-    ADD CONSTRAINT FK_MEMBER_TO_REPLY -- 회원 -> 댓글
-        FOREIGN KEY (
-            m_Email -- 댓글작성자
-        )
-        REFERENCES MEMBER ( -- 회원
-            m_Email -- 이메일
-        );
-
--- 댓글
-ALTER TABLE REPLY
-    ADD CONSTRAINT FK_REPLY_TO_REPLY -- 댓글 -> 댓글
-        FOREIGN KEY (
-            r_Pnum -- 댓글부모
-        )
-        REFERENCES REPLY ( -- 댓글
-            r_Num -- 댓글번호
         );
 
 -- 자전거대여
@@ -361,4 +285,14 @@ ALTER TABLE CYCLE
         )
         REFERENCES PLACE ( -- 자전거대여소
             p_Num -- 자전거대여소번호
+        );
+
+-- 결제
+ALTER TABLE SHARE_PAYMENT
+    ADD CONSTRAINT FK_SHARE_TO_SHARE_PAYMENT -- 자전거대여 -> 결제
+        FOREIGN KEY (
+            s_Num -- 자전거대여번호
+        )
+        REFERENCES SHARE ( -- 자전거대여
+            s_Num -- 자전거대여번호
         );
