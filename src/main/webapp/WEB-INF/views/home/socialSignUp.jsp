@@ -4,7 +4,7 @@
 <c:set var="root" value="${pageContext.request.contextPath }" />
 <div class="content-center section section-image section-login" style="background-image: url('${root}/img/background3.jpg');">
   <div class="container">
-    <div class="col-6 card card-register login-margin ml-auto mr-auto kakao-sign-up">
+    <div class="col-6 card card-register login-margin ml-auto mr-auto social-sign-up">
 
       <h4 class="mb-3 text-center">추가 정보 입력</h4>
       <form>

@@ -80,12 +80,12 @@
 
     $('#signUpPwd').keyup(function () {
       var regExp = /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
-      keyUp(this, regExp, '비밀번호를 형식을 지켜주세요. 비밀번호는 8~16자리, 특수문자 포함입니다.');
+      keyUp(this, regExp, '비밀번호의 형식을 지켜주세요. 비밀번호는 8~16자리, 특수문자 포함입니다.');
     });
 
     $('#signUpPwdConfirm').keyup(function () {
       var regExp = /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
-      keyUp(this, regExp, '비밀번호를 형식을 지켜주세요. 비밀번호는 8~16자리, 특수문자 포함입니다.');
+      keyUp(this, regExp, '비밀번호의 형식을 지켜주세요. 비밀번호는 8~16자리, 특수문자 포함입니다.');
     });
     
     $('#signUpName').keyup(function(){
@@ -308,7 +308,7 @@
       });
       
       $.ajax({
-        type: 'post',
+        type: 'POST',
         url: '${root}/member/insert.do',
         dataType: 'JSON',
         contentType:'application/json; charset=UTF-8',

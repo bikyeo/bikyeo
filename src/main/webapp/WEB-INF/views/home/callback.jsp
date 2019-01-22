@@ -25,9 +25,10 @@
           url: '${root}/searchId.do',
           dataType: 'JSON',
           contentType:'application/json; charset=UTF-8',
-          data: {m_Email: 'naver_'+id},
+          data: {m_Email: naverId},
           success: function (data) {
             if (data >= 1) {
+              console.log(data);
               var form = document.createElement("form");
               form.setAttribute("charset", "UTF-8");
               form.setAttribute("method", "Post");  //Post 방식
