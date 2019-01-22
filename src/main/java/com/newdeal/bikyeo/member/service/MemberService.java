@@ -30,4 +30,6 @@ public interface MemberService {
   
   String editPwd(MemberDto memberDto);
   
+  String sharePayment(String m_Email);
+  
 }

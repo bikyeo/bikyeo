@@ -127,4 +127,12 @@ public class MemberController {
     
     return memberService.editPwd(memberDto);
   }
+  
+  @RequestMapping(value="/payment.do", method=RequestMethod.GET, headers= {"Content-Type=application/json"})
+  public @ResponseBody String payment() {
+    
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    User user = (User) authentication.getPrincipal();
+    return memberService.sharePayment(user.getUsername());
+  }
 }

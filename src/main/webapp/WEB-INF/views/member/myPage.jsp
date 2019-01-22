@@ -11,6 +11,7 @@
 					<li class="list-group-item"><a id="memberInfoViewBtn" class="text-danger" href="#">정보 보기</a></li>
 					<li class="list-group-item"><a id="memberInfoUpdateBtn" class="text-danger" href="#">정보 수정</a></li>
 					<li class="list-group-item"><a id="memberInfoShareCycle" class="text-danger" href="#">대여 이력 보기</a></li>
+					<li class="list-group-item"><a id="memberInfoSharePayment" class="text-danger" href="#">결제 이력 보기</a></li>
 					<li class="list-group-item"><a id="memberInfoDelete" class="text-danger" href="#">회원 탈퇴</a></li>
 				</ul>
 			</div>
@@ -144,8 +145,12 @@
                         }
                         html += '<li class="list-group-item"><div class="row"><div class="col-2 text-right"><b>성별 :</b></div> <div class="col-10">' +gender+ '</div></div></li>';
                         html += '<li class="list-group-item"><div class="row"><div class="col-2 text-right"><b>전화번호 :</b></div> <div class="col-10"><input class="form-control" type="text" id="memberUpdatePhone" value="' +userData.m_Phone+ '"></div></div></li>';
-                        html += '<li class="list-group-item"><div class="row"><div class="col-2 text-right"><b>가입날짜 :</b></div> <div class="col-10">' +userData.m_Regdate+ '</div></div></li>';
-                        html += '<li class="list-group-item"><div class="row"><div class="col-2 text-right"><b>수정날짜 :</b></div> <div class="col-10">' +userData.m_Update+ '</div></div></li>';
+                        var regDate = new Date(userData.m_Regdate);
+                        var regDateString = regDate.getFullYear() + '년 ' + (regDate.getMonth() + 1) + '월 ' + regDate.getDate() + '일 ';
+                        html += '<li class="list-group-item"><div class="row"><div class="col-2 text-right"><b>가입날짜 :</b></div> <div class="col-10">' +regDateString+ '</div></div></li>';
+                        var upDate = new Date(userData.m_Regdate);
+                        var upDateString = upDate.getFullYear() + '년 ' + (upDate.getMonth() + 1) + '월 ' + upDate.getDate() + '일 ';
+                        html += '<li class="list-group-item"><div class="row"><div class="col-2 text-right"><b>수정날짜 :</b></div> <div class="col-10">' +upDateString+ '</div></div></li>';
                         var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
                         var social;
                         if(!regExp.test(userData.m_Email)) {
@@ -290,60 +295,69 @@
     });
     
     $('#memberInfoDelete').click(function() {
-      $.ajax({
-        url : "${root}/member/delete.do",
-        contentType: "application/json;charset=utf-8",
-        type: "DELETE",
-        beforeSend: function(xhr) {
-          xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-        },
-        success : function(data) {
-          var userData = JSON.parse(data);
-          if(userData.result>=1) {
-            Swal({
-              type: 'success',
-              title: '회원 탈퇴',
-              html: '그동안 Bikyeo를 이용해주셔서 감사합니다.',
-              confirmButtonColor: '#3085d6',
-              confirmButtonText: '확인'
-            });
-          } else {
-            Swal({
-              type: 'error',
-              title: '회원 탈퇴',
-              html: '탈퇴중 에러가 발생했습니다. 잠시후 다시 시도해 주세요.',
-              confirmButtonColor: '#3085d6',
-              confirmButtonText: '확인'
-            });
+      Swal({
+        type: 'info',
+        title: '회원 탈퇴',
+        html: '그동안 Bikyeo를 이용해주셔서 감사합니다.',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: '확인'
+      }).then(function(result) {
+        $.ajax({
+          url : "${root}/member/delete.do",
+          contentType: "application/json;charset=utf-8",
+          type: "DELETE",
+          beforeSend: function(xhr) {
+            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+          },
+          success : function(data) {
+            var userData = JSON.parse(data);
+            if(userData.result>=1) {
+              Swal({
+                type: 'success',
+                title: '회원 탈퇴',
+                html: '그동안 Bikyeo를 이용해주셔서 감사합니다.',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: '확인'
+              });
+            } else {
+              Swal({
+                type: 'error',
+                title: '회원 탈퇴',
+                html: '탈퇴중 에러가 발생했습니다. 잠시후 다시 시도해 주세요.',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: '확인'
+              });
+            }
           }
-        }
-      }).then(function() {
+        }).then(function() {
 
-        var user = '${pageContext.request.userPrincipal.name}';
-        var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-        if(!regExp.test(user)) {
-          var company = user.substr(0,5);
-          if(company=='kakao') {
-            Kakao.init('7bac65a1ad27df9cef7f991882677d17');
-            Kakao.Auth.logout();
-            console.log('a');
+          var user = '${pageContext.request.userPrincipal.name}';
+          var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+          if(!regExp.test(user)) {
+            var company = user.substr(0,5);
+            if(company=='kakao') {
+              Kakao.init('7bac65a1ad27df9cef7f991882677d17');
+              Kakao.Auth.logout();
+              console.log('a');
+            }
           }
-        }
-        var form = document.createElement("form");
-        form.setAttribute("charset", "UTF-8");
-        form.setAttribute("method", "Post");  //Post 방식
-        form.setAttribute("action", "${root}/logout.do"); //요청 보낼 주소
+          var form = document.createElement("form");
+          form.setAttribute("charset", "UTF-8");
+          form.setAttribute("method", "Post");  //Post 방식
+          form.setAttribute("action", "${root}/logout.do"); //요청 보낼 주소
 
-        var hiddenField = document.createElement("input");
-        hiddenField.setAttribute("type", "hidden");
-        hiddenField.setAttribute("name", "${_csrf.parameterName}");
-        hiddenField.setAttribute("value", "${_csrf.token}");
-        form.appendChild(hiddenField);
-        
-        document.body.appendChild(form);
-        form.submit();
-        
+          var hiddenField = document.createElement("input");
+          hiddenField.setAttribute("type", "hidden");
+          hiddenField.setAttribute("name", "${_csrf.parameterName}");
+          hiddenField.setAttribute("value", "${_csrf.token}");
+          form.appendChild(hiddenField);
+          
+          document.body.appendChild(form);
+          form.submit();
+          
+        });
       });
+      
     });
     
     $('#memberInfoShareCycle').click(function() {
@@ -354,7 +368,7 @@
         success : function(data) {
           var userData = JSON.parse(data)
           var html = '<div class="card">';
-          html += '<div class="card-header h3">' + userData.m_Name + '님 대여이력</div>';
+          html += '<div class="card-header h3">' + userData.m_Name + '님 대여 이력</div>';
           html += '<ul class="list-group list-group-flush">';
           html += '<li class="list-group-item"><div class="row"><div class="col-3 text-center"><b>대여장소</b></div>';
           html += '<div class="col-3 text-center"><b>반납장소</b></div><div class="col-3 text-center"><b>대여시간</b></div><div class="col-3 text-center"><b>반납시간</b></div></div></li>';
@@ -369,20 +383,27 @@
                 async: false,
                 success : function(data){
 	                $.each(data.DATA, function(index, obj) {
-	                  console.log(parseData.c_Move == obj.content_id*1);
-		                if(parseData.c_Move == (obj.content_id*1)) {
+		                if(parseData.c_Prev == (obj.content_id*1)) {
 		                  html += '<li class="list-group-item"><div class="row"><div class="col-3 text-center mypage-share">'+obj.content_nm+'</div>';
-		                  if
-		                  html += '<div class="col-3 text-center mypage-share">'+parseData.s_Sdate+'</div>';
-		                  html += '<div class="col-3 text-center mypage-share">'+parseData.s_Sdate+'</div>';
-		                    if(parseData.hasOwnProperty('s_Edate')) {
-		                      html += '<div class="col-3 text-center mypage-share">'+parseData.s_Edate+'</div>';  
-		                    }else {
-		                      html += '<div class="col-3 text-center"><button type="button" class="btn btn-sm btn-danger">반납하기</button></div>';  
-		                    }
-		                  html += '</div></li>';
 		                }
 	                });
+	                
+	                if(parseData.c_Status == 0) {
+	                  $.each(data.DATA, function(index, obj) {
+	                    if(parseData.c_Move == (obj.content_id*1)) {
+	                      html += '<div class="col-3 text-center mypage-share">'+obj.content_nm+'</div>';
+	                    }
+	                  }); 
+	                }else {
+	                  html += '<div class="col-3 text-center mypage-share"></div>';
+	                }
+	                html += '<div class="col-3 text-center mypage-share">'+parseData.s_Sdate+'</div>';
+	                if(parseData.c_Status == 0){
+	                  html += '<div class="col-3 text-center mypage-share">'+parseData.s_Edate+'</div>';  
+                  }else {
+                    html += '<div class="col-3 text-center"><button type="button" class="btn btn-sm btn-danger">반납하기</button></div>';
+                  }
+                  html += '</div></li>';
                 }
               });
             });
@@ -391,10 +412,47 @@
           }
           html += '</ul>';
           html += '</div>';
-          console.log(html);
           $('#memberInfoContent').html(html);
         }
       })
+    });
+    
+    $('#memberInfoSharePayment').click(function(){
+      $.ajax({
+        url : '${root}/member/payment.do',
+        contentType: "application/json;charset=utf-8",
+        type: "GET",
+        success : function(data){
+          var userData = JSON.parse(data);
+          var html = '<div class="card">';
+          html += '<div class="card-header h3">' + userData.m_Name + '님 결제 이력</div>';
+          html += '<ul class="list-group list-group-flush">';
+          html += '<li class="list-group-item"><div class="row"><div class="col-4 text-center"><b>결제시간</b></div>';
+          html += '<div class="col-4 text-center"><b>결제금액</b></div><div class="col-4 text-center"><b>결제사유</b></div></div></li>';
+          if(userData.jsonArray.length >= 1) {
+            $.each(userData.jsonArray, function(index, data) {
+              html +='<li class="list-group-item"><div class="row">';
+              var date = new Date(data.sp_Date);
+              var dateString = date.getFullYear() + '년 ' + (date.getMonth() + 1) + '월 ' + date.getDate() + '일 ';
+              dateString += date.getHours() + '시 ' + date.getMinutes() + '분';
+              html += '<div class="col-4 text-center mypage-share">'+dateString+'</div>';
+              html += '<div class="col-4 text-center mypage-share">'+data.sp_Pay+'원</div>';
+              if(data.sp_stauts == 0) {
+                html += '<div class="col-4 text-center mypage-share">대여</div>';  
+              } else {
+                html += '<div class="col-4 text-center mypage-share">대여</div>';
+              }
+            });
+            html += '</div>';
+            html += '</li>';
+          } else {
+            html += '<li class="list-group-item"><div class="row"><div class="col-12 text-center"><b>결제 이력이 없습니다.</b></div></div></li>';
+          }
+          html += '</ul>';
+          html += '</div>';
+          $('#memberInfoContent').html(html);
+        }
+      });
     });
     
     function memberInfo() {
@@ -417,8 +475,12 @@
           }
           html += '<li class="list-group-item"><div class="row"><div class="col-2 text-right"><b>성별 :</b></div> <div class="col-10">' +gender+ '</div></div></li>';
           html += '<li class="list-group-item"><div class="row"><div class="col-2 text-right"><b>전화번호 :</b></div> <div class="col-10">' +userData.m_Phone+ '</div></div></li>';
-          html += '<li class="list-group-item"><div class="row"><div class="col-2 text-right"><b>가입날짜 :</b></div> <div class="col-10">' +userData.m_Regdate+ '</div></div></li>';
-          html += '<li class="list-group-item"><div class="row"><div class="col-2 text-right"><b>수정날짜 :</b></div> <div class="col-10">' +userData.m_Update+ '</div></div></li>';
+          var regDate = new Date(userData.m_Regdate);
+          var regDateString = regDate.getFullYear() + '년 ' + (regDate.getMonth() + 1) + '월 ' + regDate.getDate() + '일 ';
+          html += '<li class="list-group-item"><div class="row"><div class="col-2 text-right"><b>가입날짜 :</b></div> <div class="col-10">' +regDateString+ '</div></div></li>';
+          var upDate = new Date(userData.m_Regdate);
+          var upDateString = upDate.getFullYear() + '년 ' + (upDate.getMonth() + 1) + '월 ' + upDate.getDate() + '일 ';
+          html += '<li class="list-group-item"><div class="row"><div class="col-2 text-right"><b>수정날짜 :</b></div> <div class="col-10">' +upDateString+ '</div></div></li>';
           var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
           var social;
           if(!regExp.test(userData.m_Email)) {

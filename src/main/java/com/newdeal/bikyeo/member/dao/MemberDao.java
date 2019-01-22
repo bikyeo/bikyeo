@@ -24,6 +24,8 @@ public interface MemberDao {
   
   void memberDeleteAuth(MemberDto memberDto);
   
+  void memberDeleteSharePayment(MemberDto memberDto);
+  
   void memberDeleteShare(MemberDto memberDto);
   
   int memberDelete(MemberDto memberDto);
@@ -32,6 +34,8 @@ public interface MemberDao {
   
   int editPwd(MemberDto memberDto);
   
-  List<Map<String,String>> memberShare(String m_Email);
+  List<Map<String, String>> memberShare(String m_Email);
+  
+  List<Map<String, String>> sharePayment(String m_Email);
   
 }

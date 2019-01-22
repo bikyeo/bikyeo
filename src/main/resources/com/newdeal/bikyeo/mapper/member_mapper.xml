@@ -47,7 +47,7 @@
   </update>
   
   <select id="memberShare" parameterType="String" resultType="Map">
-    select s.s_Num, s.m_Email, s.p_Num, s.s_Sdate, s.s_Pdate, s.s_Edate, s.c_Code, c.p_Num, c_status, c.c_Move
+    select s.s_Num, s.m_Email, s.p_Num, s.s_Sdate, s.s_Pdate, s.s_Edate, s.c_Code, c.p_Num, c_Status, c.c_Move, c.c_Prev
     from share s join cycle c
     on s.c_Code = c.c_Code
     where s.m_Email = #{m_Email}
@@ -56,6 +56,10 @@
   
   <delete id="memberDeleteAuth" parameterType="memberDto">
     delete from member_auth where m_Email = #{m_Email}
+  </delete>
+  
+    <delete id="memberDeleteSharePayment" parameterType="memberDto">
+    delete from share_payment where m_Email = #{m_Email}
   </delete>
   
   <delete id="memberDeleteShare" parameterType="memberDto">
@@ -78,5 +82,12 @@
     where m_Email = #{m_Email}
   </update>
   
+  <select id="sharePayment" parameterType="String" resultType="Map">
+    select sp.sp_Num, sp.s_Num, sp.sp_Pay, sp.sp_Status, sp.sp_Date
+    from share_payment sp join share s
+    on sp.s_Num = s.s_Num
+    where s.m_Email = #{m_Email}
+    order by sp_Date desc
+  </select>
   
 </mapper>
