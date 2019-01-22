@@ -465,7 +465,9 @@ function select(){
     url : "${root}/resources/json/cycle.json", // test.jsp 에서 받아옴
     dataType :"json", // 데이터타입을 json 으로 받아옴
     success : function(data) {
+      console.log(data);
       $.each(data.DATA,function(index,obj){
+        
         if(swLatLng.getLat() < obj.latitude && obj.latitude < neLatLng.getLat()
                 && swLatLng.getLng() < obj.longitude && obj.longitude < neLatLng.getLng()){
           var p_Num = obj.content_id;
