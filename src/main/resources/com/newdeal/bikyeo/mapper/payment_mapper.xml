@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newdeal.bikyeo.cycle.dao.PaymentDao">
+ <insert id="cyclerent" parameterType="cycleDto">
+  insert into share_payment
+   (s_Num,sp_Pay,sp_Status,sp_Date)
+   values
+   (LAST_INSERT_ID(),#{paymentDto.sp_Pay},0,NOW())
+ </insert>
+</mapper>
