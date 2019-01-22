@@ -13,4 +13,21 @@ public interface MemberService {
   int memberInsert(MemberDto memberDto) throws SQLException, MessagingException, IOException, TemplateException;
   
   int memberConfirm(String m_Email);
+  
+  String memberInfo(MemberDto memberDto);
+  
+  String pwdConfirm(MemberDto memberDto);
+  
+  String memberUpdate(MemberDto memberDto);
+  
+  String memberShare(String m_Email);
+  
+  String memberDelete(MemberDto memberDto);
+  
+  String searchEmail(MemberDto memberDto);
+  
+  String searchPwd(String m_Email) throws MessagingException, IOException, TemplateException;
+  
+  String editPwd(MemberDto memberDto);
+  
 }

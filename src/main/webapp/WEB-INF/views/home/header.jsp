@@ -38,7 +38,7 @@
 					class="nav-link text-white">Sign Up</a></li>
 			  </sec:authorize>
 			  <sec:authorize access="isAuthenticated()">
-			  <li class="nav-item"><a href="${root}/member/mypage.do"
+			  <li class="nav-item"><a href="${root}/member/myPage.do"
           class="nav-link text-white">My Page</a></li>
         <li class="nav-item"><a href="#" id="logoutBtn"
           class="nav-link text-white">Log Out</a></li>

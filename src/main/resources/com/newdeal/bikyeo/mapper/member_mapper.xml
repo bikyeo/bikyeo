@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newdeal.bikyeo.member.dao.MemberDao">
   <select id="searchId" parameterType="String" resultType="int">
-    select count(*) 
+    select count(m_Email) 
     from member 
     where m_Email = #{m_Email}
   </select>
@@ -23,4 +23,60 @@
     update member set enabled=1
     where m_Email = #{m_Email}
   </update>
+  
+  <select id="memberInfo" parameterType="String" resultType="memberDto">
+    select m_Email, m_Name, m_Gender, m_Phone, m_Regdate, m_Update
+    from member
+    where m_Email = #{m_Email}
+  </select>
+  
+  <select id="pwdConfirm" parameterType="memberDto" resultType="String">
+    select m_Pwd
+    from member
+    where m_Email = #{m_Email} 
+  </select>
+  
+  <update id="memberUpdate" parameterType="memberDto">
+    update member set m_Phone = #{m_Phone}, m_Update = now()
+    where m_Email = #{m_Email}
+  </update>
+  
+  <update id="memberUpdateWithPwd" parameterType="memberDto">
+    update member set m_Pwd = #{m_Pwd}, m_Phone = #{m_Phone}, m_Update = now()
+    where m_Email = #{m_Email}
+  </update>
+  
+  <select id="memberShare" parameterType="String" resultType="Map">
+    select s.s_Num, s.m_Email, s.p_Num, s.s_Sdate, s.s_Pdate, s.s_Edate, s.c_Code, c.p_Num, c_status, c.c_Move
+    from share s join cycle c
+    on s.c_Code = c.c_Code
+    where s.m_Email = #{m_Email}
+    order by s.s_Sdate desc;
+  </select>
+  
+  <delete id="memberDeleteAuth" parameterType="memberDto">
+    delete from member_auth where m_Email = #{m_Email}
+  </delete>
+  
+  <delete id="memberDeleteShare" parameterType="memberDto">
+    delete from share where m_Email = #{m_Email}
+  </delete>
+  
+  <delete id="memberDelete" parameterType="memberDto">
+    delete from member where m_Email = #{m_Email}
+  </delete>
+  
+  <select id="searchEmail" parameterType="memberDto" resultType="String">
+    select m_Email
+    from member
+    where m_Name = #{m_Name}
+    and m_Phone = #{m_Phone}
+  </select>
+  
+  <update id="editPwd" parameterType="memberDto">
+    update member set m_Pwd = #{m_Pwd}, m_Update = now()
+    where m_Email = #{m_Email}
+  </update>
+  
+  
 </mapper>
