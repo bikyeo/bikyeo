@@ -5,11 +5,13 @@ import com.newdeal.bikyeo.board.domain.BoardDto;
 
 public interface BoardDao {
   
-
+  void boardModify(BoardDto boardDto);
 
   List<BoardDto> getboardlist();
 
-  List<BoardDto> boardwrite();
+  void boardWrite(BoardDto boardDto);
    
   BoardDto boardread(int b_Num);
+  
+  int delete(int b_Num);
 }

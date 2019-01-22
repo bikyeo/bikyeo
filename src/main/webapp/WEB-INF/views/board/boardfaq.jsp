@@ -4,14 +4,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 
- 
- 
+
+
 <div class="container">
  
   <div class="row title h1">
  FAQ
  </div>
- 
  
   <div class="row">
     <select class="custom-select col-3">
@@ -28,24 +27,34 @@
       <input type="text" class="input-group form-control" placeholder="질문을 입력해주세요">    
          <button type="button" class="input-group-prepend btn btn-danger">검색</button>     
   </div>
-  </div>  
+ </div>  
   <br>
+<hr class="faq-border">
 
-   <div class="row board-menu h4"> 
-        <span class="col-2 text-left">글번호</span>
-        <span class="col-5 text-center">질문</span>
-        <span class="col-5 text-center">날짜</span>   
-  </div>
-<c:forEach var="list" items="${list}">  
-  <div class="row board-list h5">
- 
-    <span class="col-2  font-weight-bold text-left">${list.b_Num }</span>
-    <span class="col-5  font-weight-bold text-center"><a href="${root}/board/boardfaqlook.do?b_Num=${list.b_Num }">${list.b_Subject }</a></span>
-    <span class="col-5 text-center">${list. b_Regdate }</span>
-    
-    
-  </div>
-</c:forEach>
-
-<a href="${root}/board/boardwrite.do" button type="button" class="input-group-prepend btn btn-danger">글쓰기</a></button>
+<div id="accordion" role="tablist">
+  <c:forEach var="list" items="${list}">  
+	  <div class="row board-list">
+	    <div class="col-1 font-weight-bold text-left">Q</div>
+	    <div class="col-11 text-left" role="tab" id="headingOne">
+	     <a data-toggle="collapse" href="#acc${list.b_Num }" aria-expanded="true" aria-controls="collapseOne">
+	       ${list.b_Subject }
+	     </a>    
+	    </div>
+	    
+	    <div id="acc${list.b_Num }" class="col-12 text-center collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+	       <div class="col-10 text-left">	         
+	         ${list.b_Content}	         
+	       </div>
+	       <div class="col-2">
+	         <a href="${root}/board/boardfaqlook.do?b_Num=${list.b_Num }" button type="button" class="btn btn-danger">수정</a></button>
+	          
+	      
+	       </div> 
+	    </div>
+	  </div>  
+  </c:forEach>
 </div>
+<a href="${root}/board/boardfaqform.do" button type="button" class="input-group-prepend btn btn-danger">글쓰기</a></button>
+</div>
+
+

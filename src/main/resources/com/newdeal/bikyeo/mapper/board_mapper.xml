@@ -4,18 +4,34 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newdeal.bikyeo.board.dao.BoardDao">
 
-  <select id="getboardlist" resultType="boardDto">
-    select b_Num, b_Subject, b_Regdate from board where b_Num > 0 order by b_Num
-limit 0, 10;
-  </select>
+  <select id="getboardlist" resultType="boardDto">	  
+	    select *
+    from board 
+    where b_Num > 0 order by b_Num desc limit 0, 10
+ </select>
   
 
   <select id="boardread" resultType="boardDto">
-  select b_Content, b_regdate, b_Subject
-from board, member where b_Num = #{b_Num}
-
-  
-  
+    select b_Num, b_Content, b_regdate, b_Subject
+    from board where b_Num = #{b_Num}
   </select>
+
+  <insert id="boardWrite">
+    insert into board (bt_Num, b_Subject, m_Email,b_Content)
+    values (0,#{b_Subject},#{m_Email},#{b_Content}) 
+  </insert>
+  
+  <update id="boardModify" parameterType="boardDto">
+    update board set
+    b_Subject = #{b_Subject},
+    b_Content = #{b_Content}
+   where b_Num = #{b_Num}
+  </update>
+
+  <delete id="delete">
+    delete from board where b_Num = #{b_Num}
+  </delete>
+
+
 
 </mapper>

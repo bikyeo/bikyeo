@@ -1,5 +1,6 @@
 package com.newdeal.bikyeo.board.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,31 +40,52 @@ public class BoardController {
   public String boardfaqlook(Model model, @RequestParam("b_Num") int b_Num) {
     
     model.addAttribute("bno", boardService.boardread(b_Num));
-    
-    System.out.println(boardService.boardread(b_Num));
-    
+      
     return "board.boardfaqlook";
+  }
+  
+  @RequestMapping(value="/boardfaqform.do",method=RequestMethod.GET)
+  public String boardfaq() {
+     
+
+    return "board.boardfaqform";
+  }
+  
+  @RequestMapping(value="/delete.do", method=RequestMethod.POST)
+  public String boardDelete(@RequestParam("b_Num") int b_Num, Model model) {
+    
+    model.addAttribute("delete",boardService.delete(b_Num));
+    
+    
+    System.out.println(boardService.delete(b_Num));
+    
+    return "redirect:boardfaq.do";
   }
 
 
+  
+  @RequestMapping(value="/boardfaqwrite.do", method=RequestMethod.POST)
+  public String boardinsert(Model model,BoardDto boardDto) {
 
+    boardService.boardWrite(boardDto);
+    
+    return "redirect:boardfaq.do";
+  }
+  
+  @RequestMapping(value="/boardmodify.do", method=RequestMethod.POST)
+  public String boardModify(Model model, BoardDto boardDto) {
+    
+    boardService.boardModify(boardDto);
+
+    
+    return "redirect:boardfaq.do";
+  }
+  
   
   @RequestMapping("/boardqna.do")
   public String boardqna() {
-    return "board.boardqna";
+    return "boardqna";
   }
-  
-  
-  @RequestMapping(value="/boardwrite.do", method=RequestMethod.PUT)
-  public String boardinsert(Model model) {
-
-    model.addAttribute("write", boardService.getboardlist());
-    return "board.boardwrite";
-  }
-  
-  
-  
-  
   
   
 }

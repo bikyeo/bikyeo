@@ -1,23 +1,29 @@
 @charset "UTF-8";
 
-/* 글번호, 질문, 날짜*/
-.board-menu{
-  border-bottom: 2px solid #CCC5B9;
-  border-top: 2px solid #CCC5B9;
-  font-weight: 300;
-  margin: 15px 0 10px;
+
+/*리스트*/
+.board-list{
+  border-bottom: 1px solid #CCC5B9;
+  font-size: 18px;
+  margin: 10px 0 10px;
   text-align: center;
   padding-top : 10px;
   padding-bottom: 10px;
 }
 
-/*리스트*/
-.board-list{
-  border-bottom: 1px solid #CCC5B9;
-  border-top: 1px solid #CCC5B9;
-  font-weight: 300;
-  margin: 15px 0 10px;
-  text-align: center;
-  padding-top : 10px;
-  padding-bottom: 10px;
+.faq-border{
+	
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left:5px;
+  margin-rigth: 5px;
+  border-color: #CCC5B9;
+	
 }
+
+.boarder-list{
+	
+	background : 000;
+	
+}
+
