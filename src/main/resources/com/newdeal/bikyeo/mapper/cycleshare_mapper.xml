@@ -11,18 +11,25 @@
   </insert>
 
   <select id="returncycle" parameterType="String" resultType="cycleDto">
-    select c_Code,c_Move 
-    from cycle 
-    where c_Code in
-    (select c_Code 
-    from share 
-    where m_Email = #{m_Email} 
-    and s_Edate is null)
+    select c.c_Code,c.c_Move,s.s_Pdate 
+       from cycle c 
+       join share s 
+       on c.c_Code = s.c_Code 
+     where s.m_Email = #{m_Email} and s_Edate is null
   </select>
   
   <update id="recycle" parameterType="cycleDto">
-    update share set s_Edate = NOW() where m_Email = #{shareDto.m_Email} and c_Code = #{c_Code}
+    update share 
+    set s_Edate = NOW() 
+    where m_Email = #{shareDto.m_Email} 
+    and c_Code = #{c_Code} and s_Edate is null
   </update>
+  
+  <select id="selectsnum" parameterType="cycleDto" resultType="int">
+   select s_Num from share 
+    where m_Email = #{shareDto.m_Email} 
+    and c_Code = #{c_Code} and s_Edate IS NULL
+  </select>
   
   
 </mapper>

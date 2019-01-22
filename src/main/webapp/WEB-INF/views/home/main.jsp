@@ -98,34 +98,34 @@
         var c_Code;
         var placename;
         var placenamearray=[];
-        
+        var fine;
         
         $.ajax({
           url : "${root}/cycleshare/return.do", 
           contentType: "application/json;charset=utf-8",
           dateType:"json",
+          async:false,
           beforeSend: function(xhr) {
             xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
           },
           type: "GET",
           success : function(data) {
-            console.log(data);
             if(data.length != 0){
             $('#exampleModalLabel').attr('class','font-weight-bold');
             $('#exampleModalLabel').text('대여중인 자전거');
             $('.modal-body').text('');
             html += '<span class="return-margin">반납할 자전거 : </span>';
-            html += '<select class="custom-select return-margin" id="return-select">';                           
+            html += '<select class="custom-select return-margin" id="return-select">'; 
+            html += '<option value="no-data">반납할 자전거</span>';
             $.each(data,function(index,obj){
               var num = index*1
               num = num+1;
              placearray.push(obj.c_Move*1);
              c_Code = obj.c_Code;   
-             html += '<option value="'+c_Code+'">'+num+' 번 자전거 : </option>';                         
+             html += '<option value="'+c_Code+'" date="'+obj.s_Pdate+'">'+num+' 번 자전거 : </option>';                         
             })
             html +='</select>';
             $('.modal-body').append(html);
-            console.log(placearray);
             var k = placearray.length;
             var url = "${root}/resources/json/cycle.json";
               $.getJSON(url,function(data){
@@ -137,9 +137,8 @@
                   }
                 }
               }
-//               console.log(placenamearray);
-              for(var i=0;i < k;i++){ 
-              $('#return-select').find('option').eq(i).append(placenamearray[i]);
+              for(var i=1;i < k+1;i++){ 
+              $('#return-select').find('option').eq(i).append(placenamearray[i-1]);
               }
              })
             $('.modal-body').append('<br><span class="return-margin">반납할 지역구 : </span>');
@@ -160,6 +159,54 @@
             html += '<select class="custom-select return-margin" id="return-place">';
             html += '<option>대여소명</option>';
             $('.modal-body').append(html);
+            
+            $('#return-select').on('change',function(){
+              var pdate = $('#return-select option:selected').attr('date');
+              var deadline = new Date(pdate);
+              var currenthour = new Date();
+              var hour;
+              var pmam;
+              if(pdate.substring(11,13)*1 >= 24){
+                hour = pdate.substring(11,13)*1 -24;
+                pmam="AM";
+              }else if(pdate.substring(11,13)*1 >= 13){
+                hour = pdate.substring(11,13)*1-12;
+                 pmam="PM";
+              }else if(pdate.substring(11,13)*1 == 12){
+                hour = pdate.substring(11,13)*1
+                pmam="PM";
+              }else if(pdate.substring(11,13)*1 <= 12){
+                hour = pdate.substring(11,13)*1
+                pmam="AM";
+              }
+              pdate = pdate.substring(0,10)+' '+hour+ pdate.substring(13,16) +' '+ pmam ;
+              html = '<div id="returntime"><br><span class="return-margin">반납 예정시간 : </span>';
+              html += '<span class="return-margin">'+pdate+'</span></div>'; 
+              if(deadline > currenthour){
+                fine=0;
+                
+              }else{
+                var deadhour = currenthour.getHours()-deadline.getHours();
+                var deadminutes = deadline.getMinutes()-currenthour.getMinutes();
+                if(deadhour == 0){
+                  fine = 2000;
+                }else{
+                  if(deadminutes < 0) {
+                    deadhour = deadhour+1;
+                  }
+                  fine = deadhour*2000;
+                }
+                html += '<div id="fine" class="text-center font-weight-bold rent-subject"><br><span class="return-margin">연체 금액 </span>';
+                html += '<span class="return-margin" id="pay" fine="'+fine+'">'+fine+' 원</span></div>';
+               }
+              console.log(fine);
+              
+              $('#returntime').remove();
+              $('#fine').remove();
+              $('.modal-body').append(html);
+              
+                
+            })
             
             $('#return-district').on('change',function(){
               $('#return-place').empty();
@@ -190,6 +237,7 @@
                 data : JSON.stringify(placedata),
                 contentType: "application/json;charset=utf-8",
                 dateType:"json",
+                async:false,
                 beforeSend: function(xhr) {
                   xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
                 },
@@ -237,20 +285,22 @@
 
       
       $(document).on('click','#return-submit',function(){
-        if($('#return-district').val()=="no-data"){
+        if($('#return-select').val()=="no-data"){
+          swal("반납할 자전거를 선택해주세요.","","info");    
+             
+        }
+        else if($('#return-district').val()=="no-data"){
           swal("지역구를 선택해주세요.","","info");    
-        } else if($('#return-place').val()=="대여소명"){
+        }else if($('#return-place').val()=="대여소명"){
           swal("대여소를 선택해주세요.","","info");
         }else{
-          
-          
-          
-          
-        var data = { "c_Code": $('#return-select').val(),
+          console.log($('#pay').attr('fine')*1);
+         if($('#pay').attr('fine') == null){
+        
+           var data = { "c_Code": $('#return-select').val(),
                      "c_Move": $('#return-place').val()
                      };
         console.log(data);
-        
         $.ajax({
           url : "${root}/cycleshare/return.do",
           data : JSON.stringify(data),
@@ -259,7 +309,7 @@
           },
           contentType: "application/json;charset=utf-8",
           dateType:"json",   
-          type: "PUT",
+          type: "POST",
           success : function(data) {
             console.log(data);
             var time = new Date();
@@ -294,6 +344,98 @@
             }
           }
         })
+         } 
+         else{
+//            swal("결제를 하셔야합니다.","","warning");
+//            console.log(fine);
+      var m_Phone;
+      var m_Name;
+      var m_Email;
+      $.ajax({
+        url : "${root}/member/info.do", // test.jsp 에서 받아옴
+        type: "GET",
+        dataType :"json",
+        async:false,// 데이터타입을 json 으로 받아옴
+        success : function(data) {
+          m_Phone = data.m_Phone;
+          m_Name = data.m_Name;
+          m_Email = data.m_Email;
+//카카오 페이
+          IMP.init('imp31057577');
+          IMP.request_pay({
+              pg : 'kakaopay',
+              pay_method : 'card',
+              merchant_uid : 'merchant_' + new Date().getTime(),
+              name : '자전거반납',
+              amount : $('#pay').attr('fine')*1,
+              buyer_email : m_Email,
+              buyer_name : m_Name,
+              buyer_tel : m_Phone,
+          }, function(rsp) {
+              if ( rsp.success ) {
+                
+                var data = { "c_Code" : $('#return-select').val(),
+                             "c_Move" : $('#return-place').val(),
+                             "paymentDto" : {"sp_Pay" : $('#pay').attr('fine')*1}      
+                };
+           
+           $.ajax({
+             url : "${root}/cycleshare/return.do",
+             data : JSON.stringify(data),
+             beforeSend: function(xhr) {
+               xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+             },
+             contentType: "application/json;charset=utf-8",
+             dateType:"json",  
+             async:false,
+             type: "POST",
+             success : function(data) {
+//                console.log(data);
+               var time = new Date();
+               var pmam;
+               var hour=time.getHours()*1;
+               var rentday;
+               var rent_data;
+               var currentTime;
+               if(time.getHours()*1 >= 13){
+                 hour = time.getHours()*1-12;
+                 pmam = "PM";
+               }else if(time.getHours()*1 == 12){
+                 pmam = "PM";
+               }else if(time.getHours()*1 <= 12){
+                 pmam = "AM";
+               }
+               currentTime = hour+':'+ time.getMinutes() + pmam;
+               if(data>0){
+                 Swal({
+                   title:'반납에 성공하셨습니다.',
+                   text: '반납시간 : '+currentTime,
+                   type: 'success',
+                   confirmButtonText: '확인'
+                 }).then((result) => {
+                   if (result.value) {
+                     location.href="${root}/index.do";
+                   }
+                 })
+                 
+               }else{
+                 swal("반납에 실패하였습니다.","","error");
+               }
+             }, error:function(request, status, error) {
+               swal("반납에 실패하였습니다.","","error");
+
+             }
+           })
+                
+                
+              }
+              else {
+                swal("반납에 실패하였습니다.","","error");
+              }
+          })
+          }
+        })
+         }
         }
       
       })

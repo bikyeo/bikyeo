@@ -2,7 +2,6 @@ package com.newdeal.bikyeo.cycle.dao;
 
 import java.util.List;
 import com.newdeal.bikyeo.cycle.domain.CycleDto;
-import com.newdeal.bikyeo.cycle.domain.ShareDto;
 
 public interface CycleShareDao {
 
@@ -11,5 +10,7 @@ public interface CycleShareDao {
   List<CycleDto> returncycle(String m_Email);
 
   int recycle(CycleDto cycleDto);
+
+  int selectsnum(CycleDto cycleDto);
 
 }

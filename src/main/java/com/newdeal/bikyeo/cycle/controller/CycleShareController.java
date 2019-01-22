@@ -50,7 +50,7 @@ public class CycleShareController {
     return cycleShareService.returncycle(principal.getName());
   }
   
-  @RequestMapping(value="/return.do", method=RequestMethod.PUT, headers= {"Content-Type=application/json"})
+  @RequestMapping(value="/return.do", method=RequestMethod.POST, headers= {"Content-Type=application/json"})
   public @ResponseBody int recycle(Principal principal,@RequestBody CycleDto cycleDto) throws SQLException {
     int i=0;
      ShareDto shareDto = new ShareDto();

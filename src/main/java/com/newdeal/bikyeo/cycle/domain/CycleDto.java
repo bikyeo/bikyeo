@@ -7,9 +7,10 @@ public class CycleDto {
   private int p_Num;
   private int c_Status;
   private int c_Move;
+  private int c_Prev;
   private int rent_hour;
   private int cyclecount;
-  
+  private String s_Pdate;
   
   public ShareDto getShareDto() {
     return shareDto;
@@ -47,6 +48,12 @@ public class CycleDto {
   public void setC_Move(int c_Move) {
     this.c_Move = c_Move;
   }
+  public int getC_Prev() {
+    return c_Prev;
+  }
+  public void setC_Prev(int c_Prev) {
+    this.c_Prev = c_Prev;
+  }
   public int getRent_hour() {
     return rent_hour;
   }
@@ -59,14 +66,20 @@ public class CycleDto {
   public void setCyclecount(int cyclecount) {
     this.cyclecount = cyclecount;
   }
+  public String getS_Pdate() {
+    return s_Pdate;
+  }
+  public void setS_Pdate(String s_Pdate) {
+    this.s_Pdate = s_Pdate;
+  }
   @Override
   public String toString() {
     return "CycleDto [shareDto=" + shareDto + ", paymentDto=" + paymentDto + ", c_Code=" + c_Code
-        + ", p_Num=" + p_Num + ", c_Status=" + c_Status + ", c_Move=" + c_Move + ", rent_hour="
-        + rent_hour + ", cyclecount=" + cyclecount + "]";
+        + ", p_Num=" + p_Num + ", c_Status=" + c_Status + ", c_Move=" + c_Move + ", c_Prev="
+        + c_Prev + ", rent_hour=" + rent_hour + ", cyclecount=" + cyclecount + ", s_Pdate="
+        + s_Pdate + "]";
   }
-  
-  
+ 
   
   
   

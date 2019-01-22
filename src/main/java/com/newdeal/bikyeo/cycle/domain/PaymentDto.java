@@ -6,6 +6,7 @@ public class PaymentDto {
   private int sp_Pay;
   private int sp_Status;
   private String sp_Date;
+  
   public int getSp_Num() {
     return sp_Num;
   }
