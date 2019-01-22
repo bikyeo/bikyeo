@@ -265,7 +265,7 @@
             var rent_data;
             var currentTime;
             if(time.getHours()*1 >= 13){
-              hour = time.getHours()*-12;
+              hour = time.getHours()*1-12;
               pmam = "PM";
             }else if(time.getHours()*1 == 12){
               pmam = "PM";
