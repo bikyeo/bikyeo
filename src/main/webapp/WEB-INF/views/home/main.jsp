@@ -18,9 +18,8 @@
 					<p class="presentation-title main-text">Bikyeo</p>
 				</div>
 				<div class="text-center">
-					<button class="main-button btn btn-success" id="share">대여하기</button>
-
-					<button class="main-button btn btn-danger" id="return">반납하기</button>
+					<a href="#" id="share"><img class="main-button" src="${root}/img/bikegreen.png"></a>
+					<a href="#" id="return"><img class="main-button" src="${root}/img/bikered.png"></a>
 				</div>
 				<h2 class="presentation-subtitle text-center"></h2>
 			</div>

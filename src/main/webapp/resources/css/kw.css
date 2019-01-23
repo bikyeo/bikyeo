@@ -37,7 +37,8 @@
 }
 
 .main-button {
-	font-size: 6em;
+	width: 300px;
+	height: 200px;
 }
 
 /* 다음 맵 크기 대여소 현황*/
