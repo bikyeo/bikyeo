@@ -19,7 +19,7 @@
     naverLogin.getLoginStatus(function(status) {
       if (status) {
         var id = naverLogin.user.getId();
-        var naverId = 'naver_' + id;
+        var naverId = 'Naver_' + id;
         $.ajax({
           type: 'GET',
           url: '${root}/searchId.do',

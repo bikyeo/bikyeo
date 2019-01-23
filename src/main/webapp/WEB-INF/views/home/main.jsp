@@ -66,7 +66,7 @@
 
 	<script type="text/javascript">
     $(document).ready(function() {
-//반납하기     
+
       
       var msg = '${msg}';
       
@@ -83,7 +83,7 @@
         location.href = '${root}/cycleshare/sharemain.do';
 
       })
-
+//반납하기     
       $('#return').click(function() {
         var check = '${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal}';
         if(check ==""){

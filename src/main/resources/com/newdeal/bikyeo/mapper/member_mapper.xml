@@ -58,8 +58,13 @@
     delete from member_auth where m_Email = #{m_Email}
   </delete>
   
-    <delete id="memberDeleteSharePayment" parameterType="memberDto">
-    delete from share_payment where m_Email = #{m_Email}
+  <delete id="memberDeleteSharePayment" parameterType="memberDto">
+    delete from share_payment 
+    where s_Num in (
+      select s_Num 
+      from share
+      where m_Email = #{m_Email}
+    )
   </delete>
   
   <delete id="memberDeleteShare" parameterType="memberDto">

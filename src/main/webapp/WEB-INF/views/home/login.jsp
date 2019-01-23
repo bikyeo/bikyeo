@@ -189,7 +189,7 @@
           Kakao.API.request({
             url: '/v2/user/me',
             success: function(resultObj) {
-              var kakaoId = 'kakao_' + resultObj.id;
+              var kakaoId = 'Kakao_' + resultObj.id;
               $.ajax({
                 type: 'GET',
                 url: '${root}/searchId.do',

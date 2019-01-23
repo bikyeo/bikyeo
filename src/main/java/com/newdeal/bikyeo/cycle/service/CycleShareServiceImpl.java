@@ -1,7 +1,6 @@
 package com.newdeal.bikyeo.cycle.service;
 
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +44,7 @@ public class CycleShareServiceImpl implements CycleShareService{
     sqlSession.getMapper(CycleDao.class).retucycle(cycleDto);
     result = sqlSession.getMapper(CycleShareDao.class).recycle(cycleDto);
     if(cycleDto.getPaymentDto() != null) {
-    sqlSession.getMapper(PaymentDao.class).returcycle(cycleDto);
+    sqlSession.getMapper(PaymentDao.class).returncycle(cycleDto);
     }
     return result;
   }

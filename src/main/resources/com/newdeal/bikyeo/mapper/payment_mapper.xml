@@ -9,7 +9,7 @@
    values
    (LAST_INSERT_ID(),#{paymentDto.sp_Pay},0,NOW())
  </insert>
- <insert id="returcycle" parameterType="cycleDto">
+ <insert id="returncycle" parameterType="cycleDto">
   insert into share_payment
    (s_Num,sp_Pay,sp_Status,sp_Date)
    values

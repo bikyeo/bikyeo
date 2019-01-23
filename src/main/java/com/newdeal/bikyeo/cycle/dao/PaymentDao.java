@@ -8,4 +8,6 @@ public interface PaymentDao {
 
   void returcycle(CycleDto cycleDto);
 
+  void returncycle(CycleDto cycleDto);
+
 }

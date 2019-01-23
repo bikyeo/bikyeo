@@ -146,13 +146,14 @@ ALTER TABLE BOARD
 
 -- 자전거대여
 CREATE TABLE SHARE (
-    s_Num   INT         NOT NULL COMMENT '자전거대여번호', -- 자전거대여번호
-    m_Email VARCHAR(40) NOT NULL COMMENT '이메일', -- 이메일
-    p_Num   INT         NOT NULL COMMENT '자전거대여소번호', -- 자전거대여소번호
-    c_Code  VARCHAR(7)  NOT NULL COMMENT '자전거번호', -- 자전거번호
-    s_Sdate DATETIME    NOT NULL COMMENT '대여일', -- 대여일
-    s_Pdate DATETIME    NOT NULL COMMENT '반납예정일', -- 반납예정일
-    s_Edate DATETIME    NULL     COMMENT '반납일' -- 반납일
+    s_Num    INT         NOT NULL COMMENT '자전거대여번호', -- 자전거대여번호
+    m_Email  VARCHAR(40) NOT NULL COMMENT '이메일', -- 이메일
+    p_Num    INT         NOT NULL COMMENT '자전거대여소번호', -- 자전거대여소번호
+    c_Code   VARCHAR(7)  NOT NULL COMMENT '자전거번호', -- 자전거번호
+    s_Sdate  DATETIME    NOT NULL COMMENT '대여일', -- 대여일
+    s_Pdate  DATETIME    NOT NULL COMMENT '반납예정일', -- 반납예정일
+    s_Edate  DATETIME    NOT NULL COMMENT '반납일', -- 반납일
+    s_Status INT(1)      NOT NULL COMMENT '반납상태' -- 반납상태
 )
 COMMENT '자전거대여';
 
