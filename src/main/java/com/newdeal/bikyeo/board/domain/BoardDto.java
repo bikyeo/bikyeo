@@ -59,6 +59,12 @@ public class BoardDto {
   public void setB_hit(int b_hit) {
     this.b_hit = b_hit;
   }
+  @Override
+  public String toString() {
+    return "BoardDto [b_Num=" + b_Num + ", bt_num=" + bt_num + ", m_Email=" + m_Email
+        + ", b_Subject=" + b_Subject + ", b_Content=" + b_Content + ", b_Img=" + b_Img
+        + ", b_Regdate=" + b_Regdate + ", b_hit=" + b_hit + "]";
+  }
   
   
   

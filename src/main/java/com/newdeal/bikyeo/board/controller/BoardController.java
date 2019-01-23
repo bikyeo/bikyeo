@@ -35,30 +35,7 @@ public class BoardController {
     model.addAttribute("list", list);
     
     return "board.boardfaq";
-  }
-
-  @RequestMapping(value="/listPaging",method=RequestMethod.GET)
-  public String listPaging(Criteria cri, Model model) {
-    
-    PageMaker pageMaker = new PageMaker();
-    pageMaker.setCri(cri);
-    pageMaker.setTotalCount(boardService.countArticles(cri));
-        
-        
-    model.addAttribute("articles", boardService.listCriteria(cri));
-    model.addAttribute("pageMaker", pageMaker);
-     
-    
-    
-    
-    return "board.list_paging";
-  }
-  
-  
-  
-  
-  
-  
+  }  
   
   
   @RequestMapping(value="/boardfaqlook.do", method=RequestMethod.GET)
@@ -99,7 +76,7 @@ public class BoardController {
   
   @RequestMapping(value="/boardmodify.do", method=RequestMethod.POST)
   public String boardModify(Model model, BoardDto boardDto) {
-    
+    System.out.println(boardDto.toString());
     boardService.boardModify(boardDto);
 
     

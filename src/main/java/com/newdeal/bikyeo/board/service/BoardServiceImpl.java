@@ -22,9 +22,10 @@ public class BoardServiceImpl implements BoardService {
 
   @Override
   public BoardDto boardread(int b_Num) {
-    
-    return sqlSession.getMapper(BoardDao.class).boardread(b_Num);
-    
+    BoardDto boardDto = sqlSession.getMapper(BoardDao.class).boardread(b_Num);
+    boardDto.setB_Content(boardDto.getB_Content().replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", ""));
+    boardDto.setB_Content(boardDto.getB_Content().replaceAll("\\r|\\n", ""));
+    return boardDto;
   }
 
   @Override
@@ -43,23 +44,7 @@ public class BoardServiceImpl implements BoardService {
   public int delete(int b_Num) {
     
     return sqlSession.getMapper(BoardDao.class).delete(b_Num);
-  }
-
-  @Override
-  public List<BoardDto> listCriteria(Criteria cri) {
-  
-    return sqlSession.getMapper(BoardDao.class).listCriteria(cri);
-  }
-
-  @Override
-  public int countArticles(Criteria cri) {
-    
-    return sqlSession.getMapper(BoardDao.class).countArticles(cri);
-  }
-
-
-  
-    
+  }    
    
   }
 

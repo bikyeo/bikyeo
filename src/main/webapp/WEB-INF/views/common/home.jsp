@@ -83,8 +83,8 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <!-- 서머노트 -->
-<link rel="stylesheet" href="${root}/sn/summernote-bs4.css" />
-<script src="${root}/sn/summernote-bs4.js"></script>
+<link rel="stylesheet" href="${root}/sn/summernote-lite.css" />
+<script src="${root}/sn/summernote-lite.js"></script>
 </head>
 <body class="body-margin">
 	<!-- Header  영역 -->

@@ -16,8 +16,4 @@ public interface BoardService {
 
   int delete(int b_Num);
   
-  List<BoardDto> listCriteria(Criteria cri);
-  
-  int countArticles(Criteria cri);
-  
 }

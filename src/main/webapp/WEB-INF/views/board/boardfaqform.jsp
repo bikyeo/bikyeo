@@ -30,10 +30,9 @@
 <script type="text/javascript">
   $(document).on('ready', function(){
     $('#summernote').summernote({
-      placeholder: 'Hello stand alone ui',
+      placeholder: '글을 입력해주세요.',
       tabsize: 2,
       height: 500,
-      lang: 'ko-KR',
       disableResizeEditor : true
     });
     
