@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.newdeal.bikyeo.board.dao.BoardDao;
 import com.newdeal.bikyeo.board.domain.BoardDto;
+import com.newdeal.bikyeo.util.Criteria;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -42,6 +43,18 @@ public class BoardServiceImpl implements BoardService {
   public int delete(int b_Num) {
     
     return sqlSession.getMapper(BoardDao.class).delete(b_Num);
+  }
+
+  @Override
+  public List<BoardDto> listCriteria(Criteria cri) {
+  
+    return sqlSession.getMapper(BoardDao.class).listCriteria(cri);
+  }
+
+  @Override
+  public int countArticles(Criteria cri) {
+    
+    return sqlSession.getMapper(BoardDao.class).countArticles(cri);
   }
 
 

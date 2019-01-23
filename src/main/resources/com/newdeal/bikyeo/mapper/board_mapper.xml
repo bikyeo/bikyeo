@@ -36,12 +36,17 @@
   
     select * from board where b_Num > 0
     order by b_Num desc, b_regdate desc
-    limit #{pageStart}, #{perPageNum}
+    limit #{startPage}, #{perPageNum}
  
   </select>
 
-
-
+  <select id="countArticles" resultType="int">
+    <![CDATA[
+      select count(b_Num)
+      from board
+       where b_Num > 0
+       ]]>
+  </select>
 
 
 </mapper>
