@@ -8,7 +8,7 @@
   <div class="row board-insert-row">
    
     <label class="col-2 mypage-share h5 text-right">제목</label>
-    <input type="text" class="form-control col-9 font-weight-bold text-left" name="b_Subject">
+    <input type="text" class="form-control col-9 font-weight-bold text-left" name="b_Subject" id="b_Subject">
   </div>
   <div class="row board-insert-row">
     <label class="col-2 mypage-share h5 text-right">작성자</label>
@@ -38,6 +38,27 @@
     });
     
     $('#btnSubmit').click(function(){
+      if($('#b_Subject').val().trim() == ''){
+        Swal({
+          type: 'error',
+          title: 'FAQ등록에러',
+          html: '제목을 입력해주세요.',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: '확인',
+        })
+        return false;
+      }
+      
+      if($('#summernote').summernote('code').trim() == ''){
+        Swal({
+          type: 'error',
+          title: 'FAQ등록에러',
+          html: '게시글을 입력해주세요.',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: '확인',
+        })
+        return false;
+      }
       Swal({
         type: 'info',
         title: 'FAQ등록',
