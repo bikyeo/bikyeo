@@ -28,9 +28,9 @@
 				<li class="nav-item"><a href="${root}/cycleshare/sharemain.do"
 					class="nav-link d-lg-none none_link">대여소 정보조회</a></li>
 				<li class="nav-item"><a href="${root}/board/boardfaq.do"
-					class="nav-link d-lg-none none_link">FAQ게시판</a></li>
+					class="nav-link d-lg-none none_link">FAQ 게시판</a></li>
 				<li class="nav-item"><a href="${root}/board/boardqna.do"
-					class="nav-link d-lg-none none_link">QnA게시판</a></li>
+					class="nav-link d-lg-none none_link">1:1 문의</a></li>
 				<sec:authorize access="isAnonymous()">
 				<li class="nav-item"><a href="${root}/login.do"
 					class="nav-link text-white">Sign In</a></li>
