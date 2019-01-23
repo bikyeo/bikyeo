@@ -6,4 +6,6 @@ public interface PaymentDao {
 
   void cyclerent(CycleDto cycleDto);
 
+  void returncycle(CycleDto cycleDto);
+
 }

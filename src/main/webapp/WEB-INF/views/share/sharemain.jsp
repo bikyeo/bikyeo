@@ -650,7 +650,6 @@ function select(){
                              "sp_Pay":rsp.paid_amount
                              }
                            };
-                   console.log(rent_data);
                   $.ajax({
                      url : "${root}/cycleshare/cycle.do", 
                      data: JSON.stringify(rent_data),
@@ -677,20 +676,15 @@ function select(){
                        } 
                        },
                        error:function(request, status, error) {
-                         swal("시간을 선택해주세요.","","warning");
+                         swal("대여에 실패하였습니다.","","error");
 
                        }
 
-                     })
-                  
-                  
-                  
+                     })           
               } else {
-                  var msg = '결제에 실패하였습니다.';
-                  msg += '에러내용 : ' + rsp.error_msg;
+                swal("대여에 실패하였습니다.","","error");
               }
 
-              alert(msg);
           });
         }
       })
