@@ -9,11 +9,14 @@
    values
    (LAST_INSERT_ID(),#{paymentDto.sp_Pay},0,NOW())
  </insert>
- <insert id="returncycle" parameterType="cycleDto">
+ <insert id="returcycle" parameterType="cycleDto">
   insert into share_payment
    (s_Num,sp_Pay,sp_Status,sp_Date)
    values
-   (#{shareDto.s_Num},#{paymentDto.sp_Pay},1,NOW())
+   ((select s_Num from share 
+    where 
+    m_Email = #{shareDto.m_Email} 
+    and c_Code = #{c_Code} order by s_Sdate desc LIMIT 1),#{paymentDto.sp_Pay},1,NOW())
  
  </insert>
  

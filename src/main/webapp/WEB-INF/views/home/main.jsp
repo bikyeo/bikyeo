@@ -298,9 +298,9 @@
          if($('#pay').attr('fine') == null){
         
            var data = { "c_Code": $('#return-select').val(),
-                     "c_Move": $('#return-place').val()
-                     };
-        console.log(data);
+                        "c_Move": $('#return-place').val()
+                       };
+//         console.log(data);
         $.ajax({
           url : "${root}/cycleshare/return.do",
           data : JSON.stringify(data),

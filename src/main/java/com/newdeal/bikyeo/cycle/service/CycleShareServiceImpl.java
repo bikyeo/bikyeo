@@ -41,15 +41,11 @@ public class CycleShareServiceImpl implements CycleShareService{
   @Override
   public int recycle(CycleDto cycleDto) {
     int result = 0;  
-    int s_Num = 0;
     System.out.println(cycleDto);
     sqlSession.getMapper(CycleDao.class).retucycle(cycleDto);
     result = sqlSession.getMapper(CycleShareDao.class).recycle(cycleDto);
     if(cycleDto.getPaymentDto() != null) {
-    s_Num = sqlSession.getMapper(CycleShareDao.class).selectsnum(cycleDto);
-    System.out.println(s_Num);
-//      cycleDto.getShareDto().setS_Num(sqlSession.getMapper(CycleShareDao.class).selectsnum(cycleDto));
-    sqlSession.getMapper(PaymentDao.class).returncycle(cycleDto);
+    sqlSession.getMapper(PaymentDao.class).returcycle(cycleDto);
     }
     return result;
   }

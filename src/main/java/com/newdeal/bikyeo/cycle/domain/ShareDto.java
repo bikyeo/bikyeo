@@ -9,6 +9,7 @@ public class ShareDto {
   private String s_Sdate;
   private String s_Pdate;
   private String s_Edate;
+  private int s_Status;
   
   public int getS_Num() {
     return s_Num;
@@ -52,12 +53,20 @@ public class ShareDto {
   public void setS_Edate(String s_Edate) {
     this.s_Edate = s_Edate;
   }
+  public int getS_Status() {
+    return s_Status;
+  }
+  public void setS_Status(int s_Status) {
+    this.s_Status = s_Status;
+  }
+  
   @Override
   public String toString() {
     return "ShareDto [s_Num=" + s_Num + ", m_Email=" + m_Email + ", p_Num=" + p_Num + ", c_Code="
-        + c_Code + ", s_Sdate=" + s_Sdate + ", s_Pdate=" + s_Pdate + ", s_Edate=" + s_Edate + "]";
+        + c_Code + ", s_Sdate=" + s_Sdate + ", s_Pdate=" + s_Pdate + ", s_Edate=" + s_Edate
+        + ", s_Status=" + s_Status + "]";
   }
-  
+ 
   
   
 }

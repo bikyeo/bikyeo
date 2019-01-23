@@ -11,6 +11,5 @@ public interface CycleShareDao {
 
   int recycle(CycleDto cycleDto);
 
-  int selectsnum(CycleDto cycleDto);
-
+ 
 }
