@@ -46,15 +46,15 @@
 	         ${list.b_Content}	         
 	       </div>
 	       <div class="col-10 text-right">
-	         <a href="${root}/board/boardfaqlook.do?b_Num=${list.b_Num }" button type="button" class="btn btn-link btn-default">수정</a></button>
-	          
-	      
+	         <a href="${root}/board/boardfaqlook.do?b_Num=${list.b_Num }" button type="button" class="btn btn-link btn-default">수정</a></button>      
 	       </div> 
 	    </div>
 	  </div>  
   </c:forEach>
 </div>
 <a href="${root}/board/boardfaqform.do" button type="button" class="btn btn-link btn-default">글쓰기</a></button>
+
+
 </div>
 
 

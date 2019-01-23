@@ -1,6 +1,6 @@
 package com.newdeal.bikyeo.board.controller;
 
-import java.util.Arrays;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.newdeal.bikyeo.board.domain.BoardDto;
 import com.newdeal.bikyeo.board.service.BoardService;
+import com.newdeal.bikyeo.util.Criteria;
+import com.newdeal.bikyeo.util.PageMaker;
 
 @Controller
 @RequestMapping("/board")
@@ -32,10 +34,33 @@ public class BoardController {
     List<BoardDto> list = boardService.getboardlist();
     model.addAttribute("list", list);
     
-
     return "board.boardfaq";
   }
 
+  @RequestMapping(value="/listPaging",method=RequestMethod.GET)
+  public String listPaging(Criteria cri, Model model) {
+    
+    PageMaker pageMaker = new PageMaker();
+    pageMaker.setCri(cri);
+    pageMaker.setTotalCount(boardService.countArticles(cri));
+        
+        
+    model.addAttribute("articles", boardService.listCriteria(cri));
+    model.addAttribute("pageMaker", pageMaker);
+     
+    
+    
+    
+    return "board.list_paging";
+  }
+  
+  
+  
+  
+  
+  
+  
+  
   @RequestMapping(value="/boardfaqlook.do", method=RequestMethod.GET)
   public String boardfaqlook(Model model, @RequestParam("b_Num") int b_Num) {
     
