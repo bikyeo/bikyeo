@@ -32,6 +32,16 @@
     delete from board where b_Num = #{b_Num}
   </delete>
 
+  <select id="listCriteria" resultType="boardDto">
+  
+    select * from board where b_Num > 0
+    order by b_Num desc, b_regdate desc
+    limit #{pageStart}, #{perPageNum}
+ 
+  </select>
+
+
+
 
 
 </mapper>

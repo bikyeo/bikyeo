@@ -35,10 +35,10 @@ $(document).ready(function(){
   </div>
   
   <textarea row="50" cols="100" class="form-control" name="b_Content">${bno.b_Content }</textarea>
-  <button type="submit" class="input-group-prepend btn btn-danger" id="BtnSubmit">수정완료</a></button>  
+  <button type="submit" class="label label-default" id="BtnSubmit">수정완료</a></button>  
   
-<a href="${root }/board/boardfaq.do" button type="button" class="input-group-prepend btn btn-danger">목록</a></button>
-<button id="delete" class="input-group-prepend btn btn-danger">삭제</button> 
+<a href="${root }/board/boardfaq.do" button type="button" class="label label-default">목록</a></button>
+<button id="delete" class="label label-default">삭제</button> 
 
 </form>
 </div>
