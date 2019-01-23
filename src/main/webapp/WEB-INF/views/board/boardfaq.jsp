@@ -30,9 +30,10 @@
 	       <div class="text-left">	         
 	         ${list.b_Content}	         
 	       </div>
-	       <div class="col-10 text-right">
+	       <div class="col-12 text-right">
            <sec:authorize access="hasRole('ROLE_ADMIN')">	       
-	         <a href="${root}/board/boardfaqlook.do?b_Num=${list.b_Num }"><button type="button" class="btn btn-danger">수정</button></a>     
+	         <a href="${root}/board/boardfaqlook.do?b_Num=${list.b_Num }"><button type="button" class="btn btn-danger">수정</button></a>
+	         <button type="button" class="btn btn-danger deleteBtn" b_num="${list.b_Num }">삭제</button>
 	         </sec:authorize>
 	       </div> 
 	    </div>
@@ -56,7 +57,37 @@ $(document).ready(function(){
       $('.accor').attr('class','accor text-dark');
       $(this).attr('class','font-weight-bold accor text-dark');
     }
-  })
+  });
+  $('.deleteBtn').click(function() {
+    var b_Num = $(this).attr('b_Num');
+    Swal({
+      type: 'info',
+      title: 'FAQ삭제',
+      html: '글을 삭제하시겠습니까?',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: '확인',
+      cancelButtonColor:'#d33',
+      cancelButtonText:'취소'
+    }).then(function (result) {
+      if(result.value){
+        var form = document.createElement("form");
+        form.setAttribute("charset", "UTF-8");
+        form.setAttribute("method", "Post");  //Post 방식
+        form.setAttribute("action", "${root}/board/delete.do?b_Num=" + b_Num); //요청 보낼 주소
+
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", "${_csrf.parameterName}");
+        hiddenField.setAttribute("value", "${_csrf.token}");
+        form.appendChild(hiddenField);
+        
+        document.body.appendChild(form);
+        form.submit();
+      }
+    });
+   
+  });
   
 })
 
