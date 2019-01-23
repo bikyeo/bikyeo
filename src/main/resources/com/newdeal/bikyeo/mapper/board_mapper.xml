@@ -17,8 +17,8 @@
   </select>
 
   <insert id="boardWrite">
-    insert into board (bt_Num, b_Subject, m_Email,b_Content)
-    values (0,#{b_Subject},#{m_Email},#{b_Content}) 
+    insert into board (b_Subject, m_Email,b_Content)
+    values (#{b_Subject},#{m_Email},#{b_Content}) 
   </insert>
   
   <update id="boardModify" parameterType="boardDto">

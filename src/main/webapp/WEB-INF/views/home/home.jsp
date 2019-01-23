@@ -79,6 +79,10 @@
 
 <!-- 카카오 페이 아임포트 -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+<!-- 서머노트 -->
+<link rel="stylesheet" href="${root}/sn/summernote-bs4.css" />
+<script src="${root}/sn/summernote-bs4.js"></script>
 </head>
 <body>
 	<!-- Header  영역 -->
