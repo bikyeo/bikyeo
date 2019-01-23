@@ -22,10 +22,10 @@
 		<logout logout-url="/logout.do"
 			logout-success-url="/index.do?status=logout"
 			invalidate-session="true" />
-		<session-management>
-			<concurrency-control max-sessions="1"
-				error-if-maximum-exceeded="false" />
+		<session-management invalid-session-url="/index.do">
+			<concurrency-control max-sessions="1" expired-url="/index.do" />
 		</session-management>
+  
 	</http>
 
 	<beans:bean id="customAuthenticationSuccessHandler"
