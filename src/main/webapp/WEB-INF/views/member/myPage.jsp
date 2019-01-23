@@ -57,6 +57,9 @@
               cancelButtonColor:'#d33',
               cancelButtonText:'취소'
             }).then(function (result) {
+              if(result.dismiss == 'cancel') {
+                return false;
+              } 
               $.ajax({
                 url : "${root}/member/info.do",
                 dateType:"json",
@@ -110,6 +113,9 @@
               cancelButtonColor:'#d33',
               cancelButtonText:'취소'
             }).then(function (result) {
+              if(result.dismiss == 'cancel') {
+                return false;
+              } 
               $.ajax({
                 url : "${root}/member/pwdConfirm.do",
                 dateType:"json",
@@ -299,69 +305,185 @@
     });
     
     $('#memberInfoDelete').click(function() {
-      Swal({
-        type: 'info',
-        title: '회원 탈퇴',
-        html: '그동안 Bikyeo를 이용해주셔서 감사합니다.',
-        confirmButtonColor: '#3085d6',
-        confirmButtonText: '확인'
-      }).then(function(result) {
-        $.ajax({
-          url : "${root}/member/delete.do",
-          contentType: "application/json;charset=utf-8",
-          type: "DELETE",
-          beforeSend: function(xhr) {
-            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-          },
-          success : function(data) {
-            var userData = JSON.parse(data);
-            if(userData.result>=1) {
-              Swal({
-                type: 'success',
-                title: '회원 탈퇴',
-                html: '그동안 Bikyeo를 이용해주셔서 감사합니다.',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: '확인'
-              });
-            } else {
-              Swal({
-                type: 'error',
-                title: '회원 탈퇴',
-                html: '탈퇴중 에러가 발생했습니다. 잠시후 다시 시도해 주세요.',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: '확인'
-              });
-            }
-          }
-        }).then(function() {
-
-          var user = '${pageContext.request.userPrincipal.name}';
-          var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-          if(!regExp.test(user)) {
-            var company = user.substr(0,5);
-            if(company=='kakao') {
-              Kakao.init('7bac65a1ad27df9cef7f991882677d17');
-              Kakao.Auth.logout();
-              console.log('a');
-            }
-          }
-          var form = document.createElement("form");
-          form.setAttribute("charset", "UTF-8");
-          form.setAttribute("method", "Post");  //Post 방식
-          form.setAttribute("action", "${root}/logout.do"); //요청 보낼 주소
-
-          var hiddenField = document.createElement("input");
-          hiddenField.setAttribute("type", "hidden");
-          hiddenField.setAttribute("name", "${_csrf.parameterName}");
-          hiddenField.setAttribute("value", "${_csrf.token}");
-          form.appendChild(hiddenField);
-          
-          document.body.appendChild(form);
-          form.submit();
-          
-        });
+      $.ajax({
+        url : "${root}/member/info.do",
+        dateType:"json",
+        type: "GET",
+        success : function(data) {
+		      var userData = JSON.parse(data);
+		      var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		      var social;
+		      if(!regExp.test(userData.m_Email)) {
+		        social = true;
+		      } else {
+		        social = false;
+		      }
+		      if(social) {
+		        Swal({
+		          type: 'info',
+		          title: '회원 탈퇴',
+		          html: '회원 탈퇴를 하시겠습니까?',
+		          showCancelButton: true,
+		          confirmButtonColor: '#3085d6',
+		          confirmButtonText: '확인',
+		          cancelButtonColor:'#d33',
+		          cancelButtonText:'취소'
+		        }).then(function(result) {
+		          console.log(result)
+		          if(result.dismiss == 'cancel') {
+		            return false;
+		          } 
+		          
+              $.ajax({
+                url : "${root}/member/delete.do",
+                contentType: "application/json;charset=utf-8",
+                type: "DELETE",
+                beforeSend: function(xhr) {
+                  xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                },
+                success : function(data) {
+                  var userData = JSON.parse(data);
+                  if(userData.result>=1) {
+                    Swal({
+                      type: 'success',
+                      title: '회원 탈퇴',
+                      html: '그동안 Bikyeo를 이용해주셔서 감사합니다.',
+                      confirmButtonColor: '#3085d6',
+                      confirmButtonText: '확인'
+                    }).then(function() {
+                      var user = '${pageContext.request.userPrincipal.name}';
+                      var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+                      if(!regExp.test(user)) {
+                        var company = user.substr(0,5);
+                        if(company=='kakao') {
+                          Kakao.init('7bac65a1ad27df9cef7f991882677d17');
+                          Kakao.Auth.logout();
+                          console.log('a');
+                        }
+                      }
+                      var form = document.createElement("form");
+                      form.setAttribute("charset", "UTF-8");
+                      form.setAttribute("method", "Post");  //Post 방식
+                      form.setAttribute("action", "${root}/member/logout.do"); //요청 보낼 주소
+            
+                      var hiddenField = document.createElement("input");
+                      hiddenField.setAttribute("type", "hidden");
+                      hiddenField.setAttribute("name", "${_csrf.parameterName}");
+                      hiddenField.setAttribute("value", "${_csrf.token}");
+                      form.appendChild(hiddenField);
+                      
+                      document.body.appendChild(form);
+                      form.submit();
+                      
+                    });
+                  } else {
+                    Swal({
+                      type: 'error',
+                      title: '회원 탈퇴',
+                      html: '탈퇴중 에러가 발생했습니다. 잠시후 다시 시도해 주세요.',
+                      confirmButtonColor: '#3085d6',
+                      confirmButtonText: '확인'
+                    });
+                  }
+		            }
+		          });
+		        });
+		      } else {
+		        Swal({
+		          type: 'info',
+		          title: '회원 탈퇴',
+		          html: '회원 탈퇴를 하시겠습니까?',
+		          showCancelButton: true,
+		          input: 'password',
+		          inputPlaceholder: '회원 탈퇴하시려면 비밀번호를 입력해주세요.',
+		          confirmButtonColor: '#3085d6',
+		          confirmButtonText: '확인',
+		          cancelButtonColor:'#d33',
+		          cancelButtonText:'취소'
+		        }).then(function(result) {
+		          if(result.dismiss == 'cancel') {
+		            return false;
+		          } 
+		          $.ajax({
+		            url : "${root}/member/pwdConfirm.do",
+		            dateType:"json",
+		            data:JSON.stringify({m_Pwd : result.value}),
+		            type: "POST",
+		            contentType: "application/json;charset=utf-8",
+		            beforeSend: function(xhr) {
+		              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+		            },
+		            success : function(data) {
+		              var jsonData = JSON.parse(data);
+		              if(!jsonData.result){
+		                Swal({
+		                  type: 'error',
+		                  title: '회원 탈퇴',
+		                  html: '비밀번호가 맞지 않습니다.',
+		                  confirmButtonColor: '#3085d6',
+		                  confirmButtonText: '확인'
+		                });
+		              } else {
+		                $.ajax({
+		                  url : "${root}/member/delete.do",
+		                  contentType: "application/json;charset=utf-8",
+		                  type: "DELETE",
+		                  beforeSend: function(xhr) {
+		                    xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+		                  },
+		                  success : function(data) {
+		                    var userData = JSON.parse(data);
+		                    if(userData.result>=1) {
+		                      Swal({
+		                        type: 'success',
+		                        title: '회원 탈퇴',
+		                        html: '그동안 Bikyeo를 이용해주셔서 감사합니다.',
+		                        confirmButtonColor: '#3085d6',
+		                        confirmButtonText: '확인'
+		                      }).then(function() {
+		                        var user = '${pageContext.request.userPrincipal.name}';
+		                        var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		                        if(!regExp.test(user)) {
+		                          var company = user.substr(0,5);
+		                          if(company=='kakao') {
+		                            Kakao.init('7bac65a1ad27df9cef7f991882677d17');
+		                            Kakao.Auth.logout();
+		                            console.log('a');
+		                          }
+		                        }
+		                        var form = document.createElement("form");
+		                        form.setAttribute("charset", "UTF-8");
+		                        form.setAttribute("method", "Post");  //Post 방식
+		                        form.setAttribute("action", "${root}/member/logout.do"); //요청 보낼 주소
+		              
+		                        var hiddenField = document.createElement("input");
+		                        hiddenField.setAttribute("type", "hidden");
+		                        hiddenField.setAttribute("name", "${_csrf.parameterName}");
+		                        hiddenField.setAttribute("value", "${_csrf.token}");
+		                        form.appendChild(hiddenField);
+		                        
+		                        document.body.appendChild(form);
+		                        form.submit();
+		                        
+		                      });
+		                    } else {
+		                      Swal({
+		                        type: 'error',
+		                        title: '회원 탈퇴',
+		                        html: '탈퇴중 에러가 발생했습니다. 잠시후 다시 시도해 주세요.',
+		                        confirmButtonColor: '#3085d6',
+		                        confirmButtonText: '확인'
+		                      });
+		                    }
+		                  }
+		                });
+		              }
+		            }
+		          });
+		        });
+		      }
+        }
       });
-      
     });
     
     $('#memberInfoShareCycle').click(function() {

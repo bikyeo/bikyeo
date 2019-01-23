@@ -69,6 +69,8 @@
               }).then(function (result) {
                 if (result.value) {
                   location.href="${root}/socialSignUp.do?param="+naverId;
+                } else {
+                  location.href="${root}/index.do";
                 }
               });
             }
