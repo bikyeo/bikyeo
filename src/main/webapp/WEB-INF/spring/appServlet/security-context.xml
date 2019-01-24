@@ -15,7 +15,7 @@
 		<intercept-url pattern="/member/insert.do" access="isAnonymous()" />
 		<intercept-url pattern="/member/confirm.do" access="isAnonymous()" />
 		<intercept-url pattern="/member/searchEmail.do" access="isAnonymous()" />
-		<intercept-url pattern="/member/searchEmail.do" access="isAnonymous()" />
+		<intercept-url pattern="/member/searchPwd.do" access="isAnonymous()" />
 		<intercept-url pattern="/member/resetPwd.do" access="isAnonymous()" />
 		<intercept-url pattern="/member/editPwd.do" access="isAnonymous()"/>
 		<intercept-url pattern="/member/*" access="hasRole('ROLE_USER')" />
