@@ -389,7 +389,6 @@
                     });
                     return false;
                   }
-                  
                   if(!emailRegExp.test($('#swal-email').val())) {
                     Swal({
                       type: 'error',
@@ -405,6 +404,7 @@
                     data: {
                       m_Email: $('#swal-email').val()
                     },
+                    contentType: 'application/json;charset=UTF-8',
                     success: function (data) {
                       if (!$.isEmptyObject(data)) {
 	                      Swal({

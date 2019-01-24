@@ -111,9 +111,8 @@ public class MemberController {
     return memberService.searchEmail(memberDto);
   }
 
-  @RequestMapping(value="/searchPwd.do", method=RequestMethod.GET)
+  @RequestMapping(value="/searchPwd.do", method=RequestMethod.GET, headers= {"Content-Type=application/json"})
   public @ResponseBody String searchPwd(@RequestParam String m_Email) throws MessagingException, IOException, TemplateException {
-
     return memberService.searchPwd(m_Email);
   }
 
