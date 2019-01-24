@@ -37,7 +37,7 @@ $(document).on('ready', function(){
  
 </script>
 <div class="container">
- <form id="updateBoardForm" role="form" action="${root }/board/boardmodify.do" method="POST">
+ <form id="updateBoardForm" role="form" action="${root}/board/boardmodify.do" method="POST">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" >
     <input type="hidden" name="b_Num" value="${bno.b_Num}">
   <div class="row board-insert-row">
