@@ -28,10 +28,6 @@
 					class="nav-link">대여소 정보조회</a></li>
 				<li class="nav-item"><a href="${root}/board/boardfaq.do"
 					class="nav-link">FAQ 게시판</a></li>
-			 <sec:authorize access="isAuthenticated()">
-				<li class="nav-item"><a href="${root}/board/boardqna.do"
-					class="nav-link">1:1 문의</a></li>
-				</sec:authorize>
 				<sec:authorize access="isAnonymous()">
         <li class="nav-item"><a href="${root}/login.do"
           class="nav-link">Sign In</a></li>
