@@ -896,7 +896,7 @@
           var regDate = new Date(userData.m_Regdate);
           var regDateString = regDate.getFullYear() + '년 ' + (regDate.getMonth() + 1) + '월 ' + regDate.getDate() + '일 ';
           html += '<li class="list-group-item"><div class="row"><div class="col-2 text-right"><b>가입날짜 :</b></div> <div class="col-10">' +regDateString+ '</div></div></li>';
-          var upDate = new Date(userData.m_Regdate);
+          var upDate = new Date(userData.m_Update);
           var upDateString = upDate.getFullYear() + '년 ' + (upDate.getMonth() + 1) + '월 ' + upDate.getDate() + '일 ';
           html += '<li class="list-group-item"><div class="row"><div class="col-2 text-right"><b>수정날짜 :</b></div> <div class="col-10">' +upDateString+ '</div></div></li>';
           var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
